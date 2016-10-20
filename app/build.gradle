@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "open.hui.ren.githubclientdemo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+/*  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })*/
+    // JUnit
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    // Robolectric
+    // Mockito
+    // Custom
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion") {
+        exclude module: 'okhttp'
+    }
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.gsonConvertVersion"
+    compile "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
+    // apt based preference
+    compile "com.baoyz.treasure:treasure:$rootProject.treasureVersion"
+    apt "com.baoyz.treasure:treasure-compiler:$rootProject.treasureVersion"
+
+    // Dagger dependencies
+    apt "com.squareup:javapoet:$rootProject.javapoetVersion"
+    apt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    compile "com.google.dagger:dagger:$rootProject.daggerVersion"
+    // agera
+    compile "com.google.android.agera:agera:$rootProject.ext.ageraLibrariesVersion"
+    compile "com.google.android.agera:content:$rootProject.ext.ageraLibrariesVersion"
+    compile "com.google.android.agera:database:$rootProject.ext.ageraLibrariesVersion"
+    compile "com.google.android.agera:net:$rootProject.ext.ageraLibrariesVersion"
+    compile "com.google.android.agera:rvadapter:$rootProject.ext.ageraLibrariesVersion"
+    // auto
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    // butter knife
+    compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+    // sweet dialog
+    // picasso
+    compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+    compile 'com.squareup.okio:okio:1.9.0'
+    compile 'cn.pedant.sweetalert:library:1.3'
+    compile 'com.android.support:support-v4:24.2.1'
+    testCompile 'org.robolectric:robolectric:3.1.2'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+}
