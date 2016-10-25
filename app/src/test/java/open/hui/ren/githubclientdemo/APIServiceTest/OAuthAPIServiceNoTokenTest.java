@@ -54,7 +54,7 @@ public class OAuthAPIServiceNoTokenTest extends APIServiceTestBase {
     public void testOAuthListNotEmpty() {//认证列表的获取不需要token需要username password验证
         netModuleTest = new NetModuleTest(mContext, "https://api.github.com", true);
         Response<ArrayList<OAuthResult>> response = null;
-        Call<ArrayList<OAuthResult>>     call     = netModuleTest.getApiServiceUnderBasicCredential().getOAuthList();
+        Call<ArrayList<OAuthResult>>     call     = netModuleTest.getUserInfoApiService().getOAuthList();
         try {
             response = call.execute();
         } catch (IOException e) {
@@ -83,7 +83,7 @@ public class OAuthAPIServiceNoTokenTest extends APIServiceTestBase {
         Gson                  gson       = new Gson();
         JsonObject            jsonObject = gson.fromJson(requestData, JsonObject.class);
         Response<OAuthResult> response   = null;
-        Call<OAuthResult>     call       = netModuleTest.getApiServiceUnderBasicCredential().genOAuthToken(jsonObject);
+        Call<OAuthResult>     call       = netModuleTest.getUserInfoApiService().genOAuthToken(jsonObject);
         try {
             response = call.execute();
         } catch (IOException e) {

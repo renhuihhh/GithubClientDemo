@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
+import open.hui.ren.githubclientdemo.apiservices.params.UserLoginParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
@@ -36,14 +37,14 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
 
     private LoginContracts.View mView;
     private Context             mContext;
+    private LoginSupplier       mLoginSupplier;
 
     //for agera
-    private ExecutorService              networkExecutor;
-    private Executor                     uiExecutor;
-    private MutableRepository<String>    mMutableRepository;//上层事件驱动入口
-    private Repository<Result<UserInfo>> mLoadDataRepository;//数据拉取入口
+    private ExecutorService                    networkExecutor;
+    private Executor                           uiExecutor;
+    private MutableRepository<UserLoginParams> mMutableRepository;//上层事件驱动入口
 
-    private LoginSupplier mLoginSupplier;
+    private Repository<Result<UserInfo>> mLoadDataRepository;//数据拉取入口
 
     public LoginPresenter(LoginContracts.View view) {
         mView = view;
@@ -54,7 +55,7 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
     public void start() {
         Log.d(TAG, "start...");
         setUpAgera();
-        if(!mLoginSupplier.whetherNeedLogin()){
+        if (!mLoginSupplier.whetherNeedLogin()) {
             mView.jumpToMain();
         }
     }
@@ -79,24 +80,25 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
     private void setUpAgera() {
         networkExecutor = Executors.newSingleThreadExecutor();
         uiExecutor = UiThreadExecutor.newUiThreadExecutor();
-        mMutableRepository = Repositories.mutableRepository("");
+        mMutableRepository = Repositories.mutableRepository(new UserLoginParams("", ""));
         mLoginSupplier = new LoginSupplier(this, mMutableRepository);
         mLoadDataRepository =
             Repositories.repositoryWithInitialValue(Result.<UserInfo>absent())
-                .observe(mMutableRepository)
-                .onUpdatesPerLoop()
-                .goTo(networkExecutor)
-                .attemptGetFrom(mLoginSupplier)
-                .orEnd(getThrowableFunction())
-                .thenTransform(getTransferFunction())
-                .onDeactivation(RepositoryConfig.SEND_INTERRUPT)
-                .compile();
+                        .observe(mMutableRepository)
+                        .onUpdatesPerLoop()
+                        .goTo(networkExecutor)
+                        .attemptGetFrom(mLoginSupplier)
+                        .orEnd(getThrowableFunction())
+                        .thenTransform(getTransferFunction())
+                        .onDeactivation(RepositoryConfig.SEND_INTERRUPT)
+                        .compile();
     }
 
     @Override
     public void fetchUserInfoByUserName(String username, String password) {
         Log.d(TAG, "fetchUserInfoByUserName...");
-        mMutableRepository.accept(new String(username + " " + password));
+        UserLoginParams params = new UserLoginParams(username, password);
+        mMutableRepository.accept(params);
     }
 
     @Override

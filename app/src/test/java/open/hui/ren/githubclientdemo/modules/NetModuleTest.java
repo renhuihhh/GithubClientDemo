@@ -17,7 +17,7 @@ import okhttp3.Response;
 import okhttp3.Route;
 import open.hui.ren.githubclientdemo.apiservices.APIServiceNeedToken;
 import open.hui.ren.githubclientdemo.apiservices.APIServiceNoAuth;
-import open.hui.ren.githubclientdemo.apiservices.APIServiceUnderBasicCredential;
+import open.hui.ren.githubclientdemo.apiservices.UserInfoAPIService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -30,13 +30,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetModuleTest {
 
     public static final int TIME_OUT_S = 30;
-    Cache                          cache;
-    GsonBuilder                    gsonBuilder;
-    OkHttpClient                   client;
-    Retrofit                       retrofit;
-    APIServiceUnderBasicCredential mApiServiceUnderBasicCredential;
-    APIServiceNeedToken            apiServiceNeedToken;
-    APIServiceNoAuth               apiServiceNoAuth;
+    Cache               cache;
+    GsonBuilder         gsonBuilder;
+    OkHttpClient        client;
+    Retrofit            retrofit;
+    UserInfoAPIService  mUserInfoApiService;
+    APIServiceNeedToken apiServiceNeedToken;
+    APIServiceNoAuth    apiServiceNoAuth;
 
     String  mBaseUrl;
     Context mContext;
@@ -87,9 +87,9 @@ public class NetModuleTest {
     }
 
 
-    public APIServiceUnderBasicCredential getApiServiceUnderBasicCredential() {
-        mApiServiceUnderBasicCredential = retrofit.create(APIServiceUnderBasicCredential.class);
-        return mApiServiceUnderBasicCredential;
+    public UserInfoAPIService getUserInfoApiService() {
+        mUserInfoApiService = retrofit.create(UserInfoAPIService.class);
+        return mUserInfoApiService;
     }
 
     public APIServiceNeedToken getApiServiceNeedToken() {

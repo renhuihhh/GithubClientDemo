@@ -22,7 +22,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
 import open.hui.ren.githubclientdemo.PreferenceService;
-import open.hui.ren.githubclientdemo.apiservices.APIServiceUnderBasicCredential;
+import open.hui.ren.githubclientdemo.apiservices.UserInfoAPIService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -106,8 +106,8 @@ public class NetModule {
 
     @Provides
     @Singleton
-    APIServiceUnderBasicCredential provideAPIService(Retrofit retrofit) {
-        return retrofit.create(APIServiceUnderBasicCredential.class);
+    UserInfoAPIService provideAPIService(Retrofit retrofit) {
+        return retrofit.create(UserInfoAPIService.class);
     }
 
     public String getmBaseUrl() {

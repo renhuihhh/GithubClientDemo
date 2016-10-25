@@ -16,6 +16,7 @@ import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.APIServiceNeedToken;
+import open.hui.ren.githubclientdemo.apiservices.params.UserLoginParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;
@@ -35,33 +36,37 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
     @Inject
     PreferenceService mPreferenceService;
 
-    private MutableRepository<String> mSupplier;//上游数据supplier,主要负责参数输入
-    private Context                   mContext;
+    private MutableRepository<UserLoginParams> mSupplier;//上游数据supplier,主要负责参数输入
+    private Context                            mContext;
 
-    public LoginSupplier(LoginContracts.Presenter presenter, MutableRepository<String> supplier) {
+    public LoginSupplier(LoginContracts.Presenter presenter, MutableRepository<UserLoginParams> supplier) {
         super();
-        mContext = presenter.getView().getCtx();
+        mContext = presenter.getView()
+                            .getCtx();
         mSupplier = supplier;
         mPresenter = presenter;
-        mPresenter.getView().getAppContext()
-            .getNetComponent()
-            .inject(this);
+        mPresenter.getView()
+                  .getAppContext()
+                  .getNetComponent()
+                  .inject(this);
     }
 
     @Override
     public Result<UserInfo> loadData() {
-        String originStr = mSupplier.get();
-        if (TextUtils.isEmpty(originStr)) {
-            return Result.failure(new Throwable(ConstConfig.S_INIT_PARAMS));
+        UserLoginParams params = mSupplier.get();
+        if (params == null) {
+            return Result.failure();
+        } else if (TextUtils.isEmpty(params.userName) || TextUtils.isEmpty(params.passWord)) {
+            return Result.failure(new Throwable("empty params"));
         }
-        String[] userNamePassword = mSupplier.get().split(" ");
-        String   credential       = Credentials.basic(userNamePassword[0], userNamePassword[1]);
+        String credential = Credentials.basic(params.userName, params.passWord);
         Call<UserInfo> call = mRetrofit
             .create(APIServiceNeedToken.class)
             .getUserInfoByAuthorization(credential);
         UserInfo userInfo;
         try {
-            userInfo = call.execute().body();
+            userInfo = call.execute()
+                           .body();
         } catch (IOException e) {
             e.printStackTrace();
             return Result.failure(e);
@@ -69,7 +74,7 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
         if (userInfo == null) {
             return Result.failure();
         } else {
-            saveBasicLoginInfo(userNamePassword[0], credential);
+            saveBasicLoginInfo(params.userName, credential);
             return Result.success(userInfo);
         }
     }
@@ -85,7 +90,9 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
         mPreferenceService.setLoginAccount(loginAccount);
         if (whetherNeedLogin()) {//认证需要重置
             mPreferenceService.setBasicCredential(basicCredential);
-            mPresenter.getView().getAppContext().buildCommonComponent();
+            mPresenter.getView()
+                      .getAppContext()
+                      .buildCommonComponent();
         }
     }
 

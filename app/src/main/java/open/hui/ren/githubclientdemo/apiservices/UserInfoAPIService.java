@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.entities.OAuthResult;
 import open.hui.ren.githubclientdemo.entities.Repo;
-import open.hui.ren.githubclientdemo.entities.UserInfo;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -20,7 +19,7 @@ import retrofit2.http.Path;
  * @desc retrofit网络接口service
  */
 
-public interface APIServiceUnderBasicCredential {
+public interface UserInfoAPIService {
 
     /**
      * 生成已校验用户对应的 token
@@ -51,49 +50,10 @@ public interface APIServiceUnderBasicCredential {
     @GET("/user/subscriptions")
     Call<ArrayList<Repo>> getSubscriptions();
 
-    /**
-     * 获取当前登陆用户的  starred 列表
-     * */
-    @GET("/user/starred")
-    Call<ArrayList<Repo>> getStarredRepos();
-
-    /**
-     * 获取当前登录用户的 following 列表
-     * */
-    @GET("/user/following")
-    Call<ArrayList<UserInfo>> getFollowings();
-
-    /**
-     * 获取当前登陆用户的 followers
-     */
-    @GET("/user/followers")
-    Call<ArrayList<UserInfo>> getFollowers();
-
-    /**
-     * 获取当前登陆用户的 repos 列表
-     */
-    @GET("/user/repos")
-    Call<ArrayList<Repo>> getRepos();
 
     ///***************************************************************************/
 
-    /**
-     * 获取 started 列表
-     */
-    @GET("/users/starred")
-    Call<ArrayList<Repo>> getUserStarred(@Path("username") String userName);
 
-    /**
-     * 获取 followers 列表
-     */
-    @GET("/users/{username}/followers")
-    Call<ArrayList<UserInfo>> getUserFollowers(@Path("useraname") String userName);
-
-    /**
-     * 获取 following 列表
-     */
-    @GET("/users/{username}/following")
-    Call<ArrayList<UserInfo>> getUserFollowings(@Path("username") String userName);
 
     /**
      * 获取 subscriptions 列表
@@ -101,11 +61,6 @@ public interface APIServiceUnderBasicCredential {
     @GET("/users/{username}/subscriptions")
     Call<ArrayList<Repo>> getUserSubscriptions(@Path("username") String userName);
 
-    /**
-     * 获取 repo 列表
-     */
-    @GET("/users/{username}/repos")
-    Call<ArrayList<Repo>> getUserRepos(@Path("username") String userName);
 
     /**
      * 获取 events 列表

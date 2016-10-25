@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.overview;
+package open.hui.ren.githubclientdemo.fragments.overview;
 
 
 import android.content.Context;
@@ -61,6 +61,13 @@ public class OverViewFragment extends Fragment {
         }
     }
 
+
+    @Override
+    public void onResume() {
+        Log.d(TAG, "onResume");
+        super.onResume();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
@@ -79,12 +86,6 @@ public class OverViewFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         Log.d(TAG, "onHiddenChanged: is hidden " + hidden);
         super.onHiddenChanged(hidden);
-    }
-
-    @Override
-    public void onResume() {
-        Log.d(TAG, "onResume");
-        super.onResume();
     }
 
 

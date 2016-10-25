@@ -26,11 +26,11 @@ import butterknife.OnClick;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.followers.FollowersFragment;
-import open.hui.ren.githubclientdemo.following.FollowingFragment;
-import open.hui.ren.githubclientdemo.overview.OverViewFragment;
-import open.hui.ren.githubclientdemo.repositories.RepositoriesFragment;
-import open.hui.ren.githubclientdemo.stars.StarsFragment;
+import open.hui.ren.githubclientdemo.fragments.followers.FollowersFragment;
+import open.hui.ren.githubclientdemo.fragments.following.FollowingFragment;
+import open.hui.ren.githubclientdemo.fragments.overview.OverViewFragment;
+import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesFragment;
+import open.hui.ren.githubclientdemo.fragments.stars.StarsFragment;
 
 /**
  * @author renhui
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
             StarsFragment.newInstance("title", "subject"), StarsFragment.class
                 .getSimpleName());
         transaction.add(R.id.fragment_container,
-            FollowersFragment.newInstance("title", "subject"), FollowersFragment.class
+            FollowersFragment.newInstance(mUserInfo.login, "subject"), FollowersFragment.class
                 .getSimpleName());
         transaction.add(R.id.fragment_container,
             FollowingFragment.newInstance("title", "subject"), FollowingFragment.class

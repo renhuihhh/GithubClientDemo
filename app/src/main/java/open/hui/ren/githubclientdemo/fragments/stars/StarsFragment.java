@@ -1,10 +1,8 @@
-package open.hui.ren.githubclientdemo.repositories;
+package open.hui.ren.githubclientdemo.fragments.stars;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +11,10 @@ import open.hui.ren.githubclientdemo.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RepositoriesFragment#newInstance} factory method to
+ * Use the {@link StarsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RepositoriesFragment extends Fragment {
-    private static final String TAG = "RepositoriesFragment";
+public class StarsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,7 +25,7 @@ public class RepositoriesFragment extends Fragment {
     private String mParam2;
 
 
-    public RepositoriesFragment() {
+    public StarsFragment() {
         // Required empty public constructor
     }
 
@@ -41,9 +38,9 @@ public class RepositoriesFragment extends Fragment {
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RepositoriesFragment newInstance(String param1, String param2) {
-        RepositoriesFragment fragment = new RepositoriesFragment();
-        Bundle               args     = new Bundle();
+    public static StarsFragment newInstance(String param1, String param2) {
+        StarsFragment fragment = new StarsFragment();
+        Bundle        args     = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -63,26 +60,7 @@ public class RepositoriesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_repositories, container, false);
-    }
-
-
-    @Override
-    public void onAttach(Context context) {
-        Log.d(TAG, "onAttach");
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        Log.d(TAG, "onHiddenChanged: is hidden " + hidden);
-        super.onHiddenChanged(hidden);
-    }
-
-    @Override
-    public void onResume() {
-        Log.d(TAG, "onResume");
-        super.onResume();
+        return inflater.inflate(R.layout.fragment_stars, container, false);
     }
 
 }

@@ -1,8 +1,10 @@
-package open.hui.ren.githubclientdemo.following;
+package open.hui.ren.githubclientdemo.fragments.repositories;
+
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +13,11 @@ import open.hui.ren.githubclientdemo.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FollowingFragment#newInstance} factory method to
+ * Use the {@link RepositoriesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FollowingFragment extends Fragment {
+public class RepositoriesFragment extends Fragment {
+    private static final String TAG        = "RepositoriesFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,7 +28,7 @@ public class FollowingFragment extends Fragment {
     private String mParam2;
 
 
-    public FollowingFragment() {
+    public RepositoriesFragment() {
         // Required empty public constructor
     }
 
@@ -35,12 +38,12 @@ public class FollowingFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FollowingFragment.
+     * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FollowingFragment newInstance(String param1, String param2) {
-        FollowingFragment fragment = new FollowingFragment();
-        Bundle            args     = new Bundle();
+    public static RepositoriesFragment newInstance(String param1, String param2) {
+        RepositoriesFragment fragment = new RepositoriesFragment();
+        Bundle               args     = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -57,20 +60,32 @@ public class FollowingFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        Log.d(TAG, "onResume");
+        super.onResume();
+    }
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_following, container, false);
+        return inflater.inflate(R.layout.fragment_repositories, container, false);
     }
 
 
     @Override
     public void onAttach(Context context) {
+        Log.d(TAG, "onAttach");
         super.onAttach(context);
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onHiddenChanged(boolean hidden) {
+        Log.d(TAG, "onHiddenChanged: is hidden " + hidden);
+        super.onHiddenChanged(hidden);
     }
+
+
 }
