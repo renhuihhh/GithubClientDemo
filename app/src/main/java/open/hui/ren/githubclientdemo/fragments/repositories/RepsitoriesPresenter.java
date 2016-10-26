@@ -30,7 +30,7 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.repositories
+ * @desc Repositories模块的presenter
  */
 
 public class RepsitoriesPresenter implements RepositoriesContacts.Presenter, Updatable, Receiver<ArrayList<Repo>> {

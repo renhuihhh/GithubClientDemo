@@ -9,7 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 /**
- * 自定义drawerlayout状态响应事件
+ * @author renhui
+ * @date 16-9-22
+ * @desc 自定义drawerlayout状态响应事件
  */
 class MyDrawerListener extends ActionBarDrawerToggle {
 

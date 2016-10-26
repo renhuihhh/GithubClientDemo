@@ -28,7 +28,7 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.overview
+ * @desc OverView模块的presenter
  */
 
 public class OverViewPresenter implements OverViewContacts.Presenter, Updatable, Receiver<Integer> {

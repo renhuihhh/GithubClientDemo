@@ -26,7 +26,7 @@ import retrofit2.Retrofit;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments
+ * @desc starred模块的业务模型，数据的获取、事件的推送、以及有关于数据存储的业务都由这里进行封装
  */
 
 public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements BasePersistence<ArrayList<Repo>> {
@@ -62,16 +62,17 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
 
     @Override
     public void saveData(ArrayList<Repo> data) {
-
+        //TODO: sqlite support when necessary
     }
 
     @Override
     public void deleteData(ArrayList<Repo> data) {
-
+        //TODO: sqlite support when necessary
     }
 
     @Override
     public ArrayList<Repo> retrieveData() {
+        //TODO: sqlite support when necessary
         return null;
     }
 
@@ -79,6 +80,7 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
     public Result<ArrayList<Repo>> loadData() {
         StarsParams params = mSupplier.get();
         if (params == null) {
+            //TODO: 此处关于参数无效的地方没有抛出throwable的对象有点不妥，后续需要自定义统一的throwable的标准
             return Result.failure();
         }
         Call<ArrayList<Repo>> call;
@@ -93,7 +95,6 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
             e.printStackTrace();
             return Result.failure(e);
         }
-
         return Result.success(data);
     }
 }

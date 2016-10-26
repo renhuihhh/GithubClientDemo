@@ -10,7 +10,7 @@ import open.hui.ren.githubclientdemo.R;
 /**
  * @author renhui
  * @date 16-10-26
- * @desc open.hui.ren.githubclientdemo.fragments.repositories.viewholder
+ * @desc Repositories的repo的列表viewHolder
  */
 
 public class RepositoriesViewHolder extends RecyclerView.ViewHolder {

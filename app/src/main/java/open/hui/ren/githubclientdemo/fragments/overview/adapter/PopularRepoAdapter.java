@@ -14,7 +14,7 @@ import open.hui.ren.githubclientdemo.fragments.overview.viewholder.PopularRepoVi
 /**
  * @author renhui
  * @date 16-10-26
- * @desc open.hui.ren.githubclientdemo.fragments.overview.adapter
+ * @desc PopularRepo的repo的列表adapter
  */
 
 public class PopularRepoAdapter extends RecyclerView.Adapter<PopularRepoViewHodler> {

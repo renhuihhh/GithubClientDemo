@@ -10,7 +10,7 @@ import open.hui.ren.githubclientdemo.R;
 /**
  * @author renhui
  * @date 16-10-26
- * @desc open.hui.ren.githubclientdemo.fragments.stars.viewholder
+ * @desc starred的repo的列表viewHolder
  */
 
 public class StarredRepoViewHolder extends RecyclerView.ViewHolder {
@@ -21,6 +21,7 @@ public class StarredRepoViewHolder extends RecyclerView.ViewHolder {
 
     public StarredRepoViewHolder(View itemView) {
         super(itemView);
+        //TODO: 有个问题是用butterknife在做注入的时候控件获取出来是null
         tv_title = (TextView) itemView.findViewById(R.id.repo_title);
         tv_desc = (TextView) itemView.findViewById(R.id.repo_desc);
         img_star = (ImageView) itemView.findViewById(R.id.icon_star);

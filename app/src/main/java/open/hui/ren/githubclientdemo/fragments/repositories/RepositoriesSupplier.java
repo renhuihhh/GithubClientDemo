@@ -28,7 +28,7 @@ import static com.google.android.agera.Result.failure;
 /**
  * @author renhui
  * @date 16-10-20
- * @desc open.hui.ren.githubclientdemo.fragments
+ * @desc Repositories模块的业务模型，数据的获取、事件的推送、以及有关于数据存储的业务都由这里进行封装
  */
 
 public class RepositoriesSupplier extends BaseSupplier<ArrayList<Repo>> implements BasePersistence<ArrayList<Repo>> {

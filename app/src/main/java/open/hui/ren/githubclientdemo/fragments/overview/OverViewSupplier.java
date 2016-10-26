@@ -24,7 +24,7 @@ import retrofit2.Retrofit;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.overview
+ * @desc OverView模块的业务模型，数据的获取、事件的推送、以及有关于数据存储的业务都由这里进行封装
  */
 
 public class OverViewSupplier extends BaseSupplier<Integer> {

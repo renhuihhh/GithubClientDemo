@@ -12,7 +12,7 @@ import open.hui.ren.githubclientdemo.fragments.Communicator;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.repositories
+ * @desc Repositories模块的契约类
  */
 
 public interface RepositoriesContacts {

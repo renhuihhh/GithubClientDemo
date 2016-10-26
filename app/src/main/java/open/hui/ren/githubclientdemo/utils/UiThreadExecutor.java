@@ -20,7 +20,6 @@ public class UiThreadExecutor implements Executor {
     public void shutdown(){
     }
 
-    // how to release it?
     public static Executor newUiThreadExecutor() {
         return new UiThreadExecutor();
     }

@@ -14,7 +14,7 @@ import open.hui.ren.githubclientdemo.fragments.stars.viewholder.StarredRepoViewH
 /**
  * @author renhui
  * @date 16-10-26
- * @desc open.hui.ren.githubclientdemo.fragments.stars.adapter
+ * @desc starred的repo的列表adapter
  */
 
 public class StarredRepoAdapter extends RecyclerView.Adapter<StarredRepoViewHolder> {

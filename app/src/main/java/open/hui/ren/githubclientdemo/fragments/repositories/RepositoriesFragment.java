@@ -23,17 +23,16 @@ import open.hui.ren.githubclientdemo.fragments.repositories.adapter.Repositories
 import open.hui.ren.githubclientdemo.main.MainContracts;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link RepositoriesFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * @author renhui
+ * @date 16-10-25
+ * @desc Repositories二级界面的view
  */
+
 public class RepositoriesFragment extends Fragment implements RepositoriesContacts.View {
     private static final String TAG                = "RepositoriesFragment";
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
-    // TODO: Rename and change types of parameters
+
     private String username;
     private String mParam2;
 
@@ -46,18 +45,17 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
 
 
     public RepositoriesFragment() {
-        // Required empty public constructor
+        super();
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param username Parameter 1.
+     * @param username 当前登陆用户的用户名
      * @param param2   Parameter 2.
      * @return A new instance of fragment BlankFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static RepositoriesFragment newInstance(String username, String param2) {
         RepositoriesFragment fragment = new RepositoriesFragment();
         Bundle               args     = new Bundle();

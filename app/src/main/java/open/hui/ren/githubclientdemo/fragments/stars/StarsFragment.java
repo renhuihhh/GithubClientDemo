@@ -23,17 +23,16 @@ import open.hui.ren.githubclientdemo.fragments.stars.adapter.StarredRepoAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link StarsFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * @author renhui
+ * @date 16-10-25
+ * @desc starred二级界面的view
  */
+
 public class StarsFragment extends Fragment implements StarsContacts.View {
     private static final String TAG                = "StarsFragment";
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
-    // TODO: Rename and change types of parameters
+
     private String username;
     private String mParam2;
 
@@ -46,22 +45,22 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
 
 
     public StarsFragment() {
-        // Required empty public constructor
+        super();
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param username 当前用户的用户名.
+     * @param param2   Parameter 2.
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StarsFragment newInstance(String param1, String param2) {
+    public static StarsFragment newInstance(String username, String param2) {
         StarsFragment fragment = new StarsFragment();
         Bundle        args     = new Bundle();
-        args.putString(ARG_PARAM_USERNAME, param1);
+        args.putString(ARG_PARAM_USERNAME, username);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;

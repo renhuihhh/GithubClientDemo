@@ -31,7 +31,7 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.stars
+ * @desc starred模块的presenter
  */
 
 public class StarsPresenter implements StarsContacts.Presenter, FollowingContracts.Presenter, Updatable,

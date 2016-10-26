@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * @author renhui
  * @date 16-9-22
- * @desc 网络访问相关业务模组
+ * @desc app网络访问相关业务模组加载
  */
 
 @Module

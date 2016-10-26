@@ -14,7 +14,7 @@ import open.hui.ren.githubclientdemo.utils.ACache;
 /**
  * @author renhui
  * @date 16-9-26
- * @desc open.hui.ren.githubclientdemo.modules
+ * @desc app基础的DI组件加载
  */
 
 @Module

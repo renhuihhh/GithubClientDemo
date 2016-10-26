@@ -14,7 +14,7 @@ import open.hui.ren.githubclientdemo.fragments.repositories.viewholder.Repositor
 /**
  * @author renhui
  * @date 16-10-26
- * @desc open.hui.ren.githubclientdemo.fragments.repositories.adapter
+ * @desc Repositories的repo的列表adapter
  */
 
 public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesViewHolder> {

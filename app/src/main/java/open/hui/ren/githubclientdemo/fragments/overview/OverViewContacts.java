@@ -11,7 +11,7 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.overview
+ * @desc OverView模块的契约接口
  */
 
 public interface OverViewContacts {
