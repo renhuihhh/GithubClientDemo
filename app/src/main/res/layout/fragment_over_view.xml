@@ -1,18 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".fragments.overview.OverViewFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragments.overview.OverViewFragment">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/over_view_popular_repo"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/over_view_popular_repo_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/over_view_popular_repo"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/over_view_popular_repo_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+    </FrameLayout>
 
-</FrameLayout>
+</ScrollView>
