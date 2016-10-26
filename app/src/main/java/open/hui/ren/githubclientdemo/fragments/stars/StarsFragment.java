@@ -4,6 +4,8 @@ package open.hui.ren.githubclientdemo.fragments.stars;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,13 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
+import open.hui.ren.githubclientdemo.fragments.MarginDecoration;
+import open.hui.ren.githubclientdemo.fragments.stars.adapter.StarredRepoAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
 
 /**
@@ -27,13 +33,16 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
-
     // TODO: Rename and change types of parameters
     private String username;
     private String mParam2;
 
     // Custom
     private StarsContacts.Presenter mPresenter;
+    private StarredRepoAdapter      mStarredRepoAdapter;
+
+    @BindView(R.id.starred_recycler_view)
+    RecyclerView mStarredRecyclerView;
 
 
     public StarsFragment() {
@@ -75,7 +84,18 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
         Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stars, container, false);
+        View root = inflater.inflate(R.layout.fragment_stars, container, false);
+        ButterKnife.bind(this, root);
+        initViews();
+        return root;
+    }
+
+    private void initViews() {
+        mStarredRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
+        mStarredRecyclerView.setHasFixedSize(true);
+        mStarredRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
+        mStarredRepoAdapter = new StarredRepoAdapter(new ArrayList<Repo>());
+        mStarredRecyclerView.setAdapter(mStarredRepoAdapter);
     }
 
     @Override
@@ -105,6 +125,7 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
     @Override
     public void onStarsFetchSuccess(ArrayList<Repo> repos) {
         Log.d(TAG, "onStarsFetchSuccess :" + repos);
+        mStarredRepoAdapter.updateAll(repos);
     }
 
     @Override
