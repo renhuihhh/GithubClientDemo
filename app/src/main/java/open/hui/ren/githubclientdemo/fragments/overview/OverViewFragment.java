@@ -95,7 +95,7 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     private void initViews() {
         mPopularRepoRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
         mPopularRepoRecyclerView.setHasFixedSize(true);
-        mPopularRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
+        mPopularRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 2));
         mPopularRepoAdapter = new PopularRepoAdapter(new ArrayList<Repo>());
         mPopularRepoRecyclerView.setAdapter(mPopularRepoAdapter);
     }

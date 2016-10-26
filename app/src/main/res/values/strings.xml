@@ -25,6 +25,8 @@
     <string name="main_nav_following">Following</string>
 
     <string name="over_view_popular_repo">Popular repositories</string>
+    <string name="over_view_contributions">%1$s contributions in the last year</string>
+    <string name="over_view_todo">TODO...</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

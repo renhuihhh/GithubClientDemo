@@ -4,6 +4,8 @@ package open.hui.ren.githubclientdemo.fragments.repositories;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,13 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
+import open.hui.ren.githubclientdemo.fragments.MarginDecoration;
+import open.hui.ren.githubclientdemo.fragments.repositories.adapter.RepositoriesAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
 
 /**
@@ -27,13 +33,16 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
-
     // TODO: Rename and change types of parameters
     private String username;
     private String mParam2;
 
+    @BindView(R.id.over_view_repo_recycler_view)
+    RecyclerView mOverViewRepoRecyclerView;
+
     // Custom
     private RepositoriesContacts.Presenter mPresenter;
+    private RepositoriesAdapter            mRepositoriesAdapter;
 
 
     public RepositoriesFragment() {
@@ -77,7 +86,7 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         Log.d(TAG, "onPause");
         super.onPause();
         mPresenter.pause();
@@ -89,7 +98,18 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
         Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_repositories, container, false);
+        View root = inflater.inflate(R.layout.fragment_repositories, container, false);
+        ButterKnife.bind(this, root);
+        initViews();
+        return root;
+    }
+
+    private void initViews() {
+        mOverViewRepoRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
+        mOverViewRepoRecyclerView.setHasFixedSize(true);
+        mOverViewRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
+        mRepositoriesAdapter = new RepositoriesAdapter(new ArrayList<Repo>());
+        mOverViewRepoRecyclerView.setAdapter(mRepositoriesAdapter);
     }
 
 
@@ -119,6 +139,7 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
     @Override
     public void onReposFetchSuccess(ArrayList<Repo> repos) {
         Log.d(TAG, "onReposFetchSuccess :" + repos);
+        mRepositoriesAdapter.updateAll(repos);
     }
 
     @Override
