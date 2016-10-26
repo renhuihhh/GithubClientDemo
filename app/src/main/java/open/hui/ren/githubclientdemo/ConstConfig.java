@@ -22,4 +22,10 @@ public class ConstConfig {
     //signal
     public static final String S_BAD_PARAMS  = "bad parameters";
     public static final String S_INIT_PARAMS = "initial parameters";
+
+    //acache
+    public static final String S_FOLLOWERS  = "followers_list";
+    public static final String S_FOLLOWINGS = "following_list";
+    public static final String S_STARRED    = "starred_list";
+    public static final String S_REPOES     = "repo_list";
 }

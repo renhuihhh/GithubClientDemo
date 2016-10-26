@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseSupplier;
+import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.FollowersAPIService;
 import open.hui.ren.githubclientdemo.apiservices.params.FollowersParams;
@@ -90,6 +91,7 @@ public class FollowersSupplier extends BaseSupplier<ArrayList<UserInfo>> impleme
         try {
             data = call.execute()
                        .body();
+            mACache.put(ConstConfig.S_FOLLOWERS, data);
         } catch (IOException e) {
             e.printStackTrace();
             return Result.failure(e);

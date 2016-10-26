@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.fragments.followers;
+package open.hui.ren.githubclientdemo.fragments.stars;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -21,8 +21,9 @@ import java.util.concurrent.Executors;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.apiservices.params.FollowersParams;
-import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.apiservices.params.StarsParams;
+import open.hui.ren.githubclientdemo.entities.Repo;
+import open.hui.ren.githubclientdemo.fragments.following.FollowingContracts;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
 import static com.google.android.agera.Result.absentIfNull;
@@ -30,23 +31,24 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.followers
+ * @desc open.hui.ren.githubclientdemo.fragments.stars
  */
 
-public class FollowersPresenter implements FollowersContacts.Presenter, Updatable, Receiver<ArrayList<UserInfo>> {
-    private static final String TAG = "FollowersPresenter";
+public class StarsPresenter implements StarsContacts.Presenter, FollowingContracts.Presenter, Updatable,
+    Receiver<ArrayList<Repo>> {
+    private static final String TAG = "StarsPresenter";
 
-    private FollowersContacts.View mView;
-    private Context                mContext;
-    private FollowersSupplier      mFollowersSupplier;
+    private StarsContacts.View mView;
+    private Context            mContext;
+    private StarsSupplier      mStarsSupplier;
 
-    //for agera
-    private ExecutorService                         networkExecutor;
-    private Executor                                uiExecutor;
-    private MutableRepository<FollowersParams>      mMutableRepository;//上层事件驱动入口
-    private Repository<Result<ArrayList<UserInfo>>> mLoadDataRepository;//数据拉取入口
+    // for agera
+    private ExecutorService                     networkExecutor;
+    private Executor                            uiExecutor;
+    private MutableRepository<StarsParams>      mMutableRepository;//上层事件驱动入口
+    private Repository<Result<ArrayList<Repo>>> mLoadDataRepository;//数据拉取入口
 
-    public FollowersPresenter(FollowersContacts.View view) {
+    public StarsPresenter(StarsContacts.View view) {
         mView = view;
         mContext = mView.getCtx();
     }
@@ -60,14 +62,14 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     private void setUpAgera() {
         networkExecutor = Executors.newSingleThreadExecutor();
         uiExecutor = UiThreadExecutor.newUiThreadExecutor();
-        mMutableRepository = Repositories.mutableRepository(new FollowersParams(mView.hitUserName()));
-        mFollowersSupplier = new FollowersSupplier(this, mMutableRepository);
+        mMutableRepository = Repositories.mutableRepository(new StarsParams(mView.hitUserName()));
+        mStarsSupplier = new StarsSupplier(this, mMutableRepository);
         mLoadDataRepository =
-            Repositories.repositoryWithInitialValue(Result.<ArrayList<UserInfo>>absent())
+            Repositories.repositoryWithInitialValue(Result.<ArrayList<Repo>>absent())
                         .observe(mMutableRepository)
                         .onUpdatesPerLoop()
                         .goTo(networkExecutor)
-                        .attemptGetFrom(mFollowersSupplier)
+                        .attemptGetFrom(mStarsSupplier)
                         .orEnd(getThrowableFunction())
                         .thenTransform(getTransferFunction())
                         .onDeactivation(RepositoryConfig.SEND_INTERRUPT)
@@ -75,7 +77,7 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     }
 
     @Override
-    public void accept(@NonNull ArrayList<UserInfo> value) {
+    public void accept(@NonNull ArrayList<Repo> value) {
         Log.d(TAG, "accept...");
         //TODO: 数据流继续向下
     }
@@ -83,17 +85,17 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     @Override
     public void update() {
         Log.d(TAG, "update...");
-        final Result<ArrayList<UserInfo>> result = mLoadDataRepository.get();
+        final Result<ArrayList<Repo>> result = mLoadDataRepository.get();
         if (result.succeeded()) {
-            mView.onFollowersFetchSuccess(result.get());
-            mFollowersSupplier.saveData(result.get());
-            ((FollowersContacts.View) getView()).hitMainView()
-                                                .updateOverView(1);
+            mView.onStarsFetchSuccess(result.get());
+            mStarsSupplier.saveData(result.get());
+            ((StarsContacts.View) getView()).hitMainView()
+                                            .updateOverView(3);
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    mView.onFollowersFetchFailed(result.getFailure());
+                    mView.onStarsFetchFailed(result.getFailure());
                 }
             });
         }
@@ -103,6 +105,7 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     public void resume() {
         Log.d(TAG, "resume...");
         mLoadDataRepository.addUpdatable(this);
+
     }
 
     @Override
@@ -112,49 +115,50 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     }
 
     @Override
-    public void end() {
-        Log.d(TAG, "end...");
-    }
-
-    @Override
     public BaseView getView() {
         return mView;
     }
 
     @Override
     public BaseSupplier getSupplier() {
-        return mFollowersSupplier;
+        return mStarsSupplier;
     }
 
     @Override
     public BasePersistence getPersistence() {
-        return null;
+        return mStarsSupplier;
     }
 
+    @Override
+    public void end() {
+
+    }
+
+
     @NonNull
-    private Function<ArrayList<UserInfo>, Result<ArrayList<UserInfo>>> getTransferFunction() {
-        return new Function<ArrayList<UserInfo>,
-            Result<ArrayList<UserInfo>>>() {
+    private Function<ArrayList<Repo>, Result<ArrayList<Repo>>> getTransferFunction() {
+        return new Function<ArrayList<Repo>,
+            Result<ArrayList<Repo>>>() {
             @NonNull
             @Override
-            public Result<ArrayList<UserInfo>> apply(@NonNull ArrayList<UserInfo> input) {
+            public Result<ArrayList<Repo>> apply(@NonNull ArrayList<Repo> input) {
                 return absentIfNull(input);
             }
         };
     }
 
     @NonNull
-    private Function<Throwable, Result<ArrayList<UserInfo>>> getThrowableFunction() {//处理throwable的异常
-        return new Function<Throwable, Result<ArrayList<UserInfo>>>() {
+    private Function<Throwable, Result<ArrayList<Repo>>> getThrowableFunction() {//处理throwable的异常
+        return new Function<Throwable, Result<ArrayList<Repo>>>() {
             @NonNull
             @Override
-            public Result<ArrayList<UserInfo>> apply(@NonNull final Throwable error) {
+            public Result<ArrayList<Repo>> apply(@NonNull final Throwable error) {
                 // check the throwable and do possible explicit error handling here, or recover
                 Log.d(TAG, "throwable　exception catching");
                 uiExecutor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        mView.onFollowersFetchFailed(error);
+                        mView.onStarsFetchFailed(error);
                     }
                 });
                 return Result.absent();

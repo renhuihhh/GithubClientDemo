@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseSupplier;
+import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.RepositoriesAPIService;
 import open.hui.ren.githubclientdemo.apiservices.params.RepoQueryParams;
@@ -71,6 +72,7 @@ public class RepositoriesSupplier extends BaseSupplier<ArrayList<Repo>> implemen
         try {
             data = call.execute()
                        .body();
+            mACache.put(ConstConfig.S_REPOES, data);
         } catch (IOException e) {
             e.printStackTrace();
             return Result.failure(e);

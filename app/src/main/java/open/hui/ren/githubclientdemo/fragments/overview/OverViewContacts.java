@@ -1,10 +1,12 @@
 package open.hui.ren.githubclientdemo.fragments.overview;
 
+import java.util.ArrayList;
+
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
+import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.login.LoginContracts;
 
 /**
  * @author renhui
@@ -13,8 +15,17 @@ import open.hui.ren.githubclientdemo.login.LoginContracts;
  */
 
 public interface OverViewContacts {
-    interface View extends BaseView<LoginContracts.Presenter> {
+    interface View extends BaseView<OverViewContacts.Presenter> {
 
+        void onRefreshFailed(Throwable error);
+
+        void onFollowersUpdate(ArrayList<UserInfo> followers);
+
+        void onFollowingsUpdate(ArrayList<UserInfo> followings);
+
+        void onStarredUpdate(ArrayList<Repo> starred);
+
+        void onRepoUpdate(ArrayList<Repo> repos);
     }
 
     interface Presenter extends BasePresenter {

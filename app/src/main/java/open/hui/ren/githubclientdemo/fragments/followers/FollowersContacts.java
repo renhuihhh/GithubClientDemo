@@ -6,6 +6,7 @@ import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.Communicator;
 
 /**
  * @author renhui
@@ -14,7 +15,7 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
  */
 
 public interface FollowersContacts {
-    interface View extends BaseView<FollowersContacts.Presenter> {
+    interface View extends BaseView<FollowersContacts.Presenter>, Communicator {
         void onFollowersFetchFailed(Throwable throwable);
 
         void onFollowersFetchSuccess(ArrayList<UserInfo> followers);

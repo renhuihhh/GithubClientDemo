@@ -2,6 +2,7 @@ package open.hui.ren.githubclientdemo.fragments.following;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseSupplier;
+import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.FollowingAPIService;
 import open.hui.ren.githubclientdemo.apiservices.params.FollowingsParams;
@@ -66,6 +68,9 @@ public class FollowingsSupplier extends BaseSupplier<ArrayList<UserInfo>> implem
         if (param == null) {
             return Result.failure();
         }
+        if (TextUtils.isEmpty(param.userName)) {
+            return Result.failure(new Throwable("params username is empty"));
+        }
         Call<ArrayList<UserInfo>> call;
         call = mRetrofit.create(FollowingAPIService.class)
                         .getUserFollowings(param.userName);
@@ -73,6 +78,7 @@ public class FollowingsSupplier extends BaseSupplier<ArrayList<UserInfo>> implem
         try {
             data = call.execute()
                        .body();
+            mACache.put(ConstConfig.S_FOLLOWINGS, data);
         } catch (IOException e) {
             e.printStackTrace();
             return Result.failure(e);

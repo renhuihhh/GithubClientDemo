@@ -1,28 +1,39 @@
 package open.hui.ren.githubclientdemo.fragments.stars;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
+import open.hui.ren.githubclientdemo.entities.Repo;
+import open.hui.ren.githubclientdemo.main.MainContracts;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link StarsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StarsFragment extends Fragment {
+public class StarsFragment extends Fragment implements StarsContacts.View {
+    private static final String TAG                = "StarsFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM_USERNAME = "param1";
+    private static final String ARG_PARAM2         = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String username;
     private String mParam2;
+
+    // Custom
+    private StarsContacts.Presenter mPresenter;
 
 
     public StarsFragment() {
@@ -41,7 +52,7 @@ public class StarsFragment extends Fragment {
     public static StarsFragment newInstance(String param1, String param2) {
         StarsFragment fragment = new StarsFragment();
         Bundle        args     = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM_USERNAME, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -50,17 +61,74 @@ public class StarsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            username = getArguments().getString(ARG_PARAM_USERNAME);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setPresenter(new StarsPresenter(this));
+        mPresenter.start();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stars, container, false);
     }
 
+    @Override
+    public void onResume() {
+        Log.d(TAG, "onResume");
+        super.onResume();
+        mPresenter.resume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "onPause");
+        super.onPause();
+        mPresenter.pause();
+    }
+
+    @Override
+    public String hitUserName() {
+        return username;
+    }
+
+    @Override
+    public void onStarsFetchFailed(Throwable error) {
+        Log.d(TAG, "onStarsFetchFailed :" + error.getMessage());
+    }
+
+    @Override
+    public void onStarsFetchSuccess(ArrayList<Repo> repos) {
+        Log.d(TAG, "onStarsFetchSuccess :" + repos);
+    }
+
+    @Override
+    public void setPresenter(StarsContacts.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public StarsContacts.Presenter getPresenter() {
+        return mPresenter;
+    }
+
+    @Override
+    public Context getCtx() {
+        return getActivity();
+    }
+
+    @Override
+    public MyApplication getAppContext() {
+        return (MyApplication) getActivity().getApplication();
+    }
+
+    @Override
+    public MainContracts.View hitMainView() {
+        return (MainContracts.View) getActivity();
+    }
 }

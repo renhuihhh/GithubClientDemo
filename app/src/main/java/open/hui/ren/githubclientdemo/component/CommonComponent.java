@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import open.hui.ren.githubclientdemo.fragments.followers.FollowersSupplier;
 import open.hui.ren.githubclientdemo.fragments.following.FollowingsSupplier;
+import open.hui.ren.githubclientdemo.fragments.overview.OverViewSupplier;
 import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesSupplier;
 import open.hui.ren.githubclientdemo.fragments.stars.StarsSupplier;
 import open.hui.ren.githubclientdemo.login.LoginSupplier;
@@ -24,4 +25,5 @@ public interface CommonComponent {
     void inject(StarsSupplier starsSupplier);
     void inject(FollowersSupplier followersSupplier);
     void inject(FollowingsSupplier followingsSupplier);
+    void inject(OverViewSupplier overViewSupplier);
 }

@@ -23,7 +23,7 @@ public interface StarsAPIService {
     /**
      * 获取 started 列表
      */
-    @GET("/users/starred")
+    @GET("/users/{username}/starred")
     Call<ArrayList<Repo>> getUserStarred(@Path("username") String userName);
 
 }

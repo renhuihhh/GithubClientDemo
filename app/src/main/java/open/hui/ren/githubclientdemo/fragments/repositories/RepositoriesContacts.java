@@ -1,10 +1,13 @@
 package open.hui.ren.githubclientdemo.fragments.repositories;
 
+import java.util.ArrayList;
+
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
+import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.login.LoginContracts;
+import open.hui.ren.githubclientdemo.fragments.Communicator;
 
 /**
  * @author renhui
@@ -13,8 +16,13 @@ import open.hui.ren.githubclientdemo.login.LoginContracts;
  */
 
 public interface RepositoriesContacts {
-    interface View extends BaseView<LoginContracts.Presenter> {
+    interface View extends BaseView<RepositoriesContacts.Presenter>, Communicator {
 
+        String hitUserName();
+
+        void onReposFetchFailed(Throwable error);
+
+        void onReposFetchSuccess(ArrayList<Repo> repos);
     }
 
     interface Presenter extends BasePresenter {

@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseSupplier;
+import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.StarsAPIService;
 import open.hui.ren.githubclientdemo.apiservices.params.StarsParams;
@@ -47,6 +48,10 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
         mSupplier = supplier;
         mContext = mPresenter.getView()
                              .getCtx();
+        mPresenter.getView()
+                  .getAppContext()
+                  .getNetComponent()
+                  .inject(this);
     }
 
     @NonNull
@@ -83,6 +88,7 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
         try {
             data = call.execute()
                        .body();
+            mACache.put(ConstConfig.S_STARRED, data);
         } catch (IOException e) {
             e.printStackTrace();
             return Result.failure(e);

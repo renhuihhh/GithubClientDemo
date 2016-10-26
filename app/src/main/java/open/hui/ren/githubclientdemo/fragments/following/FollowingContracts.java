@@ -1,10 +1,12 @@
 package open.hui.ren.githubclientdemo.fragments.following;
 
+import java.util.ArrayList;
+
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.login.LoginContracts;
+import open.hui.ren.githubclientdemo.fragments.Communicator;
 
 /**
  * @author renhui
@@ -13,8 +15,13 @@ import open.hui.ren.githubclientdemo.login.LoginContracts;
  */
 
 public interface FollowingContracts {
-    interface View extends BaseView<LoginContracts.Presenter> {
+    interface View extends BaseView<FollowingContracts.Presenter>, Communicator {
 
+        String hitUserName();
+
+        void onFollowingsFetchFailed(Throwable error);
+
+        void onFollowingFetchSuccess(ArrayList<UserInfo> userInfos);
     }
 
     interface Presenter extends BasePresenter {

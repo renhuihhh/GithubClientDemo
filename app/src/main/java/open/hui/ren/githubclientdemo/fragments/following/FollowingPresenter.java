@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.fragments.followers;
+package open.hui.ren.githubclientdemo.fragments.following;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.apiservices.params.FollowersParams;
+import open.hui.ren.githubclientdemo.apiservices.params.FollowingsParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
@@ -30,23 +30,23 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.fragments.followers
+ * @desc open.hui.ren.githubclientdemo.fragments.following
  */
 
-public class FollowersPresenter implements FollowersContacts.Presenter, Updatable, Receiver<ArrayList<UserInfo>> {
-    private static final String TAG = "FollowersPresenter";
+public class FollowingPresenter implements FollowingContracts.Presenter, Updatable, Receiver<ArrayList<UserInfo>> {
+    private static final String TAG = "FollowingPresenter";
 
-    private FollowersContacts.View mView;
-    private Context                mContext;
-    private FollowersSupplier      mFollowersSupplier;
+    private FollowingContracts.View mView;
+    private Context                 mContext;
+    private FollowingsSupplier      mFollowingsSupplier;
 
-    //for agera
+    // for agera
     private ExecutorService                         networkExecutor;
     private Executor                                uiExecutor;
-    private MutableRepository<FollowersParams>      mMutableRepository;//上层事件驱动入口
+    private MutableRepository<FollowingsParams>     mMutableRepository;//上层事件驱动入口
     private Repository<Result<ArrayList<UserInfo>>> mLoadDataRepository;//数据拉取入口
 
-    public FollowersPresenter(FollowersContacts.View view) {
+    public FollowingPresenter(FollowingContracts.View view) {
         mView = view;
         mContext = mView.getCtx();
     }
@@ -60,18 +60,51 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     private void setUpAgera() {
         networkExecutor = Executors.newSingleThreadExecutor();
         uiExecutor = UiThreadExecutor.newUiThreadExecutor();
-        mMutableRepository = Repositories.mutableRepository(new FollowersParams(mView.hitUserName()));
-        mFollowersSupplier = new FollowersSupplier(this, mMutableRepository);
+        mMutableRepository = Repositories.mutableRepository(new FollowingsParams(mView.hitUserName()));
+        mFollowingsSupplier = new FollowingsSupplier(this, mMutableRepository);
         mLoadDataRepository =
             Repositories.repositoryWithInitialValue(Result.<ArrayList<UserInfo>>absent())
                         .observe(mMutableRepository)
                         .onUpdatesPerLoop()
                         .goTo(networkExecutor)
-                        .attemptGetFrom(mFollowersSupplier)
+                        .attemptGetFrom(mFollowingsSupplier)
                         .orEnd(getThrowableFunction())
                         .thenTransform(getTransferFunction())
                         .onDeactivation(RepositoryConfig.SEND_INTERRUPT)
                         .compile();
+    }
+
+    @Override
+    public void resume() {
+        Log.d(TAG, "resume...");
+        mLoadDataRepository.addUpdatable(this);
+
+    }
+
+    @Override
+    public void pause() {
+        Log.d(TAG, "pause...");
+        mLoadDataRepository.removeUpdatable(this);
+    }
+
+    @Override
+    public BaseView getView() {
+        return mView;
+    }
+
+    @Override
+    public BaseSupplier getSupplier() {
+        return mFollowingsSupplier;
+    }
+
+    @Override
+    public BasePersistence getPersistence() {
+        return mFollowingsSupplier;
+    }
+
+    @Override
+    public void end() {
+
     }
 
     @Override
@@ -85,50 +118,18 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
         Log.d(TAG, "update...");
         final Result<ArrayList<UserInfo>> result = mLoadDataRepository.get();
         if (result.succeeded()) {
-            mView.onFollowersFetchSuccess(result.get());
-            mFollowersSupplier.saveData(result.get());
-            ((FollowersContacts.View) getView()).hitMainView()
-                                                .updateOverView(1);
+            mView.onFollowingFetchSuccess(result.get());
+            mFollowingsSupplier.saveData(result.get());
+            ((FollowingContracts.View) getView()).hitMainView()
+                                                .updateOverView(2);
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    mView.onFollowersFetchFailed(result.getFailure());
+                    mView.onFollowingsFetchFailed(result.getFailure());
                 }
             });
         }
-    }
-
-    @Override
-    public void resume() {
-        Log.d(TAG, "resume...");
-        mLoadDataRepository.addUpdatable(this);
-    }
-
-    @Override
-    public void pause() {
-        Log.d(TAG, "pause...");
-        mLoadDataRepository.removeUpdatable(this);
-    }
-
-    @Override
-    public void end() {
-        Log.d(TAG, "end...");
-    }
-
-    @Override
-    public BaseView getView() {
-        return mView;
-    }
-
-    @Override
-    public BaseSupplier getSupplier() {
-        return mFollowersSupplier;
-    }
-
-    @Override
-    public BasePersistence getPersistence() {
-        return null;
     }
 
     @NonNull
@@ -154,7 +155,7 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
                 uiExecutor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        mView.onFollowersFetchFailed(error);
+                        mView.onFollowingsFetchFailed(error);
                     }
                 });
                 return Result.absent();

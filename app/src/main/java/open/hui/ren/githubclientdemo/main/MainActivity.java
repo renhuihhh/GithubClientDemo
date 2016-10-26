@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,10 +26,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
+import open.hui.ren.githubclientdemo.apiservices.params.OverViewParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.fragments.followers.FollowersFragment;
 import open.hui.ren.githubclientdemo.fragments.following.FollowingFragment;
+import open.hui.ren.githubclientdemo.fragments.overview.OverViewContacts;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewFragment;
+import open.hui.ren.githubclientdemo.fragments.overview.OverViewPresenter;
 import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesFragment;
 import open.hui.ren.githubclientdemo.fragments.stars.StarsFragment;
 
@@ -39,6 +43,7 @@ import open.hui.ren.githubclientdemo.fragments.stars.StarsFragment;
  */
 
 public class MainActivity extends AppCompatActivity implements MainContracts.View, DrawerLayout.DrawerListener {
+    private static final String TAG = "MainActivity";
 
     @BindView(R.id.toolbar)
     Toolbar        mToolbar;
@@ -150,16 +155,16 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
             OverViewFragment.newInstance("title", "subject"), OverViewFragment.class
                 .getSimpleName());
         transaction.add(R.id.fragment_container,
-            RepositoriesFragment.newInstance("title", "subject"), RepositoriesFragment.class
+            RepositoriesFragment.newInstance(mUserInfo.login, "subject"), RepositoriesFragment.class
                 .getSimpleName());
         transaction.add(R.id.fragment_container,
-            StarsFragment.newInstance("title", "subject"), StarsFragment.class
+            StarsFragment.newInstance(mUserInfo.login, "subject"), StarsFragment.class
                 .getSimpleName());
         transaction.add(R.id.fragment_container,
             FollowersFragment.newInstance(mUserInfo.login, "subject"), FollowersFragment.class
                 .getSimpleName());
         transaction.add(R.id.fragment_container,
-            FollowingFragment.newInstance("title", "subject"), FollowingFragment.class
+            FollowingFragment.newInstance(mUserInfo.login, "subject"), FollowingFragment.class
                 .getSimpleName());
         transaction.commit();
     }
@@ -227,6 +232,35 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         }
         transaction.commit();
         mDrawerLayout.closeDrawers();
+    }
+
+    @Override
+    public void updateOverView(Integer tabIndex) {
+        Log.d(TAG, "updateOverView tabIndex : " + tabIndex);
+        Fragment overViewFragment = getSupportFragmentManager().findFragmentByTag(OverViewFragment.class
+            .getSimpleName());
+        OverViewContacts.View overView          = (OverViewContacts.View) overViewFragment;
+        OverViewPresenter     overViewPresenter = (OverViewPresenter) overView.getPresenter();
+        OverViewParams        params            = new OverViewParams("", "");
+        params.index = String.valueOf(tabIndex);
+        switch (tabIndex) {
+            case 1:
+                params.tabName = "followers";
+                break;
+            case 2:
+                params.tabName = "followings";
+                break;
+            case 3:
+                params.tabName = "starred";
+                break;
+            case 4:
+                params.tabName = "repos";
+                break;
+            default:
+                break;
+        }
+        overViewPresenter.getMutableRepository()
+                         .accept(params);
     }
 
     @Override

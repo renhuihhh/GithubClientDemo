@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.main.MainContracts;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -143,5 +144,10 @@ public class FollowersFragment extends Fragment implements FollowersContacts.Vie
     @Override
     public MyApplication getAppContext() {
         return (MyApplication) getActivity().getApplication();
+    }
+
+    @Override
+    public MainContracts.View hitMainView() {
+        return (MainContracts.View) getActivity();
     }
 }

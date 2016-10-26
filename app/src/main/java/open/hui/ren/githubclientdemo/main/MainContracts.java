@@ -12,11 +12,12 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
  */
 
 public class MainContracts {
-    interface View extends BaseView<MainContracts.Presenter> {
+    public interface View extends BaseView<MainContracts.Presenter> {
         void initViews();
         void onViewUpdate(Throwable throwable);
         void setupFragments();
         void navigateToFragment(String tag);
+        void updateOverView(Integer tabIndex);
     }
     interface Presenter extends BasePresenter {
         MainContracts.Persistence getPersistence();

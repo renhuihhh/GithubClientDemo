@@ -8,23 +8,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
+import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.main.MainContracts;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FollowingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FollowingFragment extends Fragment {
-    private static final String TAG        = "FollowingFragment";
+public class FollowingFragment extends Fragment implements FollowingContracts.View {
+    private static final String TAG                = "FollowingFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM_USERNAME = "param1";
+    private static final String ARG_PARAM2         = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String username;
     private String mParam2;
+
+    // Custom
+    private FollowingContracts.Presenter mPresenter;
 
 
     public FollowingFragment() {
@@ -35,15 +43,15 @@ public class FollowingFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param username Parameter 1.
+     * @param param2   Parameter 2.
      * @return A new instance of fragment FollowingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FollowingFragment newInstance(String param1, String param2) {
+    public static FollowingFragment newInstance(String username, String param2) {
         FollowingFragment fragment = new FollowingFragment();
         Bundle            args     = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM_USERNAME, username);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -54,18 +62,26 @@ public class FollowingFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            username = getArguments().getString(ARG_PARAM_USERNAME);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setPresenter(new FollowingPresenter(this));
+        mPresenter.start();
     }
-
 
     @Override
     public void onResume() {
         Log.d(TAG, "onResume");
         super.onResume();
+        mPresenter.resume();
     }
 
+    @Override
+    public void onPause() {
+        Log.d(TAG, "onResume");
+        super.onPause();
+        mPresenter.pause();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,5 +107,45 @@ public class FollowingFragment extends Fragment {
     public void onDetach() {
         Log.d(TAG, "onDetach");
         super.onDetach();
+    }
+
+    @Override
+    public String hitUserName() {
+        return username;
+    }
+
+    @Override
+    public void onFollowingsFetchFailed(Throwable error) {
+        Log.d(TAG, "onStarsFetchFailed :" + error.getMessage());
+    }
+
+    @Override
+    public void onFollowingFetchSuccess(ArrayList<UserInfo> followings) {
+        Log.d(TAG, "onStarsFetchSuccess :" + followings);
+    }
+
+    @Override
+    public void setPresenter(FollowingContracts.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public FollowingContracts.Presenter getPresenter() {
+        return mPresenter;
+    }
+
+    @Override
+    public Context getCtx() {
+        return getActivity();
+    }
+
+    @Override
+    public MyApplication getAppContext() {
+        return (MyApplication) getActivity().getApplication();
+    }
+
+    @Override
+    public MainContracts.View hitMainView() {
+        return (MainContracts.View) getActivity();
     }
 }

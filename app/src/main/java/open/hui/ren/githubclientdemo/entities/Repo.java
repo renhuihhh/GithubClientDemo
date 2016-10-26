@@ -2,13 +2,15 @@ package open.hui.ren.githubclientdemo.entities;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * @author renhui
  * @date 16-10-9
  * @desc open.hui.ren.githubclientdemo.entities
  */
 
-public class Repo {
+public class Repo implements Serializable {
 
 
     /**

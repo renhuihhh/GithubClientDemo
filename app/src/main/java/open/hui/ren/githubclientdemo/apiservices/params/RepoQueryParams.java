@@ -8,9 +8,16 @@ import java.io.Serializable;
  * @desc open.hui.ren.githubclientdemo.apiservices.params
  */
 
-public class RepoQueryParams implements Serializable{
+public class RepoQueryParams implements Serializable {
     public String userName;
     public String type;
     public String sort;
     public String direction;
+
+    public RepoQueryParams(String userName, String type, String sort, String direction) {
+        this.userName = userName;
+        this.type = type;
+        this.sort = sort;
+        this.direction = direction;
+    }
 }
