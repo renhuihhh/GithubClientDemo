@@ -77,6 +77,7 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
         mPresenter.start();
     }
 
+
     @Override
     public void onResume() {
         Log.d(TAG, "onResume");

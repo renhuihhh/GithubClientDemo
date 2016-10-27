@@ -3,6 +3,8 @@ package open.hui.ren.githubclientdemo.fragments.following;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +12,15 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.following.adapter.FollowingAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
+import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
+import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,13 +33,16 @@ public class FollowingFragment extends Fragment implements FollowingContracts.Vi
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
-
     // TODO: Rename and change types of parameters
     private String username;
-    private String mParam2;
 
+    private String                       mParam2;
     // Custom
     private FollowingContracts.Presenter mPresenter;
+    private FollowingAdapter             mFollowingAdapter;
+
+    @BindView(R.id.following_recycler_view)
+    RecyclerView mFollowingRecyclerView;
 
 
     public FollowingFragment() {
@@ -87,8 +97,19 @@ public class FollowingFragment extends Fragment implements FollowingContracts.Vi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_following, container, false);
+        View root = inflater.inflate(R.layout.fragment_following, container, false);
+        ButterKnife.bind(this, root);
+        initViews();
+        return root;
+    }
+
+    private void initViews() {
+        mFollowingRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
+        mFollowingRecyclerView.setItemAnimator(new RippleItemAnimator());
+        mFollowingRecyclerView.setHasFixedSize(true);
+        mFollowingRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
+        mFollowingAdapter = new FollowingAdapter(new ArrayList<UserInfo>());
+        mFollowingRecyclerView.setAdapter(mFollowingAdapter);
     }
 
     @Override
@@ -122,6 +143,7 @@ public class FollowingFragment extends Fragment implements FollowingContracts.Vi
     @Override
     public void onFollowingFetchSuccess(ArrayList<UserInfo> followings) {
         Log.d(TAG, "onStarsFetchSuccess :" + followings);
+        mFollowingAdapter.updateAll(followings);
     }
 
     @Override

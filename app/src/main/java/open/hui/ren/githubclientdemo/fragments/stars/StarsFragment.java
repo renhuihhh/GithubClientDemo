@@ -79,6 +79,11 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");

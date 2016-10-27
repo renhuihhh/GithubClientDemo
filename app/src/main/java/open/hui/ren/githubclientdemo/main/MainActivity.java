@@ -195,22 +195,27 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
             mStatusItemMenuOverview.setVisibility(View.VISIBLE);
             mItemMenuOverview.setSelected(true);
             navigateToFragment(OverViewFragment.class.getSimpleName());
+            setTitle(String.format(getString(R.string.main_title_suffix), mUserInfo.name));
         } else if (i == R.id.item_menu_repositories) {
             mStatusItemMenuRepositories.setVisibility(View.VISIBLE);
             mItemMenuRepositories.setSelected(true);
             navigateToFragment(RepositoriesFragment.class.getSimpleName());
+            setTitle(R.string.main_nav_repositories);
         } else if (i == R.id.item_menu_stars) {
             mStatusItemMenuStars.setVisibility(View.VISIBLE);
             mItemMenuStars.setSelected(true);
             navigateToFragment(StarsFragment.class.getSimpleName());
+            setTitle(R.string.main_nav_stars);
         } else if (i == R.id.item_menu_followers) {
             mStatusItemMenuFollowers.setVisibility(View.VISIBLE);
             mItemMenuFollowers.setSelected(true);
             navigateToFragment(FollowersFragment.class.getSimpleName());
+            setTitle(R.string.main_nav_followers);
         } else if (i == R.id.item_menu_following) {
             mStatusItemMenuFollowing.setVisibility(View.VISIBLE);
             mItemMenuFollowing.setSelected(true);
             navigateToFragment(FollowingFragment.class.getSimpleName());
+            setTitle(R.string.main_nav_following);
         }
     }
 

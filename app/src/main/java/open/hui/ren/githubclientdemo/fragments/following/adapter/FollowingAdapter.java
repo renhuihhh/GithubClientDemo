@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.fragments.followers.adapter;
+package open.hui.ren.githubclientdemo.fragments.following.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,35 +11,36 @@ import java.util.ArrayList;
 
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.fragments.followers.viewholder.FollowersViewHolder;
+import open.hui.ren.githubclientdemo.fragments.following.viewholder.FollowingViewHolder;
 
 /**
  * @author renhui
  * @date 16-10-27
- * @desc open.hui.ren.githubclientdemo.fragments.followers.adapter
+ * @desc open.hui.ren.githubclientdemo.fragments.following.adapter
  */
 
-public class FollowersAdapter extends RecyclerView.Adapter<FollowersViewHolder> {
+public class FollowingAdapter extends RecyclerView.Adapter<FollowingViewHolder> {
     private static final int ITEM_VIEW_TYPE_NORMAL = 0;
     private ArrayList<UserInfo> mUserInfoArrayList;
 
-    public FollowersAdapter(ArrayList<UserInfo> userInfoArrayList) {
+    public FollowingAdapter(ArrayList<UserInfo> userInfoArrayList) {
         mUserInfoArrayList = userInfoArrayList;
     }
 
+
     @Override
-    public FollowersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FollowingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (viewType == ITEM_VIEW_TYPE_NORMAL) {
             view = LayoutInflater.from(parent.getContext())
                                  .inflate(
-                                     R.layout.item_followers_info, parent, false);
+                                     R.layout.item_following_info, parent, false);
         }
-        return new FollowersViewHolder(view);
+        return new FollowingViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(FollowersViewHolder holder, int position) {
+    public void onBindViewHolder(FollowingViewHolder holder, int position) {
         if (mUserInfoArrayList.isEmpty()) {
             return;
         } else if (holder != null) {
@@ -56,6 +57,7 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersViewHolder> 
             holder.userLocationName.setText(userInfo.location);
         }
     }
+
 
     public void updateAll(ArrayList<UserInfo> data) {
         mUserInfoArrayList.clear();
