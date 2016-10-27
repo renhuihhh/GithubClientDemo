@@ -18,9 +18,10 @@ import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
-import open.hui.ren.githubclientdemo.fragments.MarginDecoration;
 import open.hui.ren.githubclientdemo.fragments.repositories.adapter.RepositoriesAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
+import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
+import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
 
 /**
  * @author renhui
@@ -104,6 +105,7 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
 
     private void initViews() {
         mOverViewRepoRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
+        mOverViewRepoRecyclerView.setItemAnimator(new RippleItemAnimator());
         mOverViewRepoRecyclerView.setHasFixedSize(true);
         mOverViewRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
         mRepositoriesAdapter = new RepositoriesAdapter(new ArrayList<Repo>());

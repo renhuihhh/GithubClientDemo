@@ -19,8 +19,9 @@ import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.fragments.MarginDecoration;
 import open.hui.ren.githubclientdemo.fragments.overview.adapter.PopularRepoAdapter;
+import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
+import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
 
 /**
  * @author renhui
@@ -91,6 +92,7 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
 
     private void initViews() {
         mPopularRepoRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
+        mPopularRepoRecyclerView.setItemAnimator(new RippleItemAnimator());
         mPopularRepoRecyclerView.setHasFixedSize(true);
         mPopularRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 2));
         mPopularRepoAdapter = new PopularRepoAdapter(new ArrayList<Repo>());

@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.fragments;
+package open.hui.ren.githubclientdemo.widgets;
 
 import android.content.Context;
 import android.graphics.Rect;
