@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
-import open.hui.ren.githubclientdemo.fragments.overview.viewholder.PopularRepoViewHodler;
+import open.hui.ren.githubclientdemo.fragments.overview.viewholder.PopularRepoViewHolder;
 
 /**
  * @author renhui
@@ -17,7 +17,7 @@ import open.hui.ren.githubclientdemo.fragments.overview.viewholder.PopularRepoVi
  * @desc PopularRepo的repo的列表adapter
  */
 
-public class PopularRepoAdapter extends RecyclerView.Adapter<PopularRepoViewHodler> {
+public class PopularRepoAdapter extends RecyclerView.Adapter<PopularRepoViewHolder> {
     private static final int ITEM_VIEW_TYPE_NORMAL = 0;
 
     private ArrayList<Repo> mRepoArrayList;
@@ -27,18 +27,18 @@ public class PopularRepoAdapter extends RecyclerView.Adapter<PopularRepoViewHodl
     }
 
     @Override
-    public PopularRepoViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PopularRepoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         if (viewType == ITEM_VIEW_TYPE_NORMAL) {
             view = LayoutInflater.from(parent.getContext())
                                  .inflate(
                                      R.layout.item_popular_repo, parent, false);
         }
-        return new PopularRepoViewHodler(view);
+        return new PopularRepoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final PopularRepoViewHodler holder, int position) {
+    public void onBindViewHolder(final PopularRepoViewHolder holder, int position) {
         if (mRepoArrayList.isEmpty()) {
             return;
         } else if (holder != null) {

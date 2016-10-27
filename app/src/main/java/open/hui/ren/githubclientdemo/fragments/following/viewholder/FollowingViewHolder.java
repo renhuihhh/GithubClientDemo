@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.R;
 
 /**
@@ -14,20 +16,21 @@ import open.hui.ren.githubclientdemo.R;
  */
 
 public class FollowingViewHolder extends RecyclerView.ViewHolder {
+    @BindView(R.id.user_avatar)
     public ImageView userAvatar;
-    public  TextView  userLoginName;
-    public  TextView  userName;
-    public  TextView  userBio;
-    public  TextView  userCompanyName;
-    public  TextView  userLocationName;
+    @BindView(R.id.following_login_name)
+    public TextView  userLoginName;
+    @BindView(R.id.following_name)
+    public TextView  userName;
+    @BindView(R.id.user_bio)
+    public TextView  userBio;
+    @BindView(R.id.user_company_name)
+    public TextView  userCompanyName;
+    @BindView(R.id.user_location_name)
+    public TextView  userLocationName;
 
     public FollowingViewHolder(View itemView) {
         super(itemView);
-        userAvatar = (ImageView) itemView.findViewById(R.id.user_avatar);
-        userLoginName = (TextView) itemView.findViewById(R.id.following_login_name);
-        userName = (TextView) itemView.findViewById(R.id.following_name);
-        userBio = (TextView) itemView.findViewById(R.id.user_bio);
-        userCompanyName = (TextView) itemView.findViewById(R.id.user_company_name);
-        userLocationName = (TextView) itemView.findViewById(R.id.user_location_name);
+        ButterKnife.bind(this, itemView);
     }
 }

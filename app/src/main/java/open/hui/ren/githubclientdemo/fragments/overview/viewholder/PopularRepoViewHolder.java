@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.R;
 
 /**
@@ -13,17 +15,18 @@ import open.hui.ren.githubclientdemo.R;
  * @desc PopularRepo的repo的列表viewHolder
  */
 
-public class PopularRepoViewHodler extends RecyclerView.ViewHolder {
+public class PopularRepoViewHolder extends RecyclerView.ViewHolder {
+    @BindView(R.id.repo_title)
     public TextView  tv_title;
+    @BindView(R.id.repo_desc)
     public TextView  tv_desc;
+    @BindView(R.id.icon_star)
     public ImageView img_star;
+    @BindView(R.id.icon_radio)
     public ImageView img_radio;
 
-    public PopularRepoViewHodler(View itemView) {
+    public PopularRepoViewHolder(View itemView) {
         super(itemView);
-        tv_title = (TextView) itemView.findViewById(R.id.repo_title);
-        tv_desc = (TextView) itemView.findViewById(R.id.repo_desc);
-        img_star = (ImageView) itemView.findViewById(R.id.icon_star);
-        img_radio = (ImageView) itemView.findViewById(R.id.icon_radio);
+        ButterKnife.bind(this, itemView);
     }
 }
