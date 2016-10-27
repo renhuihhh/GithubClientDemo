@@ -110,7 +110,7 @@ public class FollowingPresenter implements FollowingContracts.Presenter, Updatab
     @Override
     public void accept(@NonNull ArrayList<UserInfo> value) {
         Log.d(TAG, "accept...");
-        //TODO: 数据流继续向下
+        //数据流继续向下
     }
 
     @Override
@@ -121,7 +121,7 @@ public class FollowingPresenter implements FollowingContracts.Presenter, Updatab
             mView.onFollowingFetchSuccess(result.get());
             mFollowingsSupplier.saveData(result.get());
             ((FollowingContracts.View) getView()).hitMainView()
-                                                .updateOverView(2);
+                                                 .updateOverView(2);
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override

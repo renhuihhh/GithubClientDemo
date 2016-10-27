@@ -56,7 +56,6 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
      * @param param2   Parameter 2.
      * @return A new instance of fragment BlankFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static StarsFragment newInstance(String username, String param2) {
         StarsFragment fragment = new StarsFragment();
         Bundle        args     = new Bundle();

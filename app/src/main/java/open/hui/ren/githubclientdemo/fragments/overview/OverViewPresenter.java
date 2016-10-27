@@ -107,7 +107,7 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
     @Override
     public void accept(@NonNull Integer value) {
         Log.d(TAG, "accept...");
-        //TODO: 数据流继续向下
+        //数据流继续向下
     }
 
     @Override

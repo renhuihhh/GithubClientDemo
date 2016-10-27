@@ -79,7 +79,7 @@ public class StarsPresenter implements StarsContacts.Presenter, FollowingContrac
     @Override
     public void accept(@NonNull ArrayList<Repo> value) {
         Log.d(TAG, "accept...");
-        //TODO: 数据流继续向下
+        //数据流继续向下
     }
 
     @Override

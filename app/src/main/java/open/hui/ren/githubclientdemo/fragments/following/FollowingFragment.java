@@ -29,11 +29,9 @@ import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
  */
 public class FollowingFragment extends Fragment implements FollowingContracts.View {
     private static final String TAG                = "FollowingFragment";
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
-    // TODO: Rename and change types of parameters
     private String username;
 
     private String                       mParam2;
@@ -57,7 +55,6 @@ public class FollowingFragment extends Fragment implements FollowingContracts.Vi
      * @param param2   Parameter 2.
      * @return A new instance of fragment FollowingFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static FollowingFragment newInstance(String username, String param2) {
         FollowingFragment fragment = new FollowingFragment();
         Bundle            args     = new Bundle();

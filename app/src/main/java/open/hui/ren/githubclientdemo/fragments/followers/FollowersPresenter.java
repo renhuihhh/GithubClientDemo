@@ -77,7 +77,7 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     @Override
     public void accept(@NonNull ArrayList<UserInfo> value) {
         Log.d(TAG, "accept...");
-        //TODO: 数据流继续向下
+        //数据流继续向下
     }
 
     @Override

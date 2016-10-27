@@ -57,7 +57,6 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
      * @param param2 Parameter 2.
      * @return A new instance of fragment OverViewFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static OverViewFragment newInstance(String param1, String param2) {
         OverViewFragment fragment = new OverViewFragment();
         Bundle           args     = new Bundle();

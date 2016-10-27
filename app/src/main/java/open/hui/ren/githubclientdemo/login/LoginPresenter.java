@@ -120,7 +120,7 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
     @Override
     public void accept(@NonNull UserInfo value) {
         Log.d(TAG, "accept...");
-        //TODO: 数据流继续向下
+        //数据流继续向下
     }
 
     @Override
