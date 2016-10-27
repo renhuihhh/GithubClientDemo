@@ -4,6 +4,8 @@ package open.hui.ren.githubclientdemo.fragments.followers;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +13,15 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.followers.adapter.FollowersAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
+import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
+import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,21 +30,21 @@ import open.hui.ren.githubclientdemo.main.MainContracts;
  */
 public class FollowersFragment extends Fragment implements FollowersContacts.View {
     private static final String TAG                = "FollowersFragment";
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mUserName;
-    private String mParam2;
-
+    private String                      mUserName;
+    private String                      mParam2;
     // custom
     private FollowersContacts.Presenter mPresenter;
+    private FollowersAdapter            mFollowersAdapter;
+
+    @BindView(R.id.followers_recycler_view)
+    RecyclerView mFollowersRecyclerView;
 
 
     public FollowersFragment() {
-        // Required empty public constructor
+        super();
     }
 
     /**
@@ -48,7 +55,6 @@ public class FollowersFragment extends Fragment implements FollowersContacts.Vie
      * @param param2   Parameter 2.
      * @return A new instance of fragment FollowersFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static FollowersFragment newInstance(String userName, String param2) {
         FollowersFragment fragment = new FollowersFragment();
         Bundle            args     = new Bundle();
@@ -88,8 +94,19 @@ public class FollowersFragment extends Fragment implements FollowersContacts.Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_followers, container, false);
+        View root = inflater.inflate(R.layout.fragment_followers, container, false);
+        ButterKnife.bind(this, root);
+        initViews();
+        return root;
+    }
+
+    private void initViews() {
+        mFollowersRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
+        mFollowersRecyclerView.setItemAnimator(new RippleItemAnimator());
+        mFollowersRecyclerView.setHasFixedSize(true);
+        mFollowersRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
+        mFollowersAdapter = new FollowersAdapter(new ArrayList<UserInfo>());
+        mFollowersRecyclerView.setAdapter(mFollowersAdapter);
     }
 
     @Override
@@ -118,6 +135,7 @@ public class FollowersFragment extends Fragment implements FollowersContacts.Vie
     @Override
     public void onFollowersFetchSuccess(ArrayList<UserInfo> followers) {
         Log.d(TAG, "onFollowersFetchSuccess :" + followers);
+        mFollowersAdapter.updateAll(followers);
     }
 
     @Override

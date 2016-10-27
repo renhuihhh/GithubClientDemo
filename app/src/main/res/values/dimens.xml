@@ -10,4 +10,7 @@
 
     <dimen name="margin_small">10dp</dimen>
     <dimen name="padding_small">4dp</dimen>
+
+    <dimen name="img_size_24dp">24dp</dimen>
+    <dimen name="avatar_size_60dp">60dp</dimen>
 </resources>
