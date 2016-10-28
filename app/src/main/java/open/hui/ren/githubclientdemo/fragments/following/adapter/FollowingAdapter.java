@@ -5,12 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.following.helper.FollowingAdapterHelper;
 import open.hui.ren.githubclientdemo.fragments.following.viewholder.FollowingViewHolder;
 
 /**
@@ -44,17 +43,9 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingViewHolder> 
         if (mUserInfoArrayList.isEmpty()) {
             return;
         } else if (holder != null) {
-            UserInfo userInfo = mUserInfoArrayList.get(position);
-            Picasso.with(holder.userAvatar.getContext())
-                   .load(userInfo.avatarUrl)
-                   .placeholder(R.drawable.ic_perm_identity_white_24dp)
-                   .error(R.drawable.ic_perm_identity_white_24dp)
-                   .into(holder.userAvatar);
-            holder.userName.setText(userInfo.name);
-            holder.userLoginName.setText(userInfo.login);
-            //holder.userBio.setText(userInfo.bio.toString());
-            holder.userCompanyName.setText(userInfo.company);
-            holder.userLocationName.setText(userInfo.location);
+            new FollowingAdapterHelper().with(holder)
+                                        .load(mUserInfoArrayList
+                                            .get(position));
         }
     }
 
