@@ -16,7 +16,7 @@ import open.hui.ren.githubclientdemo.fragments.Communicator;
  */
 
 public interface RepositoriesContacts {
-    interface View extends BaseView<RepositoriesContacts.Presenter>, Communicator {
+    interface View extends BaseView<RepositoriesContacts.Presenter>, Communicator.SubViewBehaviour {
 
         String hitUserName();
 

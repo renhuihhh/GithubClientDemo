@@ -15,7 +15,7 @@ import open.hui.ren.githubclientdemo.fragments.Communicator;
  */
 
 public interface FollowingContracts {
-    interface View extends BaseView<FollowingContracts.Presenter>, Communicator {
+    interface View extends BaseView<FollowingContracts.Presenter>, Communicator.SubViewBehaviour {
 
         String hitUserName();
 

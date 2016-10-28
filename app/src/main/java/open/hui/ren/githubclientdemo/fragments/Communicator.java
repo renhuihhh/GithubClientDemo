@@ -9,5 +9,11 @@ import open.hui.ren.githubclientdemo.main.MainContracts;
  */
 
 public interface Communicator {
-    MainContracts.View hitMainView();
+    interface SubViewBehaviour {
+        MainContracts.View hitMainView();
+    }
+
+    interface MainViewBehaviour {
+
+    }
 }

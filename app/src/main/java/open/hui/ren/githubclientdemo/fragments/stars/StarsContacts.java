@@ -16,7 +16,7 @@ import open.hui.ren.githubclientdemo.fragments.Communicator;
  */
 
 public interface StarsContacts {
-    interface View extends BaseView<StarsContacts.Presenter>, Communicator {
+    interface View extends BaseView<StarsContacts.Presenter>, Communicator.SubViewBehaviour {
 
         String hitUserName();
 
