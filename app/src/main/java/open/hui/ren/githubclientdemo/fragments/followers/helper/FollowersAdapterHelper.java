@@ -136,7 +136,9 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
                    .into(mFollowersViewHolder.userAvatar);
             mFollowersViewHolder.userName.setText(userInfo.name);
             mFollowersViewHolder.userLoginName.setText(userInfo.login);
-            //holder.userBio.setText(userInfo.bio.toString());
+            if(userInfo.bio != null){
+                mFollowersViewHolder.userBio.setText(userInfo.bio.toString());
+            }
             mFollowersViewHolder.userCompanyName.setText(userInfo.company);
             mFollowersViewHolder.userLocationName.setText(userInfo.location);
         }

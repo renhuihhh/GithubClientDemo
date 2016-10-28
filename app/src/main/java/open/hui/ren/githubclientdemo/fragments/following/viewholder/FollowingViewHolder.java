@@ -12,7 +12,7 @@ import open.hui.ren.githubclientdemo.R;
 /**
  * @author renhui
  * @date 16-10-27
- * @desc open.hui.ren.githubclientdemo.fragments.following.viewholder
+ * @desc Following界面adapter的viewHolder
  */
 
 public class FollowingViewHolder extends RecyclerView.ViewHolder {

@@ -134,7 +134,9 @@ public class FollowingAdapterHelper extends BaseAdapterHelper<UserInfo> {
                    .into(mFollowingViewHolder.userAvatar);
             mFollowingViewHolder.userName.setText(userInfo.name);
             mFollowingViewHolder.userLoginName.setText(userInfo.login);
-            //holder.userBio.setText(userInfo.bio.toString());
+            if (userInfo.bio != null) {
+                mFollowingViewHolder.userBio.setText(userInfo.bio.toString());
+            }
             mFollowingViewHolder.userCompanyName.setText(userInfo.company);
             mFollowingViewHolder.userLocationName.setText(userInfo.location);
         }
