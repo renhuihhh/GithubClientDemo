@@ -26,7 +26,6 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingViewHolder> 
         mUserInfoArrayList = userInfoArrayList;
     }
 
-
     @Override
     public FollowingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
@@ -44,6 +43,7 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingViewHolder> 
             return;
         } else if (holder != null) {
             new FollowingAdapterHelper().with(holder)
+                                        .on(this)
                                         .load(mUserInfoArrayList.get(position));
         }
     }

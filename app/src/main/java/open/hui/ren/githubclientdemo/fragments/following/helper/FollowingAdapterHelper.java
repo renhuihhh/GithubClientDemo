@@ -65,6 +65,12 @@ public class FollowingAdapterHelper extends BaseAdapterHelper<UserInfo> {
         mSupplier.accept(userInfo);
     }
 
+    @Override
+    public BaseAdapterHelper<UserInfo> on(RecyclerView.Adapter adapter) {
+        mAdapter = adapter;
+        return this;
+    }
+
     @NonNull
     @Override
     public Result<UserInfo> get() {

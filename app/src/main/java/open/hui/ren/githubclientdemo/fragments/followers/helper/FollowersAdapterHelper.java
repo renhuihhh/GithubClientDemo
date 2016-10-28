@@ -36,6 +36,7 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
     private FollowersViewHolder          mFollowersViewHolder;
     private Repository<Result<UserInfo>> mLoadDataRepository;
 
+
     private ExecutorService networkExecutor = Executors.newSingleThreadExecutor();
 
     public FollowersAdapterHelper() {
@@ -45,6 +46,12 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
     @Override
     public BaseAdapterHelper<UserInfo> with(RecyclerView.ViewHolder holder) {
         mFollowersViewHolder = (FollowersViewHolder) holder;
+        return this;
+    }
+
+    @Override
+    public BaseAdapterHelper<UserInfo> on(RecyclerView.Adapter adapter) {
+        mAdapter = adapter;
         return this;
     }
 

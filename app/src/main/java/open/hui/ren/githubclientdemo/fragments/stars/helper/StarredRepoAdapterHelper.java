@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.fragments.repositories.helper;
+package open.hui.ren.githubclientdemo.fragments.stars.helper;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 import open.hui.ren.githubclientdemo.BaseAdapterHelper;
 import open.hui.ren.githubclientdemo.entities.Repo;
-import open.hui.ren.githubclientdemo.fragments.repositories.viewholder.RepositoriesViewHolder;
+import open.hui.ren.githubclientdemo.fragments.stars.viewholder.StarredRepoViewHolder;
 
 import static com.google.android.agera.Result.absent;
 import static com.google.android.agera.Result.absentIfNull;
@@ -24,25 +24,25 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-28
- * @desc open.hui.ren.githubclientdemo.fragments.following.helper
+ * @desc open.hui.ren.githubclientdemo.fragments.stars.helper
  */
 
-public class RepoAdapterHelper extends BaseAdapterHelper<Repo> {
+public class StarredRepoAdapterHelper extends BaseAdapterHelper<Repo> {
     private static final String TAG = "FollowingAdapterHelper";
     //for agera
     private MutableRepository<Repo>  mSupplier;//上游数据supplier,主要负责参数输入
-    private RepositoriesViewHolder   mRepositoriesViewHolder;
+    private StarredRepoViewHolder    mStarredRepoViewHolder;
     private Repository<Result<Repo>> mLoadDataRepository;
 
     private ExecutorService networkExecutor = Executors.newSingleThreadExecutor();
 
-    public RepoAdapterHelper() {
+    public StarredRepoAdapterHelper() {
         super();
     }
 
     @Override
-    public BaseAdapterHelper<Repo> with(RecyclerView.ViewHolder holder) {
-        mRepositoriesViewHolder = (RepositoriesViewHolder) holder;
+    public BaseAdapterHelper with(RecyclerView.ViewHolder holder) {
+        mStarredRepoViewHolder = (StarredRepoViewHolder) holder;
         return this;
     }
 
@@ -69,22 +69,22 @@ public class RepoAdapterHelper extends BaseAdapterHelper<Repo> {
         return this;
     }
 
-    @NonNull
-    @Override
-    public Result<Repo> get() {
-        return Result.success(mSupplier.get());
-    }
-
     @Override
     public void update() {
         Result<Repo> result = mLoadDataRepository.get();
         if (result.succeeded()) {
             Repo repo = result.get();
-            mRepositoriesViewHolder.tv_title
+            mStarredRepoViewHolder.tv_title
                 .setText(repo.name);
-            mRepositoriesViewHolder.tv_desc
+            mStarredRepoViewHolder.tv_desc
                 .setText(repo.description);
         }
+    }
+
+    @NonNull
+    @Override
+    public Result<Repo> get() {
+        return Result.success(mSupplier.get());
     }
 
     @NonNull

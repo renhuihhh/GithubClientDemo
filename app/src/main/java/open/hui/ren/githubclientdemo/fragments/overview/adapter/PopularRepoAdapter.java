@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
+import open.hui.ren.githubclientdemo.fragments.overview.helper.PopularRepoAdapterHelper;
 import open.hui.ren.githubclientdemo.fragments.overview.viewholder.PopularRepoViewHolder;
 
 /**
@@ -42,11 +43,9 @@ public class PopularRepoAdapter extends RecyclerView.Adapter<PopularRepoViewHold
         if (mRepoArrayList.isEmpty()) {
             return;
         } else if (holder != null) {
-            Repo repo = mRepoArrayList.get(position);
-            holder.tv_title
-                .setText(repo.name);
-            holder.tv_desc
-                .setText(repo.description);
+            new PopularRepoAdapterHelper().with(holder)
+                                          .on(this)
+                                          .load(mRepoArrayList.get(position));
         }
     }
 

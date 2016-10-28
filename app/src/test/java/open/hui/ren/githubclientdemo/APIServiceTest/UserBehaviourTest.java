@@ -47,6 +47,7 @@ public class UserBehaviourTest extends APIServiceTestBase {
             e.printStackTrace();
             Assert.fail("network not available");
         }
+        System.out.print(response.body().toString());
         Assert.assertNotNull(response.body());
     }
 
