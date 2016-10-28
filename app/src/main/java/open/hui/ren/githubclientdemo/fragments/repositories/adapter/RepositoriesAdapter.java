@@ -44,6 +44,7 @@ public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesViewHo
         } else if (holder != null) {
             new RepoAdapterHelper().with(holder)
                                    .on(this)
+                                   .indexOf(position)
                                    .load(mRepoArrayList.get(position));
         }
     }

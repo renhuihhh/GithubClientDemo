@@ -70,6 +70,12 @@ public class PopularRepoAdapterHelper extends BaseAdapterHelper<Repo> {
         return this;
     }
 
+    @Override
+    public BaseAdapterHelper<Repo> indexOf(int position) {
+        mIndex = position;
+        return this;
+    }
+
     @NonNull
     @Override
     public Result<Repo> get() {

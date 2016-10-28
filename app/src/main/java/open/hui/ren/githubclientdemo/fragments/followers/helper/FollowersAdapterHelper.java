@@ -56,6 +56,12 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
     }
 
     @Override
+    public BaseAdapterHelper<UserInfo> indexOf(int position) {
+        mIndex = position;
+        return this;
+    }
+
+    @Override
     public void load(UserInfo userInfo) {
         mSupplier = Repositories.mutableRepository(userInfo);
         mLoadDataRepository =

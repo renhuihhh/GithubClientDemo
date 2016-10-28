@@ -70,6 +70,12 @@ public class StarredRepoAdapterHelper extends BaseAdapterHelper<Repo> {
     }
 
     @Override
+    public BaseAdapterHelper<Repo> indexOf(int position) {
+        mIndex = position;
+        return this;
+    }
+
+    @Override
     public void update() {
         Result<Repo> result = mLoadDataRepository.get();
         if (result.succeeded()) {

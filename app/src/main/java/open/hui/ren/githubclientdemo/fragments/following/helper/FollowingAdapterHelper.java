@@ -71,6 +71,12 @@ public class FollowingAdapterHelper extends BaseAdapterHelper<UserInfo> {
         return this;
     }
 
+    @Override
+    public BaseAdapterHelper<UserInfo> indexOf(int position) {
+        mIndex = position;
+        return this;
+    }
+
     @NonNull
     @Override
     public Result<UserInfo> get() {

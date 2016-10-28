@@ -45,6 +45,7 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersViewHolder> 
         } else if (holder != null) {
             new FollowersAdapterHelper().with(holder)
                                         .on(this)
+                                        .indexOf(position)
                                         .load(mUserInfoArrayList.get(position));
         }
     }
