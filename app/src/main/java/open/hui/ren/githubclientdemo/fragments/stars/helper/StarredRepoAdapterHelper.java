@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import open.hui.ren.githubclientdemo.BaseAdapterHelper;
+import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.fragments.stars.viewholder.StarredRepoViewHolder;
 
@@ -24,7 +25,7 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-28
- * @desc open.hui.ren.githubclientdemo.fragments.stars.helper
+ * @desc adapter与viewHolder之间的helper
  */
 
 public class StarredRepoAdapterHelper extends BaseAdapterHelper<Repo> {
@@ -72,6 +73,12 @@ public class StarredRepoAdapterHelper extends BaseAdapterHelper<Repo> {
     @Override
     public BaseAdapterHelper<Repo> indexOf(int position) {
         mIndex = position;
+        return this;
+    }
+
+    @Override
+    public BaseAdapterHelper<Repo> inView(BaseView view) {
+        mBaseView = view;
         return this;
     }
 

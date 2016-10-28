@@ -16,6 +16,7 @@ import com.google.android.agera.Updatable;
 public abstract class BaseAdapterHelper<T> implements Supplier<Result<T>>, Updatable {
     protected RecyclerView.Adapter mAdapter;
     protected int                  mIndex;
+    protected BaseView             mBaseView;
 
     public abstract BaseAdapterHelper<T> with(RecyclerView.ViewHolder holder);
 
@@ -24,4 +25,6 @@ public abstract class BaseAdapterHelper<T> implements Supplier<Result<T>>, Updat
     public abstract BaseAdapterHelper<T> on(RecyclerView.Adapter adapter);
 
     public abstract BaseAdapterHelper<T> indexOf(int position);
+
+    public abstract BaseAdapterHelper<T> inView(BaseView view);
 }

@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.following.FollowingContracts;
 import open.hui.ren.githubclientdemo.fragments.following.helper.FollowingAdapterHelper;
 import open.hui.ren.githubclientdemo.fragments.following.viewholder.FollowingViewHolder;
 
@@ -20,10 +22,12 @@ import open.hui.ren.githubclientdemo.fragments.following.viewholder.FollowingVie
 
 public class FollowingAdapter extends RecyclerView.Adapter<FollowingViewHolder> {
     private static final int ITEM_VIEW_TYPE_NORMAL = 0;
-    private ArrayList<UserInfo> mUserInfoArrayList;
+    private ArrayList<UserInfo>     mUserInfoArrayList;
+    private FollowingContracts.View mView;
 
-    public FollowingAdapter(ArrayList<UserInfo> userInfoArrayList) {
+    public FollowingAdapter(ArrayList<UserInfo> userInfoArrayList, BaseView view) {
         mUserInfoArrayList = userInfoArrayList;
+        mView = (FollowingContracts.View) view;
     }
 
     @Override
@@ -45,6 +49,7 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingViewHolder> 
             new FollowingAdapterHelper().with(holder)
                                         .on(this)
                                         .indexOf(position)
+                                        .inView(mView)
                                         .load(mUserInfoArrayList.get(position));
         }
     }

@@ -12,13 +12,22 @@ import com.google.android.agera.RepositoryConfig;
 import com.google.android.agera.Result;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.inject.Inject;
+
 import open.hui.ren.githubclientdemo.BaseAdapterHelper;
+import open.hui.ren.githubclientdemo.BaseView;
+import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.R;
+import open.hui.ren.githubclientdemo.apiservices.UserInfoAPIService;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.fragments.followers.viewholder.FollowersViewHolder;
+import open.hui.ren.githubclientdemo.utils.ACache;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
 import static com.google.android.agera.Result.absent;
 import static com.google.android.agera.Result.absentIfNull;
@@ -38,6 +47,13 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
 
 
     private ExecutorService networkExecutor = Executors.newSingleThreadExecutor();
+
+    @Inject
+    ACache            mACache;
+    @Inject
+    Retrofit          mRetrofit;
+    @Inject
+    PreferenceService mPreferenceService;
 
     public FollowersAdapterHelper() {
         super();
@@ -62,7 +78,17 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
     }
 
     @Override
+    public BaseAdapterHelper<UserInfo> inView(BaseView view) {
+        mBaseView = view;
+        return this;
+    }
+
+
+    @Override
     public void load(UserInfo userInfo) {
+        mBaseView.getAppContext()
+                 .getNetComponent()
+                 .inject(this);
         mSupplier = Repositories.mutableRepository(userInfo);
         mLoadDataRepository =
             Repositories.repositoryWithInitialValue(Result.<UserInfo>absent())
@@ -81,7 +107,21 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
     @NonNull
     @Override
     public Result<UserInfo> get() {
-        return Result.success(mSupplier.get());
+        UserInfo origin = mSupplier.get();
+        Call<UserInfo> call = mRetrofit.create(UserInfoAPIService.class)
+                                       .getUserInfo(origin.login);
+        UserInfo actual = null;
+        try {
+            actual = call.execute()
+                         .body();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Result.success(origin);
+        }
+        if (actual != null) {
+            origin = actual;
+        }
+        return Result.success(origin);
     }
 
     @Override

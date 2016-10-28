@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.entities.OAuthResult;
 import open.hui.ren.githubclientdemo.entities.Repo;
+import open.hui.ren.githubclientdemo.entities.UserInfo;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -67,4 +68,16 @@ public interface UserInfoAPIService {
      */
     @GET("/users/{username}/events")
     Call<ArrayList<Event>> getUserEvents(@Path("username") String userName);
+
+
+
+
+    ///##############################################################################/
+    /**
+     * 无任何校验即可查看user名字对应的github用户的信息, 仅限每月60次, 校验后无限制
+     * 所以, 建议使用username password的header
+     * @param user
+     */
+    @GET("/users/{username}")
+    Call<UserInfo> getUserInfo(@Path("username") String user);
 }

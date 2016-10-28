@@ -105,7 +105,7 @@ public class FollowingFragment extends Fragment implements FollowingContracts.Vi
         mFollowingRecyclerView.setItemAnimator(new RippleItemAnimator());
         mFollowingRecyclerView.setHasFixedSize(true);
         mFollowingRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
-        mFollowingAdapter = new FollowingAdapter(new ArrayList<UserInfo>());
+        mFollowingAdapter = new FollowingAdapter(new ArrayList<UserInfo>(), mPresenter.getView());
         mFollowingRecyclerView.setAdapter(mFollowingAdapter);
     }
 

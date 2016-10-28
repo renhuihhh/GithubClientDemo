@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.followers.FollowersContacts;
 import open.hui.ren.githubclientdemo.fragments.followers.helper.FollowersAdapterHelper;
 import open.hui.ren.githubclientdemo.fragments.followers.viewholder.FollowersViewHolder;
 
@@ -20,11 +22,13 @@ import open.hui.ren.githubclientdemo.fragments.followers.viewholder.FollowersVie
 
 public class FollowersAdapter extends RecyclerView.Adapter<FollowersViewHolder> {
     private static final int ITEM_VIEW_TYPE_NORMAL = 0;
-    private ArrayList<UserInfo> mUserInfoArrayList;
+    private ArrayList<UserInfo>    mUserInfoArrayList;
+    private FollowersContacts.View mView;
 
 
-    public FollowersAdapter(ArrayList<UserInfo> userInfoArrayList) {
+    public FollowersAdapter(ArrayList<UserInfo> userInfoArrayList, BaseView view) {
         mUserInfoArrayList = userInfoArrayList;
+        mView = (FollowersContacts.View) view;
     }
 
     @Override
@@ -46,6 +50,7 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersViewHolder> 
             new FollowersAdapterHelper().with(holder)
                                         .on(this)
                                         .indexOf(position)
+                                        .inView(mView)
                                         .load(mUserInfoArrayList.get(position));
         }
     }

@@ -105,7 +105,7 @@ public class FollowersFragment extends Fragment implements FollowersContacts.Vie
         mFollowersRecyclerView.setItemAnimator(new RippleItemAnimator());
         mFollowersRecyclerView.setHasFixedSize(true);
         mFollowersRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
-        mFollowersAdapter = new FollowersAdapter(new ArrayList<UserInfo>());
+        mFollowersAdapter = new FollowersAdapter(new ArrayList<UserInfo>(), mPresenter.getView());
         mFollowersRecyclerView.setAdapter(mFollowersAdapter);
     }
 
