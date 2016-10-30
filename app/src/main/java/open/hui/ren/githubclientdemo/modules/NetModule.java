@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -42,6 +44,12 @@ public class NetModule {
     public NetModule(Context context, String baseUrl) {
         this.mBaseUrl = baseUrl;
         this.mContext = context;
+    }
+
+    @Provides
+    @Singleton
+    ExecutorService provideExecutorService(){
+        return Executors.newCachedThreadPool();
     }
 
     @Provides

@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
@@ -45,14 +44,14 @@ public class FollowingAdapterHelper extends BaseAdapterHelper<UserInfo> {
     private FollowingViewHolder          mFollowingViewHolder;
     private Repository<Result<UserInfo>> mLoadDataRepository;
 
-    private ExecutorService networkExecutor = Executors.newSingleThreadExecutor();
-
     @Inject
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
     @Inject
     PreferenceService mPreferenceService;
+    @Inject
+    ExecutorService   mNetExecutorService;
 
     public FollowingAdapterHelper() {
         super();
@@ -74,7 +73,7 @@ public class FollowingAdapterHelper extends BaseAdapterHelper<UserInfo> {
             Repositories.repositoryWithInitialValue(Result.<UserInfo>absent())
                         .observe(mSupplier)
                         .onUpdatesPerLoop()
-                        .goTo(networkExecutor)
+                        .goTo(mNetExecutorService)
                         .attemptGetFrom(this)
                         .orEnd(getThrowableFunction())
                         .thenTransform(getTransferFunction())

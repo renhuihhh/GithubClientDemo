@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
@@ -45,15 +44,14 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
     private FollowersViewHolder          mFollowersViewHolder;
     private Repository<Result<UserInfo>> mLoadDataRepository;
 
-
-    private ExecutorService networkExecutor = Executors.newSingleThreadExecutor();
-
     @Inject
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
     @Inject
     PreferenceService mPreferenceService;
+    @Inject
+    ExecutorService   mNetExecutorService;
 
     public FollowersAdapterHelper() {
         super();
@@ -83,7 +81,6 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
         return this;
     }
 
-
     @Override
     public void load(UserInfo userInfo) {
         mBaseView.getAppContext()
@@ -94,7 +91,7 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
             Repositories.repositoryWithInitialValue(Result.<UserInfo>absent())
                         .observe(mSupplier)
                         .onUpdatesPerLoop()
-                        .goTo(networkExecutor)
+                        .goTo(mNetExecutorService)
                         .attemptGetFrom(this)
                         .orEnd(getThrowableFunction())
                         .thenTransform(getTransferFunction())
@@ -136,7 +133,7 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
                    .into(mFollowersViewHolder.userAvatar);
             mFollowersViewHolder.userName.setText(userInfo.name);
             mFollowersViewHolder.userLoginName.setText(userInfo.login);
-            if(userInfo.bio != null){
+            if (userInfo.bio != null) {
                 mFollowersViewHolder.userBio.setText(userInfo.bio.toString());
             }
             mFollowersViewHolder.userCompanyName.setText(userInfo.company);
