@@ -4,6 +4,7 @@ import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.Communicator;
 
 /**
  * @author renhui
@@ -12,13 +13,20 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
  */
 
 public interface MainContracts {
-    interface View extends BaseView<MainContracts.Presenter> {
+    interface View extends BaseView<MainContracts.Presenter>, Communicator.MainViewBehaviour {
         void initViews();
+
         void onViewUpdate(Throwable throwable);
+
         void setupFragments();
+
+        void appendFragments();
+
         void navigateToFragment(String tag);
+
         void updateOverView(Integer tabIndex);
     }
+
     interface Presenter extends BasePresenter {
         MainContracts.Persistence getPersistence();
     }

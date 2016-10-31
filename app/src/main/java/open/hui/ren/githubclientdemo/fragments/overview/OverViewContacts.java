@@ -8,6 +8,7 @@ import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.Communicator;
 
 /**
  * @author renhui
@@ -16,7 +17,7 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
  */
 
 public interface OverViewContacts {
-    interface View extends BaseView<OverViewContacts.Presenter> {
+    interface View extends BaseView<OverViewContacts.Presenter>, Communicator.SubViewBehaviour {
 
         void onRefreshFailed(Throwable error);
 

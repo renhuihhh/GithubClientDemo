@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.apiservices.params.StarsParams;
+import open.hui.ren.githubclientdemo.params.StarsParams;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.fragments.following.FollowingContracts;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
@@ -89,8 +89,8 @@ public class StarsPresenter implements StarsContacts.Presenter, FollowingContrac
         if (result.succeeded()) {
             mView.onStarsFetchSuccess(result.get());
             mStarsSupplier.saveData(result.get());
-            ((StarsContacts.View) getView()).hitMainView()
-                                            .updateOverView(3);
+//            ((StarsContacts.View) getView()).hitMainView()
+//                                            .updateOverView(3);
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override

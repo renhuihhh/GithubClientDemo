@@ -20,8 +20,8 @@ import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.fragments.repositories.adapter.RepositoriesAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
-import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
 import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
+import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
 
 /**
  * @author renhui

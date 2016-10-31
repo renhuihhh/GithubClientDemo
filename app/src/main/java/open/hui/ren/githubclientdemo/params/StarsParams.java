@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.apiservices.params;
+package open.hui.ren.githubclientdemo.params;
 
 /**
  * @author renhui

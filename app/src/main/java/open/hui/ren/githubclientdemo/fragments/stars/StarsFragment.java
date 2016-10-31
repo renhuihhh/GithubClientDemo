@@ -18,9 +18,9 @@ import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Repo;
-import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
 import open.hui.ren.githubclientdemo.fragments.stars.adapter.StarredRepoAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
+import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
 
 /**
  * @author renhui

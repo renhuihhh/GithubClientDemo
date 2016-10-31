@@ -26,6 +26,7 @@ import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.fragments.overview.adapter.OverViewEventsAdapter;
 import open.hui.ren.githubclientdemo.fragments.overview.adapter.PopularRepoAdapter;
+import open.hui.ren.githubclientdemo.main.MainContracts;
 import open.hui.ren.githubclientdemo.utils.DateUtil;
 import open.hui.ren.githubclientdemo.utils.ScreenUtil;
 import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
@@ -231,5 +232,10 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     @Override
     public MyApplication getAppContext() {
         return (MyApplication) getActivity().getApplication();
+    }
+
+    @Override
+    public MainContracts.View hitMainView() {
+        return (MainContracts.View) getActivity();
     }
 }

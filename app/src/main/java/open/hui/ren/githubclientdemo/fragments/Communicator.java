@@ -14,6 +14,5 @@ public interface Communicator {
     }
 
     interface MainViewBehaviour {
-
     }
 }

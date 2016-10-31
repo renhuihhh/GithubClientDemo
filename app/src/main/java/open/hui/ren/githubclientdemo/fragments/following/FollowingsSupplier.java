@@ -18,7 +18,7 @@ import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.FollowingAPIService;
-import open.hui.ren.githubclientdemo.apiservices.params.FollowingsParams;
+import open.hui.ren.githubclientdemo.params.FollowingsParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;

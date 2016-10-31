@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.apiservices.params.UserLoginParams;
+import open.hui.ren.githubclientdemo.params.UserLoginParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 

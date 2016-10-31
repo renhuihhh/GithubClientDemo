@@ -21,8 +21,8 @@ import java.util.concurrent.Executors;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.apiservices.params.FollowersParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.params.FollowersParams;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
 import static com.google.android.agera.Result.absentIfNull;
@@ -87,8 +87,8 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
         if (result.succeeded()) {
             mView.onFollowersFetchSuccess(result.get());
             mFollowersSupplier.saveData(result.get());
-            ((FollowersContacts.View) getView()).hitMainView()
-                                                .updateOverView(1);
+//            ((FollowersContacts.View) getView()).hitMainView()
+//                                                .updateOverView(1);
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override

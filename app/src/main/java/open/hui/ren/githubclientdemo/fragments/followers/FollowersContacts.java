@@ -24,7 +24,6 @@ public interface FollowersContacts {
     }
 
     interface Presenter extends BasePresenter {
-
     }
 
     interface Persistence extends BasePersistence<UserInfo> {

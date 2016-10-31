@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.apiservices.params.FollowingsParams;
+import open.hui.ren.githubclientdemo.params.FollowingsParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
@@ -120,8 +120,8 @@ public class FollowingPresenter implements FollowingContracts.Presenter, Updatab
         if (result.succeeded()) {
             mView.onFollowingFetchSuccess(result.get());
             mFollowingsSupplier.saveData(result.get());
-            ((FollowingContracts.View) getView()).hitMainView()
-                                                 .updateOverView(2);
+//            ((FollowingContracts.View) getView()).hitMainView()
+//                                                 .updateOverView(2);
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override

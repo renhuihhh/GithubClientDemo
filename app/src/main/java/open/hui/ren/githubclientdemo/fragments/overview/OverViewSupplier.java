@@ -15,7 +15,7 @@ import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
-import open.hui.ren.githubclientdemo.apiservices.params.OverViewParams;
+import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.ACache;

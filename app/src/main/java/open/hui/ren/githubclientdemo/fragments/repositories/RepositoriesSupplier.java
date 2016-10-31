@@ -17,7 +17,7 @@ import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.RepositoriesAPIService;
-import open.hui.ren.githubclientdemo.apiservices.params.RepoQueryParams;
+import open.hui.ren.githubclientdemo.params.RepoQueryParams;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;

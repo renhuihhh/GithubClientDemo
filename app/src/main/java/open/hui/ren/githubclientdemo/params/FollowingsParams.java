@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.apiservices.params;
+package open.hui.ren.githubclientdemo.params;
 
 /**
  * @author renhui
@@ -6,10 +6,10 @@ package open.hui.ren.githubclientdemo.apiservices.params;
  * @desc open.hui.ren.githubclientdemo.apiservices.params
  */
 
-public class FollowersParams {
+public class FollowingsParams {
     public String userName;
 
-    public FollowersParams(String userName) {
+    public FollowingsParams(String userName) {
         this.userName = userName;
     }
 }

@@ -20,8 +20,8 @@ import java.util.concurrent.Executors;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.apiservices.params.OverViewParams;
 import open.hui.ren.githubclientdemo.events.EventsCenter;
+import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
 import static com.google.android.agera.Result.absentIfNull;
@@ -83,6 +83,7 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
     public void resume() {
         Log.d(TAG, "resume...");
         mLoadDataRepository.addUpdatable(this);
+        mView.hitMainView().updateOverView(0);
     }
 
     @Override

@@ -26,7 +26,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
-import open.hui.ren.githubclientdemo.apiservices.params.OverViewParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.fragments.followers.FollowersFragment;
 import open.hui.ren.githubclientdemo.fragments.following.FollowingFragment;
@@ -35,6 +34,7 @@ import open.hui.ren.githubclientdemo.fragments.overview.OverViewFragment;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewPresenter;
 import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesFragment;
 import open.hui.ren.githubclientdemo.fragments.stars.StarsFragment;
+import open.hui.ren.githubclientdemo.params.OverViewParams;
 
 /**
  * @author renhui
@@ -154,6 +154,17 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         transaction.add(R.id.fragment_container,
             OverViewFragment.newInstance(mUserInfo.login, "subject"), OverViewFragment.class
                 .getSimpleName());
+
+        transaction.commit();
+    }
+
+    @Override
+    public void appendFragments() {
+        if(getSupportFragmentManager().getFragments().size() >= 4){
+            return;
+        }
+        FragmentTransaction transaction =
+            getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container,
             RepositoriesFragment.newInstance(mUserInfo.login, "subject"), RepositoriesFragment.class
                 .getSimpleName());
@@ -168,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
                 .getSimpleName());
         transaction.commit();
     }
-
 
     @OnClick({R.id.item_menu_overview, R.id.item_menu_repositories, R.id.item_menu_stars, R.id.item_menu_followers, R.id
         .item_menu_following})
@@ -249,6 +259,10 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         OverViewParams        params            = new OverViewParams("", "");
         params.index = String.valueOf(tabIndex);
         switch (tabIndex) {
+            case 0:
+                //params.tabName = "overView";
+                appendFragments();
+                return;
             case 1:
                 params.tabName = "followers";
                 break;

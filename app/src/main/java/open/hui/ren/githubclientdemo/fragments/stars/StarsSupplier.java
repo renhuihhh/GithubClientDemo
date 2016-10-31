@@ -17,7 +17,7 @@ import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.StarsAPIService;
-import open.hui.ren.githubclientdemo.apiservices.params.StarsParams;
+import open.hui.ren.githubclientdemo.params.StarsParams;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;
