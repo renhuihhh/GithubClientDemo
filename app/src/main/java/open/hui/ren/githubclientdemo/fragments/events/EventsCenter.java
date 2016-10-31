@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.events;
+package open.hui.ren.githubclientdemo.fragments.events;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
-import open.hui.ren.githubclientdemo.BaseDataSupplier;
+import open.hui.ren.githubclientdemo.BaseCompactSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.EventsAPIService;
@@ -34,10 +34,10 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-31
- * @desc open.hui.ren.githubclientdemo.events
+ * @desc
  */
 
-public class EventsCenter extends BaseDataSupplier<ArrayList<Event>> {
+public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
     private static final String TAG = "PopRepoAdapterHelper";
     //for agera
     private MutableRepository<OverViewParams>    mSupplier;//上游数据supplier,主要负责参数输入
@@ -132,7 +132,7 @@ public class EventsCenter extends BaseDataSupplier<ArrayList<Event>> {
     }
 
     @Override
-    public BaseDataSupplier<ArrayList<Event>> inView(BaseView view) {
+    public BaseCompactSupplier<ArrayList<Event>> inView(BaseView view) {
         mBaseView = view;
         return this;
     }

@@ -3,7 +3,7 @@ package open.hui.ren.githubclientdemo.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import open.hui.ren.githubclientdemo.events.EventsCenter;
+import open.hui.ren.githubclientdemo.fragments.events.EventsCenter;
 import open.hui.ren.githubclientdemo.fragments.followers.FollowersSupplier;
 import open.hui.ren.githubclientdemo.fragments.followers.helper.FollowersAdapterHelper;
 import open.hui.ren.githubclientdemo.fragments.following.FollowingsSupplier;

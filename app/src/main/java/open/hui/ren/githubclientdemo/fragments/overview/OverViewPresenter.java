@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
-import open.hui.ren.githubclientdemo.events.EventsCenter;
+import open.hui.ren.githubclientdemo.fragments.events.EventsCenter;
 import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
