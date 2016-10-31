@@ -44,12 +44,12 @@ public class RepsitoriesPresenter implements RepositoriesContacts.Presenter, Upd
     private ExecutorService                     networkExecutor;
     private Executor                            uiExecutor;
     private MutableRepository<RepoQueryParams>  mMutableRepository;//上层事件驱动入口
-    private Repository<Result<ArrayList<Repo>>> mLoadDataRepository;//数据拉取入口
-
     public RepsitoriesPresenter(RepositoriesContacts.View view) {
         mView = view;
         mContext = mView.getCtx();
     }
+
+    private Repository<Result<ArrayList<Repo>>> mLoadDataRepository;//数据拉取入口
 
     @Override
     public void start() {

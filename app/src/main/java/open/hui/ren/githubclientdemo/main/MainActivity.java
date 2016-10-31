@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         FragmentTransaction transaction =
             getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container,
-            OverViewFragment.newInstance("title", "subject"), OverViewFragment.class
+            OverViewFragment.newInstance(mUserInfo.login, "subject"), OverViewFragment.class
                 .getSimpleName());
         transaction.add(R.id.fragment_container,
             RepositoriesFragment.newInstance(mUserInfo.login, "subject"), RepositoriesFragment.class

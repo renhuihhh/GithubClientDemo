@@ -6,22 +6,30 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
+import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.fragments.overview.adapter.OverViewEventsAdapter;
 import open.hui.ren.githubclientdemo.fragments.overview.adapter.PopularRepoAdapter;
-import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
+import open.hui.ren.githubclientdemo.utils.DateUtil;
+import open.hui.ren.githubclientdemo.utils.ScreenUtil;
 import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
+import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
 
 /**
  * @author renhui
@@ -31,19 +39,31 @@ import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
 public class OverViewFragment extends Fragment implements OverViewContacts.View {
     private static final String TAG = "OverViewFragment";
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String URL_CONTRIBUTIONS = "https://github" +
+        ".com/users/%1$s/contributions?from=%2$s&to=%3$s&full_graph=1";
 
-    private String mParam1;
+    private static int SVG_WIDTH = 720;
+
+    private static final String ARG_USERNAME = "param1";
+    private static final String ARG_PARAM2   = "param2";
+
+
+    private String mUserName;
     private String mParam2;
 
     // ButterKnife
     @BindView(R.id.over_view_popular_repo_recycler_view)
     RecyclerView mPopularRepoRecyclerView;
+    @BindView(R.id.over_view_events_recycler_view)
+    RecyclerView mOverViewEventsRecyclerView;
+
+    @BindView(R.id.overview_contribution_web_view)
+    WebView      mContributionsWebView;
 
     // Custom
     private OverViewContacts.Presenter mPresenter;
     private PopularRepoAdapter         mPopularRepoAdapter;
+    private OverViewEventsAdapter      mOverViewEventsAdapter;
 
     public OverViewFragment() {
         super();
@@ -60,7 +80,7 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     public static OverViewFragment newInstance(String param1, String param2) {
         OverViewFragment fragment = new OverViewFragment();
         Bundle           args     = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_USERNAME, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -71,7 +91,7 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mUserName = getArguments().getString(ARG_USERNAME);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         setPresenter(new OverViewPresenter(this));
@@ -96,8 +116,42 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
         mPopularRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 2));
         mPopularRepoAdapter = new PopularRepoAdapter(new ArrayList<Repo>());
         mPopularRepoRecyclerView.setAdapter(mPopularRepoAdapter);
+
+        mContributionsWebView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onPageFinished(final WebView view, final String url) {
+                super.onPageFinished(view, url);
+                view.invalidate();
+                view.requestLayout();
+                view.setInitialScale(getScale());
+            }
+        });
+        mContributionsWebView.loadUrl(getContributionsUrl());
+
+        mOverViewEventsRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
+        mOverViewEventsRecyclerView.setItemAnimator(new RippleItemAnimator());
+        mOverViewEventsRecyclerView.setHasFixedSize(true);
+        mOverViewEventsRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(),1));
+        mOverViewEventsAdapter = new OverViewEventsAdapter(new ArrayList<Event>());
+        mOverViewEventsRecyclerView.setAdapter(mOverViewEventsAdapter);
     }
 
+    private int getScale() {
+        return ScreenUtil.getWebViewScale(getActivity(), SVG_WIDTH);
+    }
+
+    private String getContributionsUrl() {
+        String url          = "";
+        Date   endDate      = DateUtil.getLastDayOfMonth();
+        String endDateStr   = DateUtil.formatDate(endDate, DateUtil.FORMAT_2);
+        Date   startDate    = DateUtil.getFirstDayOfMonth();
+        String startDateStr = DateUtil.formatDate(startDate, DateUtil.FORMAT_2);
+        if (!TextUtils.isEmpty(mUserName)) {
+            url = String.format(URL_CONTRIBUTIONS, mUserName, startDateStr, endDateStr);
+        }
+        return url;
+    }
 
     @Override
     public void onResume() {
@@ -151,6 +205,12 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     public void onRepoUpdate(ArrayList<Repo> repos) {
         Log.d(TAG, "onRepoUpdate: " + repos);
         mPopularRepoAdapter.updateAll(repos);
+    }
+
+    @Override
+    public void onEventsUpdate(ArrayList<Event> events) {
+        Log.d(TAG, "onEventsUpdate: " + events);
+        mOverViewEventsAdapter.updateAll(events);
     }
 
     @Override

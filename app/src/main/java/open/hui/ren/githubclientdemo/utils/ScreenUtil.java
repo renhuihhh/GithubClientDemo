@@ -26,6 +26,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -51,7 +52,8 @@ public class ScreenUtil {
     public static int getScreenWidth(Context context) {
         WindowManager  windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics    = new DisplayMetrics();// 创建了一张白纸
-        windowManager.getDefaultDisplay().getMetrics(outMetrics);// 给白纸设置宽高
+        windowManager.getDefaultDisplay()
+                     .getMetrics(outMetrics);// 给白纸设置宽高
         return outMetrics.widthPixels;
     }
 
@@ -64,7 +66,8 @@ public class ScreenUtil {
     public static int getScreenHeight(Context context) {
         WindowManager  windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics    = new DisplayMetrics();// 创建了一张白纸
-        windowManager.getDefaultDisplay().getMetrics(outMetrics);// 给白纸设置宽高
+        windowManager.getDefaultDisplay()
+                     .getMetrics(outMetrics);// 给白纸设置宽高
         return outMetrics.heightPixels;
     }
 
@@ -80,9 +83,11 @@ public class ScreenUtil {
     public static void setTransparentStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
-            activity.getWindow().addFlags(LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            activity.getWindow()
+                    .addFlags(LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //透明导航栏
-            activity.getWindow().addFlags(LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            activity.getWindow()
+                    .addFlags(LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
     }
 
@@ -98,8 +103,9 @@ public class ScreenUtil {
      */
     public static void hideStatusBar(Activity activity) {
         activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        activity.getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN,
-            LayoutParams.FLAG_FULLSCREEN);
+        activity.getWindow()
+                .setFlags(LayoutParams.FLAG_FULLSCREEN,
+                    LayoutParams.FLAG_FULLSCREEN);
     }
 
     /**
@@ -113,7 +119,8 @@ public class ScreenUtil {
         int resourceId = context.getResources()
                                 .getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
+            result = context.getResources()
+                            .getDimensionPixelSize(resourceId);
         }
         return result;
     }
@@ -125,7 +132,8 @@ public class ScreenUtil {
      * @return true: 存在<br>false: 不存在
      */
     public static boolean isStatusBarExists(Activity activity) {
-        LayoutParams params = activity.getWindow().getAttributes();
+        LayoutParams params = activity.getWindow()
+                                      .getAttributes();
         return (params.flags & LayoutParams.FLAG_FULLSCREEN) != LayoutParams.FLAG_FULLSCREEN;
     }
 
@@ -137,8 +145,10 @@ public class ScreenUtil {
      */
     public static int getActionBarHeight(Activity activity) {
         TypedValue tv = new TypedValue();
-        if (activity.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            return TypedValue.complexToDimensionPixelSize(tv.data, activity.getResources().getDisplayMetrics());
+        if (activity.getTheme()
+                    .resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            return TypedValue.complexToDimensionPixelSize(tv.data, activity.getResources()
+                                                                           .getDisplayMetrics());
         }
         return 0;
     }
@@ -165,7 +175,8 @@ public class ScreenUtil {
      * @return Bitmap
      */
     public static Bitmap captureWithStatusBar(Activity activity) {
-        View view = activity.getWindow().getDecorView();
+        View view = activity.getWindow()
+                            .getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         Bitmap bmp    = view.getDrawingCache();
@@ -184,7 +195,8 @@ public class ScreenUtil {
      * @return Bitmap
      */
     public static Bitmap captureWithoutStatusBar(Activity activity) {
-        View view = activity.getWindow().getDecorView();
+        View view = activity.getWindow()
+                            .getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         Bitmap bmp             = view.getDrawingCache();
@@ -208,13 +220,27 @@ public class ScreenUtil {
         return km.inKeyguardRestrictedInputMode();
     }
 
-    public static int dpToPx(int dp)
-    {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+
+    /**
+     * @param context     上下文
+     * @param originWidth 原始的页面宽度
+     * @see
+     */
+    public static int getWebViewScale(Context context, int originWidth) {
+        Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int     width   = display.getWidth();
+        Double  val     = new Double(width) / new Double(originWidth);
+        val = val * 100d;
+        return val.intValue();
     }
 
-    public static int pxToDp(int px)
-    {
-        return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    public static int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem()
+                                    .getDisplayMetrics().density);
+    }
+
+    public static int pxToDp(int px) {
+        return (int) (px / Resources.getSystem()
+                                    .getDisplayMetrics().density);
     }
 }

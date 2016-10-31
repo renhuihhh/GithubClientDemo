@@ -3,6 +3,7 @@ package open.hui.ren.githubclientdemo.entities;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author renhui
@@ -10,20 +11,48 @@ import java.io.Serializable;
  * @desc open.hui.ren.githubclientdemo.entities
  */
 public class Payload implements Serializable {
+
+
     /**
-     * action : created
-     * issue : {"url":"https://api.github.com/repos/evancohen/smart-mirror/issues/32","repository_url":"https://api.github.com/repos/evancohen/smart-mirror","labels_url":"https://api.github.com/repos/evancohen/smart-mirror/issues/32/labels{/name}","comments_url":"https://api.github.com/repos/evancohen/smart-mirror/issues/32/comments","events_url":"https://api.github.com/repos/evancohen/smart-mirror/issues/32/events","html_url":"https://github.com/evancohen/smart-mirror/issues/32","id":125851863,"number":32,"title":"electron not found/install issues","user":{"login":"markparise","id":16629918,"avatar_url":"https://avatars.githubusercontent.com/u/16629918?v=3","gravatar_id":"","url":"https://api.github.com/users/markparise","html_url":"https://github.com/markparise","followers_url":"https://api.github.com/users/markparise/followers","following_url":"https://api.github.com/users/markparise/following{/other_user}","gists_url":"https://api.github.com/users/markparise/gists{/gist_id}","starred_url":"https://api.github.com/users/markparise/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/markparise/subscriptions","organizations_url":"https://api.github.com/users/markparise/orgs","repos_url":"https://api.github.com/users/markparise/repos","events_url":"https://api.github.com/users/markparise/events{/privacy}","received_events_url":"https://api.github.com/users/markparise/received_events","type":"User","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":11,"created_at":"2016-01-10T23:02:19Z","updated_at":"2016-07-19T02:59:12Z","closed_at":"2016-01-11T18:58:33Z","body":"Hey evan, So I got npm installed on my pi, but when I ran the \"npm start\" I get a whole slew of errors the first of which reads \"sh: 1: electron: not found\" \r\n\r\nThe rest of the error prompt is as follows: \r\nnpm ERR! smart-mirror@0.0.1 start: 'electron main,js'\r\nnpm ERR! Exit status 127\r\nnpm ERR!\r\nnpm ERR! Failed at the smart-mirror@0.0.1 start script.\r\nnpm ERR! This is most likely a problem with the smart-mirror package,\r\nnpm ERR! not with npm itself.\r\nnpm ERR! Error: EACCES, open ' npm-debug.log'\r\nnpm ERR! { [Error: EACCES, open 'npm-debug.log'] errno: 3, code: 'EACCES' : 'npm-debug.log; }\r\n\r\nnpm ERR! System Linux 4.1.7-v7+\r\nnpm ERR! command \"/usr/bin/nodejs\" \"/usr/bin/npm\" \"start\"\r\nnpm ERR! cwd /git/smart-mirror\r\nnpm ERR! node -v v0.10.29\r\nnpm ERR! cod ELIFECYCLE\r\nnpm WARN This failure might be due to the use of legacy binary \"node\"\r\nnpm ERR! npm -v 1.4.21\r\nnpm ERR! path npm-debug.log\r\nnpm ERR! code EACCES\r\nnpm ERR! errno 3\r\nnpm ERR! stack Error: EACCES, open 'npm-debug.log'\r\n\r\n\r\nI know it is a bit overkill to put the whole error prompt but i don't see why it would hurt. Anything helps. Thanks in advance"}
-     * comment : {"url":"https://api.github.com/repos/evancohen/smart-mirror/issues/comments/233517508","html_url":"https://github.com/evancohen/smart-mirror/issues/32#issuecomment-233517508","issue_url":"https://api.github.com/repos/evancohen/smart-mirror/issues/32","id":233517508,"user":{"login":"renhuihhh","id":17830234,"avatar_url":"https://avatars.githubusercontent.com/u/17830234?v=3","gravatar_id":"","url":"https://api.github.com/users/renhuihhh","html_url":"https://github.com/renhuihhh","followers_url":"https://api.github.com/users/renhuihhh/followers","following_url":"https://api.github.com/users/renhuihhh/following{/other_user}","gists_url":"https://api.github.com/users/renhuihhh/gists{/gist_id}","starred_url":"https://api.github.com/users/renhuihhh/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/renhuihhh/subscriptions","organizations_url":"https://api.github.com/users/renhuihhh/orgs","repos_url":"https://api.github.com/users/renhuihhh/repos","events_url":"https://api.github.com/users/renhuihhh/events{/privacy}","received_events_url":"https://api.github.com/users/renhuihhh/received_events","type":"User","site_admin":false},"created_at":"2016-07-19T02:59:12Z","updated_at":"2016-07-19T02:59:12Z","body":" [https://www.npmjs.com/package/electron-prebuilt](url) look here"}
+     * push_id : 1376731478
+     * size : 2
+     * distinct_size : 2
+     * ref : refs/heads/master
+     * head : 2752ba6d0a5d14e3a433c9f7776af6bf75316108
+     * before : 4e09154e87eb875b77e5b55725f5bc0c354f7817
+     * commits : [{"sha":"d30a0d0b18b5838a28e20cb7824a807e3d49c5a4","author":{"email":"rca.haertlein@gmail.com","name":"RCAHaertlein"},"message":"changed spotlight to pointlight","distinct":true,"url":"https://api.github.com/repos/Sander-Kastelein/Spoorloos/commits/d30a0d0b18b5838a28e20cb7824a807e3d49c5a4"},{"sha":"2752ba6d0a5d14e3a433c9f7776af6bf75316108","author":{"email":"rca.haertlein@gmail.com","name":"RCAHaertlein"},"message":"Merge branch 'master' of https://github.com/Sander-Kastelein/Spoorloos\n\nmerge","distinct":true,"url":"https://api.github.com/repos/Sander-Kastelein/Spoorloos/commits/2752ba6d0a5d14e3a433c9f7776af6bf75316108"}]
      */
 
+    @SerializedName("push_id")
+    public int          pushId;
+    @SerializedName("size")
+    public int          size;
+    @SerializedName("distinct_size")
+    public int          distinctSize;
+    @SerializedName("ref")
+    public String       ref;
+    @SerializedName("head")
+    public String       head;
+    @SerializedName("before")
+    public String       before;
+    @SerializedName("commits")
+    public List<Commit> commits;
     @SerializedName("action")
-    public String      action;
+    public String       action;
 
-
-    @SerializedName("issue")
-    public Issue       issue;
-
-    @SerializedName("comment")
-    public Comment comment;
-
+    /**
+     * "ref": null,
+     * "ref_type": "repository",
+     * "master_branch": "master",
+     * "description": null,
+     * "pusher_type": "user"
+     */
+    @SerializedName("ref_type")
+    public String refType;
+    @SerializedName("master_branch")
+    public String masterBranch;
+    @SerializedName("description")
+    public String description;
+    @SerializedName("pusher_type")
+    public String pushType;
 }

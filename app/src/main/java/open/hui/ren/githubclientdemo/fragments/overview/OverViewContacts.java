@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
+import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 
@@ -26,6 +27,8 @@ public interface OverViewContacts {
         void onStarredUpdate(ArrayList<Repo> starred);
 
         void onRepoUpdate(ArrayList<Repo> repos);
+
+        void onEventsUpdate(ArrayList<Event> events);
     }
 
     interface Presenter extends BasePresenter {

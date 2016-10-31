@@ -75,6 +75,8 @@ public class OverViewSupplier extends BaseSupplier<Integer> {
             return Result.success(3);
         } else if (tab.equals("repos")) {
             return Result.success(4);
+        } else if (tab.equals("events")){
+            return Result.success(9);
         }
         return Result.failure();
     }

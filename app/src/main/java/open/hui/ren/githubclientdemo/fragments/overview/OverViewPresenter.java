@@ -21,6 +21,7 @@ import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.apiservices.params.OverViewParams;
+import open.hui.ren.githubclientdemo.events.EventsCenter;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 
 import static com.google.android.agera.Result.absentIfNull;
@@ -32,7 +33,7 @@ import static com.google.android.agera.Result.absentIfNull;
  */
 
 public class OverViewPresenter implements OverViewContacts.Presenter, Updatable, Receiver<Integer> {
-    private static final String TAG = "StarsPresenter";
+    private static final String TAG = "OverViewPresenter";
 
     private OverViewContacts.View mView;
     private Context               mContext;
@@ -44,6 +45,8 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
     private MutableRepository<OverViewParams> mMutableRepository;//上层事件驱动入口
     private Repository<Result<Integer>>       mLoadDataRepository;//数据拉取入口
 
+    private EventsCenter mEventsCenter;
+
     public OverViewPresenter(OverViewContacts.View view) {
         mView = view;
         mContext = mView.getCtx();
@@ -53,6 +56,10 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
     public void start() {
         Log.d(TAG, "start...");
         setUpAgera();
+        OverViewParams params = new OverViewParams("events", "9");
+        mEventsCenter = new EventsCenter();
+        mEventsCenter.inView(mView);
+        mEventsCenter.load(params);
     }
 
     private void setUpAgera() {
@@ -112,8 +119,8 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
 
     @Override
     public void update() {
-        Log.d(TAG, "update...");
         final Result<Integer> result = mLoadDataRepository.get();
+        Log.d(TAG, "update..." + result.get());
         if (result.succeeded()) {
             switch (result.get()) {
                 case 1:
@@ -140,6 +147,7 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
             });
         }
     }
+
 
     @NonNull
     private Function<Integer, Result<Integer>> getTransferFunction() {
