@@ -32,7 +32,6 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
  * @desc 登陆UI
  */
 public class LoginActivity extends AppCompatActivity implements LoginContracts.View {
-
     private static final String TAG = "LoginActivity";
 
     @BindView(R.id.login_progress)
@@ -181,6 +180,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     @Override
     public MyApplication getAppContext() {
         return (MyApplication) getApplication();
+    }
+
+    @Override
+    public int getViewId() {
+        return 0;
     }
 }
 

@@ -144,6 +144,11 @@ public class FollowingFragment extends Fragment implements FollowingContracts.Vi
     }
 
     @Override
+    public int getViewId() {
+        return 0;
+    }
+
+    @Override
     public void setPresenter(FollowingContracts.Presenter presenter) {
         mPresenter = presenter;
     }

@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
 
     @Override
     public void appendFragments() {
-        if(getSupportFragmentManager().getFragments().size() >= 4){
+        if(getSupportFragmentManager().getFragments().size() >= 4){//如果已加载的fragment数目大于等于4，则说明无需再append
             return;
         }
         FragmentTransaction transaction =
@@ -280,6 +280,11 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         }
         overViewPresenter.getMutableRepository()
                          .accept(params);
+    }
+
+    @Override
+    public int getViewId() {
+        return 0;
     }
 
     @Override

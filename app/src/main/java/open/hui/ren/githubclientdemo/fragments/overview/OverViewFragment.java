@@ -39,6 +39,7 @@ import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
  */
 public class OverViewFragment extends Fragment implements OverViewContacts.View {
     private static final String TAG = "OverViewFragment";
+    public static final  int    ID  = 101;
 
     private static final String URL_CONTRIBUTIONS = "https://github" +
         ".com/users/%1$s/contributions?from=%2$s&to=%3$s&full_graph=1";
@@ -59,7 +60,7 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     RecyclerView mOverViewEventsRecyclerView;
 
     @BindView(R.id.overview_contribution_web_view)
-    WebView      mContributionsWebView;
+    WebView mContributionsWebView;
 
     // Custom
     private OverViewContacts.Presenter mPresenter;
@@ -133,7 +134,7 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
         mOverViewEventsRecyclerView.addItemDecoration(new MarginDecoration(getCtx()));
         mOverViewEventsRecyclerView.setItemAnimator(new RippleItemAnimator());
         mOverViewEventsRecyclerView.setHasFixedSize(true);
-        mOverViewEventsRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(),1));
+        mOverViewEventsRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
         mOverViewEventsAdapter = new OverViewEventsAdapter(new ArrayList<Event>());
         mOverViewEventsRecyclerView.setAdapter(mOverViewEventsAdapter);
     }
@@ -212,6 +213,11 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     public void onEventsUpdate(ArrayList<Event> events) {
         Log.d(TAG, "onEventsUpdate: " + events);
         mOverViewEventsAdapter.updateAll(events);
+    }
+
+    @Override
+    public int getViewId() {
+        return ID;
     }
 
     @Override

@@ -132,6 +132,11 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
     }
 
     @Override
+    public int getViewId() {
+        return 0;
+    }
+
+    @Override
     public void setPresenter(StarsContacts.Presenter presenter) {
         mPresenter = presenter;
     }

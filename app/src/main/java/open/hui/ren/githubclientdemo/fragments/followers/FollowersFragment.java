@@ -145,6 +145,11 @@ public class FollowersFragment extends Fragment implements FollowersContacts.Vie
 
 
     @Override
+    public int getViewId() {
+        return 0;
+    }
+
+    @Override
     public void setPresenter(FollowersContacts.Presenter presenter) {
         mPresenter = presenter;
     }

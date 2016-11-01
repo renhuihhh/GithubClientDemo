@@ -45,8 +45,6 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
     private MutableRepository<OverViewParams> mMutableRepository;//上层事件驱动入口
     private Repository<Result<Integer>>       mLoadDataRepository;//数据拉取入口
 
-    private EventsCenter mEventsCenter;
-
     public OverViewPresenter(OverViewContacts.View view) {
         mView = view;
         mContext = mView.getCtx();
@@ -57,9 +55,7 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
         Log.d(TAG, "start...");
         setUpAgera();
         OverViewParams params = new OverViewParams("events", "9");
-        mEventsCenter = new EventsCenter();
-        mEventsCenter.inView(mView);
-        mEventsCenter.load(params);
+        EventsCenter.getInstance().load(mView,params);
     }
 
     private void setUpAgera() {
@@ -83,7 +79,8 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
     public void resume() {
         Log.d(TAG, "resume...");
         mLoadDataRepository.addUpdatable(this);
-        mView.hitMainView().updateOverView(0);
+        mView.hitMainView()
+             .updateOverView(0);
     }
 
     @Override

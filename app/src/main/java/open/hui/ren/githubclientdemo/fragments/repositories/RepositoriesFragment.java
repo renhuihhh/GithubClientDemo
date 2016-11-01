@@ -144,6 +144,11 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
     }
 
     @Override
+    public int getViewId() {
+        return 0;
+    }
+
+    @Override
     public void setPresenter(RepositoriesContacts.Presenter presenter) {
         mPresenter = presenter;
     }

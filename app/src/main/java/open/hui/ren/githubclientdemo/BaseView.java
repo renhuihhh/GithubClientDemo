@@ -25,6 +25,8 @@ import android.content.Context;
  */
 public interface BaseView<T> {
 
+    int getViewId();
+
     void setPresenter(T presenter);
 
     T getPresenter();

@@ -23,6 +23,7 @@ import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.EventsAPIService;
 import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewContacts;
+import open.hui.ren.githubclientdemo.fragments.overview.OverViewFragment;
 import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;
@@ -54,11 +55,21 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
     @Inject
     ExecutorService   mNetExecutorService;
 
+    public static EventsCenter sEventsCenter;
+
     public EventsCenter() {
         super();
     }
 
-    public void load(OverViewParams params) {
+    public static EventsCenter getInstance() {
+        if (sEventsCenter == null) {
+            sEventsCenter = new EventsCenter();
+        }
+        return sEventsCenter;
+    }
+
+    public void load(BaseView view, OverViewParams params) {
+        inView(view);
         mBaseView.getAppContext()
                  .getNetComponent()
                  .inject(this);
@@ -102,7 +113,11 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
     public void update() {
         Result<ArrayList<Event>> result = mLoadDataRepository.get();
         if (result.succeeded()) {
-            ((OverViewContacts.View) mBaseView).onEventsUpdate(result.get());
+            if(mBaseView.getViewId() == 0){
+                return;
+            }else if(mBaseView.getViewId() == OverViewFragment.ID){
+                ((OverViewContacts.View) mBaseView).onEventsUpdate(result.get());
+            }
         }
     }
 
