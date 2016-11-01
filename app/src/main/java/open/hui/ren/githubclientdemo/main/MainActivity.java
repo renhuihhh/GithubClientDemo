@@ -1,6 +1,7 @@
 package open.hui.ren.githubclientdemo.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -35,6 +36,7 @@ import open.hui.ren.githubclientdemo.fragments.overview.OverViewPresenter;
 import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesFragment;
 import open.hui.ren.githubclientdemo.fragments.stars.StarsFragment;
 import open.hui.ren.githubclientdemo.params.OverViewParams;
+import open.hui.ren.githubclientdemo.personal.settings.SettingsActivity;
 
 /**
  * @author renhui
@@ -160,7 +162,8 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
 
     @Override
     public void appendFragments() {
-        if(getSupportFragmentManager().getFragments().size() >= 4){//如果已加载的fragment数目大于等于4，则说明无需再append
+        if (getSupportFragmentManager().getFragments()
+                                       .size() >= 4) {//如果已加载的fragment数目大于等于4，则说明无需再append
             return;
         }
         FragmentTransaction transaction =
@@ -181,13 +184,22 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
     }
 
     @OnClick({R.id.item_menu_overview, R.id.item_menu_repositories, R.id.item_menu_stars, R.id.item_menu_followers, R.id
-        .item_menu_following})
+        .item_menu_following, R.id.avatar})
     public void whenClick(View view) {
         int i = view.getId();
         if (i == R.id.item_menu_overview || i == R.id.item_menu_repositories || i == R.id.item_menu_stars || i == R.id
             .item_menu_followers || i == R.id.item_menu_following) {
             navigateItemSelected(i);
+        } else if (R.id.avatar == i) {
+            jumpToSettings();
         }
+    }
+
+    private void jumpToSettings() {
+        mDrawerLayout.closeDrawers();
+        Intent intent = new Intent();
+        intent.setClass(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private void navigateItemSelected(int i) {

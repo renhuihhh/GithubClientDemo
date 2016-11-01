@@ -14,6 +14,7 @@ import open.hui.ren.githubclientdemo.fragments.stars.StarsSupplier;
 import open.hui.ren.githubclientdemo.login.LoginSupplier;
 import open.hui.ren.githubclientdemo.modules.AppModule;
 import open.hui.ren.githubclientdemo.modules.NetModule;
+import open.hui.ren.githubclientdemo.personal.settings.SettingsModel;
 
 /**
  * @author renhui
@@ -32,4 +33,5 @@ public interface CommonComponent {
     void inject(FollowersAdapterHelper followersAdapterHelper);
     void inject(FollowingAdapterHelper followingAdapterHelper);
     void inject(EventsCenter eventsCenter);
+    void inject(SettingsModel settingsModel);
 }

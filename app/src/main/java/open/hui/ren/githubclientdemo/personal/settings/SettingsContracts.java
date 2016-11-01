@@ -4,7 +4,6 @@ import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.fragments.stars.StarsContracts;
 
 /**
  * @author renhui
@@ -13,15 +12,18 @@ import open.hui.ren.githubclientdemo.fragments.stars.StarsContracts;
  */
 
 public interface SettingsContracts {
-    interface View extends BaseView<StarsContracts.Presenter> {
+    interface View extends BaseView<SettingsContracts.Presenter> {
 
+        void jump2LoginPage();
     }
 
     interface Presenter extends BasePresenter {
+        void logOut();
 
+        void afterLogout();
     }
 
     interface Persistence extends BasePersistence<UserInfo> {
-
+        void doLogoOut();
     }
 }

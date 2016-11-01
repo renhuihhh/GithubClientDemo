@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#187e8c7e"/>
+            <corners android:radius="@dimen/card_view_radius"/>
+        </shape>
+    </item>
+    <item android:state_enabled="true" android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#a41b1c1e"/>
+            <corners android:radius="@dimen/card_view_radius"/>
+        </shape>
+    </item>
+</selector>

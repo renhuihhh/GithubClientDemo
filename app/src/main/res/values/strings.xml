@@ -29,7 +29,7 @@
     <string name="over_view_events">Events</string>
 
     <string name="event_text_on">on</string>
-    <string name="event_text_in"> in </string>
+    <string name="event_text_in">in</string>
     <string name="event_text_desc">description</string>
     <string name="event_text_action">action</string>
     <string name="event_text_commits">%1$s commit(s)</string>
@@ -37,4 +37,6 @@
 
     <string name="event_text_pull_num">number</string>
     <string name="event_text_pull_url">pull url:</string>
+
+    <string name="event_text_exit_app">exit app</string>
 </resources>
