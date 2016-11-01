@@ -32,12 +32,12 @@ import static com.google.android.agera.Result.absentIfNull;
  * @desc OverView模块的presenter
  */
 
-public class OverViewPresenter implements OverViewContacts.Presenter, Updatable, Receiver<Integer> {
+public class OverViewPresenter implements OverViewContracts.Presenter, Updatable, Receiver<Integer> {
     private static final String TAG = "OverViewPresenter";
 
-    private OverViewContacts.View mView;
-    private Context               mContext;
-    private OverViewSupplier      mOverViewSupplier;
+    private OverViewContracts.View mView;
+    private Context                mContext;
+    private OverViewSupplier       mOverViewSupplier;
 
     // for agera
     private ExecutorService                   networkExecutor;
@@ -45,7 +45,7 @@ public class OverViewPresenter implements OverViewContacts.Presenter, Updatable,
     private MutableRepository<OverViewParams> mMutableRepository;//上层事件驱动入口
     private Repository<Result<Integer>>       mLoadDataRepository;//数据拉取入口
 
-    public OverViewPresenter(OverViewContacts.View view) {
+    public OverViewPresenter(OverViewContracts.View view) {
         mView = view;
         mContext = mView.getCtx();
     }

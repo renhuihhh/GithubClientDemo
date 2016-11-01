@@ -14,8 +14,8 @@ import open.hui.ren.githubclientdemo.fragments.Communicator;
  * @desc open.hui.ren.githubclientdemo.fragments.followers
  */
 
-public interface FollowersContacts {
-    interface View extends BaseView<FollowersContacts.Presenter>, Communicator.SubViewBehaviour {
+public interface FollowersContracts {
+    interface View extends BaseView<FollowersContracts.Presenter>, Communicator.SubViewBehaviour {
         void onFollowersFetchFailed(Throwable throwable);
 
         void onFollowersFetchSuccess(ArrayList<UserInfo> followers);

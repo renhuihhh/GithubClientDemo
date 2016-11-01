@@ -33,18 +33,18 @@ import static com.google.android.agera.Result.absentIfNull;
  * @desc Repositories模块的presenter
  */
 
-public class RepsitoriesPresenter implements RepositoriesContacts.Presenter, Updatable, Receiver<ArrayList<Repo>> {
+public class RepsitoriesPresenter implements RepositoriesContracts.Presenter, Updatable, Receiver<ArrayList<Repo>> {
     private static final String TAG = "RepsitoriesPresenter";
 
-    private RepositoriesContacts.View mView;
-    private Context                   mContext;
-    private RepositoriesSupplier      mRepositoriesSupplier;
+    private RepositoriesContracts.View mView;
+    private Context                    mContext;
+    private RepositoriesSupplier       mRepositoriesSupplier;
 
     // for agera
     private ExecutorService                     networkExecutor;
     private Executor                            uiExecutor;
     private MutableRepository<RepoQueryParams>  mMutableRepository;//上层事件驱动入口
-    public RepsitoriesPresenter(RepositoriesContacts.View view) {
+    public RepsitoriesPresenter(RepositoriesContracts.View view) {
         mView = view;
         mContext = mView.getCtx();
     }
@@ -120,8 +120,8 @@ public class RepsitoriesPresenter implements RepositoriesContacts.Presenter, Upd
         if (result.succeeded()) {
             mView.onReposFetchSuccess(result.get());
             mRepositoriesSupplier.saveData(result.get());
-            ((RepositoriesContacts.View) getView()).hitMainView()
-                                                   .updateOverView(4);
+            ((RepositoriesContracts.View) getView()).hitMainView()
+                                                    .updateOverView(4);
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override

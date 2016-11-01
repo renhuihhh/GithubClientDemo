@@ -29,7 +29,7 @@ import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
  * @desc Repositories二级界面的view
  */
 
-public class RepositoriesFragment extends Fragment implements RepositoriesContacts.View {
+public class RepositoriesFragment extends Fragment implements RepositoriesContracts.View {
     private static final String TAG                = "RepositoriesFragment";
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
@@ -41,8 +41,8 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
     RecyclerView mOverViewRepoRecyclerView;
 
     // Custom
-    private RepositoriesContacts.Presenter mPresenter;
-    private RepositoriesAdapter            mRepositoriesAdapter;
+    private RepositoriesContracts.Presenter mPresenter;
+    private RepositoriesAdapter             mRepositoriesAdapter;
 
 
     public RepositoriesFragment() {
@@ -149,12 +149,12 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContac
     }
 
     @Override
-    public void setPresenter(RepositoriesContacts.Presenter presenter) {
+    public void setPresenter(RepositoriesContracts.Presenter presenter) {
         mPresenter = presenter;
     }
 
     @Override
-    public RepositoriesContacts.Presenter getPresenter() {
+    public RepositoriesContracts.Presenter getPresenter() {
         return mPresenter;
     }
 

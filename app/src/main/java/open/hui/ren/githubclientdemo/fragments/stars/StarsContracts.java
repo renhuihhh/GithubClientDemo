@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.fragments.repositories;
+package open.hui.ren.githubclientdemo.fragments.stars;
 
 import java.util.ArrayList;
 
@@ -12,17 +12,17 @@ import open.hui.ren.githubclientdemo.fragments.Communicator;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc Repositories模块的契约类
+ * @desc starred模块的契约接口
  */
 
-public interface RepositoriesContacts {
-    interface View extends BaseView<RepositoriesContacts.Presenter>, Communicator.SubViewBehaviour {
+public interface StarsContracts {
+    interface View extends BaseView<StarsContracts.Presenter>, Communicator.SubViewBehaviour {
 
         String hitUserName();
 
-        void onReposFetchFailed(Throwable error);
+        void onStarsFetchFailed(Throwable error);
 
-        void onReposFetchSuccess(ArrayList<Repo> repos);
+        void onStarsFetchSuccess(ArrayList<Repo> repos);
     }
 
     interface Presenter extends BasePresenter {

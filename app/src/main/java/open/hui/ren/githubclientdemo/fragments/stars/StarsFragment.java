@@ -28,7 +28,7 @@ import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
  * @desc starred二级界面的view
  */
 
-public class StarsFragment extends Fragment implements StarsContacts.View {
+public class StarsFragment extends Fragment implements StarsContracts.View {
     private static final String TAG                = "StarsFragment";
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
@@ -37,8 +37,8 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
     private String mParam2;
 
     // Custom
-    private StarsContacts.Presenter mPresenter;
-    private StarredRepoAdapter      mStarredRepoAdapter;
+    private StarsContracts.Presenter mPresenter;
+    private StarredRepoAdapter       mStarredRepoAdapter;
 
     @BindView(R.id.starred_recycler_view)
     RecyclerView mStarredRecyclerView;
@@ -137,12 +137,12 @@ public class StarsFragment extends Fragment implements StarsContacts.View {
     }
 
     @Override
-    public void setPresenter(StarsContacts.Presenter presenter) {
+    public void setPresenter(StarsContracts.Presenter presenter) {
         mPresenter = presenter;
     }
 
     @Override
-    public StarsContacts.Presenter getPresenter() {
+    public StarsContracts.Presenter getPresenter() {
         return mPresenter;
     }
 

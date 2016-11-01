@@ -34,13 +34,13 @@ import static com.google.android.agera.Result.absentIfNull;
  * @desc starred模块的presenter
  */
 
-public class StarsPresenter implements StarsContacts.Presenter, FollowingContracts.Presenter, Updatable,
+public class StarsPresenter implements StarsContracts.Presenter, FollowingContracts.Presenter, Updatable,
     Receiver<ArrayList<Repo>> {
     private static final String TAG = "StarsPresenter";
 
-    private StarsContacts.View mView;
-    private Context            mContext;
-    private StarsSupplier      mStarsSupplier;
+    private StarsContracts.View mView;
+    private Context             mContext;
+    private StarsSupplier       mStarsSupplier;
 
     // for agera
     private ExecutorService                     networkExecutor;
@@ -48,7 +48,7 @@ public class StarsPresenter implements StarsContacts.Presenter, FollowingContrac
     private MutableRepository<StarsParams>      mMutableRepository;//上层事件驱动入口
     private Repository<Result<ArrayList<Repo>>> mLoadDataRepository;//数据拉取入口
 
-    public StarsPresenter(StarsContacts.View view) {
+    public StarsPresenter(StarsContracts.View view) {
         mView = view;
         mContext = mView.getCtx();
     }

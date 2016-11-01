@@ -33,12 +33,12 @@ import static com.google.android.agera.Result.absentIfNull;
  * @desc open.hui.ren.githubclientdemo.fragments.followers
  */
 
-public class FollowersPresenter implements FollowersContacts.Presenter, Updatable, Receiver<ArrayList<UserInfo>> {
+public class FollowersPresenter implements FollowersContracts.Presenter, Updatable, Receiver<ArrayList<UserInfo>> {
     private static final String TAG = "FollowersPresenter";
 
-    private FollowersContacts.View mView;
-    private Context                mContext;
-    private FollowersSupplier      mFollowersSupplier;
+    private FollowersContracts.View mView;
+    private Context                 mContext;
+    private FollowersSupplier       mFollowersSupplier;
 
     //for agera
     private ExecutorService                         networkExecutor;
@@ -46,7 +46,7 @@ public class FollowersPresenter implements FollowersContacts.Presenter, Updatabl
     private MutableRepository<FollowersParams>      mMutableRepository;//上层事件驱动入口
     private Repository<Result<ArrayList<UserInfo>>> mLoadDataRepository;//数据拉取入口
 
-    public FollowersPresenter(FollowersContacts.View view) {
+    public FollowersPresenter(FollowersContracts.View view) {
         mView = view;
         mContext = mView.getCtx();
     }

@@ -16,8 +16,8 @@ import open.hui.ren.githubclientdemo.fragments.Communicator;
  * @desc OverView模块的契约接口
  */
 
-public interface OverViewContacts {
-    interface View extends BaseView<OverViewContacts.Presenter>, Communicator.SubViewBehaviour {
+public interface OverViewContracts {
+    interface View extends BaseView<OverViewContracts.Presenter>, Communicator.SubViewBehaviour {
 
         void onRefreshFailed(Throwable error);
 

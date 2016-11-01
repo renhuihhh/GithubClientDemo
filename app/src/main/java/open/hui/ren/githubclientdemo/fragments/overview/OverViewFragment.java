@@ -37,7 +37,7 @@ import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
  * @date 16-10-25
  * @desc OverView二级界面的view
  */
-public class OverViewFragment extends Fragment implements OverViewContacts.View {
+public class OverViewFragment extends Fragment implements OverViewContracts.View {
     private static final String TAG = "OverViewFragment";
     public static final  int    ID  = 101;
 
@@ -63,9 +63,9 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     WebView mContributionsWebView;
 
     // Custom
-    private OverViewContacts.Presenter mPresenter;
-    private PopularRepoAdapter         mPopularRepoAdapter;
-    private OverViewEventsAdapter      mOverViewEventsAdapter;
+    private OverViewContracts.Presenter mPresenter;
+    private PopularRepoAdapter          mPopularRepoAdapter;
+    private OverViewEventsAdapter       mOverViewEventsAdapter;
 
     public OverViewFragment() {
         super();
@@ -221,12 +221,12 @@ public class OverViewFragment extends Fragment implements OverViewContacts.View 
     }
 
     @Override
-    public void setPresenter(OverViewContacts.Presenter presenter) {
+    public void setPresenter(OverViewContracts.Presenter presenter) {
         mPresenter = presenter;
     }
 
     @Override
-    public OverViewContacts.Presenter getPresenter() {
+    public OverViewContracts.Presenter getPresenter() {
         return mPresenter;
     }
 

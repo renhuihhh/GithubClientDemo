@@ -28,16 +28,16 @@ import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
  * Use the {@link FollowersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FollowersFragment extends Fragment implements FollowersContacts.View {
+public class FollowersFragment extends Fragment implements FollowersContracts.View {
     private static final String TAG                = "FollowersFragment";
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
 
-    private String                      mUserName;
-    private String                      mParam2;
+    private String                       mUserName;
+    private String                       mParam2;
     // custom
-    private FollowersContacts.Presenter mPresenter;
-    private FollowersAdapter            mFollowersAdapter;
+    private FollowersContracts.Presenter mPresenter;
+    private FollowersAdapter             mFollowersAdapter;
 
     @BindView(R.id.followers_recycler_view)
     RecyclerView mFollowersRecyclerView;
@@ -150,12 +150,12 @@ public class FollowersFragment extends Fragment implements FollowersContacts.Vie
     }
 
     @Override
-    public void setPresenter(FollowersContacts.Presenter presenter) {
+    public void setPresenter(FollowersContracts.Presenter presenter) {
         mPresenter = presenter;
     }
 
     @Override
-    public FollowersContacts.Presenter getPresenter() {
+    public FollowersContracts.Presenter getPresenter() {
         return mPresenter;
     }
 

@@ -22,7 +22,7 @@ import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.EventsAPIService;
 import open.hui.ren.githubclientdemo.entities.Event;
-import open.hui.ren.githubclientdemo.fragments.overview.OverViewContacts;
+import open.hui.ren.githubclientdemo.fragments.overview.OverViewContracts;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewFragment;
 import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.utils.ACache;
@@ -116,7 +116,7 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
             if(mBaseView.getViewId() == 0){
                 return;
             }else if(mBaseView.getViewId() == OverViewFragment.ID){
-                ((OverViewContacts.View) mBaseView).onEventsUpdate(result.get());
+                ((OverViewContracts.View) mBaseView).onEventsUpdate(result.get());
             }
         }
     }

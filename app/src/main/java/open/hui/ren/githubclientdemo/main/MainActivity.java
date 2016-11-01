@@ -29,7 +29,7 @@ import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.fragments.followers.FollowersFragment;
 import open.hui.ren.githubclientdemo.fragments.following.FollowingFragment;
-import open.hui.ren.githubclientdemo.fragments.overview.OverViewContacts;
+import open.hui.ren.githubclientdemo.fragments.overview.OverViewContracts;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewFragment;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewPresenter;
 import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesFragment;
@@ -254,9 +254,9 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         Log.d(TAG, "updateOverView tabIndex : " + tabIndex);
         Fragment overViewFragment = getSupportFragmentManager().findFragmentByTag(OverViewFragment.class
             .getSimpleName());
-        OverViewContacts.View overView          = (OverViewContacts.View) overViewFragment;
-        OverViewPresenter     overViewPresenter = (OverViewPresenter) overView.getPresenter();
-        OverViewParams        params            = new OverViewParams("", "");
+        OverViewContracts.View overView          = (OverViewContracts.View) overViewFragment;
+        OverViewPresenter      overViewPresenter = (OverViewPresenter) overView.getPresenter();
+        OverViewParams         params            = new OverViewParams("", "");
         params.index = String.valueOf(tabIndex);
         switch (tabIndex) {
             case 0:
