@@ -185,7 +185,12 @@ public class OverViewEventHelper extends BaseAdapterHelper<Event> {
                .into(holder.userAvatar);
         holder.eventRepoName.setText(event.repo.name);
         holder.eventType.setText(event.type);
-        holder.pushCommitMsg.setText(event.payload.commits.size() + "commits");
+        String commitTimes = holder.userAvatar.getContext()
+                                              .getString(R.string.event_text_commits);
+        commitTimes = String.format(commitTimes, String.valueOf(event.payload
+            .commits
+            .size()));
+        holder.pushCommitMsg.setText(commitTimes);
         holder.repoUrl.setText(event.repo.fullName);
     }
 
