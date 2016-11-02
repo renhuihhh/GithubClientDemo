@@ -120,12 +120,13 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
         mPopularRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 2));
         mPopularRepoAdapter = new PopularRepoAdapter(new ArrayList<Repo>());
         mPopularRepoRecyclerView.setAdapter(mPopularRepoAdapter);
-
+        mContributionsWebView.setVisibility(View.INVISIBLE);
         mContributionsWebView.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onPageFinished(final WebView view, final String url) {
                 super.onPageFinished(view, url);
+                view.setVisibility(View.VISIBLE);
                 view.invalidate();
                 view.requestLayout();
                 view.setInitialScale(getScale());
@@ -147,6 +148,7 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
                 mSwipeContainer.setRefreshing(true);
                 mPresenter.refreshPopularRepoes();
                 mPresenter.refreshEvents();
+                mContributionsWebView.reload();
             }
         });
     }
