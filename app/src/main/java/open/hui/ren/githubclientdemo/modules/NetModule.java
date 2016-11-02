@@ -9,8 +9,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -48,12 +46,6 @@ public class NetModule {
 
     @Provides
     @Singleton
-    ExecutorService provideExecutorService(){
-        return Executors.newCachedThreadPool();
-    }
-
-    @Provides
-    @Singleton
     Cache provideOkHttpCache(Application application) {
         int   cacheSize = 10 * 1024 * 1024; // 10 MiB
         Cache cache     = new Cache(application.getCacheDir(), cacheSize);
@@ -72,7 +64,7 @@ public class NetModule {
     @Singleton
     OkHttpClient provideOkHttpClient(Cache cache, PreferenceService sharedPreferences) {
         Authenticator authenticator = null;
-        final String credential = sharedPreferences.getBasicCredential();
+        final String  credential    = sharedPreferences.getBasicCredential();
 //        final String credential = ConstConfig.S_APP_TOKEN;
         if (!TextUtils.isEmpty(credential)) {
             authenticator = new Authenticator() {
@@ -80,9 +72,10 @@ public class NetModule {
                 public Request authenticate(Route route, Response response) throws IOException {
                     System.out.println("Authenticating for response: " + response);
                     System.out.println("Challenges: " + response.challenges());
-                    return response.request().newBuilder()
-                        .header("Authorization", credential)
-                        .build();
+                    return response.request()
+                                   .newBuilder()
+                                   .header("Authorization", credential)
+                                   .build();
                 }
             };
         }

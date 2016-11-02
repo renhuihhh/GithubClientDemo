@@ -12,6 +12,7 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.login.LoginActivity;
@@ -60,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsContr
     @OnClick({R.id.user_logout_card_view})
     void whenClick(View view) {
         if (view.getId() == R.id.user_logout_card_view) {
-            mPresenter.logOut();
+            logout();
         }
     }
 
@@ -106,5 +107,21 @@ public class SettingsActivity extends AppCompatActivity implements SettingsContr
         intent.setClass(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void logout() {
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+            .setTitleText(getString(R.string.event_text_exit_warning))
+            .setContentText(getString(R.string.event_text_exit_content))
+            .setConfirmText(getString(R.string.event_text_exit_yes))
+            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sDialog) {
+                    sDialog.dismissWithAnimation();
+                    mPresenter.logOut();
+                }
+            })
+            .show();
     }
 }

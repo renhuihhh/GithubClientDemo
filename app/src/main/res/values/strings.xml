@@ -39,4 +39,8 @@
     <string name="event_text_pull_url">pull url:</string>
 
     <string name="event_text_exit_app">exit app</string>
+    <string name="event_text_exit_warning">warning</string>
+    <string name="event_text_exit_content">Are you sure to logout?</string>
+    <string name="event_text_exit_yes">Yes,logout</string>
+
 </resources>

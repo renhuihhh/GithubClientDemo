@@ -15,6 +15,8 @@ public interface SettingsContracts {
     interface View extends BaseView<SettingsContracts.Presenter> {
 
         void jump2LoginPage();
+
+        void logout();
     }
 
     interface Presenter extends BasePresenter {

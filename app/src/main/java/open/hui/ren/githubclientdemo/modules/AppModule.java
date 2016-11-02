@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.baoyz.treasure.Treasure;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -42,4 +45,12 @@ public class AppModule {
     ACache provideACache(){
         return ACache.get(mApplication);
     }
+
+
+    @Provides
+    @Singleton
+    ExecutorService provideExecutorService() {//非UI线程上的线程池
+        return Executors.newCachedThreadPool();
+    }
+
 }

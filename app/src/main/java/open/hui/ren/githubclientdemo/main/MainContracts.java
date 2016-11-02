@@ -4,7 +4,7 @@ import open.hui.ren.githubclientdemo.BasePersistence;
 import open.hui.ren.githubclientdemo.BasePresenter;
 import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.fragments.Communicator;
+import open.hui.ren.githubclientdemo.main.tabs.Communicator;
 
 /**
  * @author renhui

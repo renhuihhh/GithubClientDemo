@@ -2,7 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".fragments.following.FollowingFragment">
+             tools:context=".main.tabs.following.FollowingFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/following_recycler_view"
