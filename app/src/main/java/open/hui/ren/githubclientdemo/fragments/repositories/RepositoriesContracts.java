@@ -23,10 +23,12 @@ public interface RepositoriesContracts {
         void onReposFetchFailed(Throwable error);
 
         void onReposFetchSuccess(ArrayList<Repo> repos);
+
+        void refreshRepoes();
     }
 
     interface Presenter extends BasePresenter {
-
+        void refreshRepoes();
     }
 
     interface Persistence extends BasePersistence<UserInfo> {

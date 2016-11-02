@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
  * @desc OverView模块的业务模型，数据的获取、事件的推送、以及有关于数据存储的业务都由这里进行封装
  */
 
-public class OverViewSupplier extends BaseSupplier<Integer> {
+public class OverViewSupplier extends BaseSupplier<OverViewParams> {
 
     @Inject
     ACache            mACache;
@@ -59,7 +59,7 @@ public class OverViewSupplier extends BaseSupplier<Integer> {
     }
 
     @Override
-    public Result<Integer> loadData() {
+    public Result<OverViewParams> loadData() {
         OverViewParams params = mSupplier.get();
         if (params == null) {
             return Result.failure();
@@ -68,22 +68,22 @@ public class OverViewSupplier extends BaseSupplier<Integer> {
         }
         String tab = params.tabName;
         if (tab.equals("followers")) {
-            return Result.success(1);
+            return Result.success(new OverViewParams("followers","1"));
         } else if (tab.equals("followings")) {
-            return Result.success(2);
+            return Result.success(new OverViewParams("followings","2"));
         } else if (tab.equals("starred")) {
-            return Result.success(3);
+            return Result.success(new OverViewParams("starred","3"));
         } else if (tab.equals("repos")) {
-            return Result.success(4);
+            return Result.success(new OverViewParams("repos","4"));
         } else if (tab.equals("events")){
-            return Result.success(9);
+            return Result.success(new OverViewParams("events","9"));
         }
         return Result.failure();
     }
 
     @NonNull
     @Override
-    public Result<Integer> get() {
+    public Result<OverViewParams> get() {
         return loadData();
     }
 

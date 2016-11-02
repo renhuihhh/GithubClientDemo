@@ -32,7 +32,7 @@ import static com.google.android.agera.Result.absentIfNull;
  * @desc OverView模块的presenter
  */
 
-public class OverViewPresenter implements OverViewContracts.Presenter, Updatable, Receiver<Integer> {
+public class OverViewPresenter implements OverViewContracts.Presenter, Updatable, Receiver<OverViewParams> {
     private static final String TAG = "OverViewPresenter";
 
     private OverViewContracts.View mView;
@@ -40,10 +40,10 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
     private OverViewSupplier       mOverViewSupplier;
 
     // for agera
-    private ExecutorService                   networkExecutor;
-    private Executor                          uiExecutor;
-    private MutableRepository<OverViewParams> mMutableRepository;//上层事件驱动入口
-    private Repository<Result<Integer>>       mLoadDataRepository;//数据拉取入口
+    private ExecutorService                    networkExecutor;
+    private Executor                           uiExecutor;
+    private MutableRepository<OverViewParams>  mMutableRepository;//上层事件驱动入口
+    private Repository<Result<OverViewParams>> mLoadDataRepository;//数据拉取入口
 
     public OverViewPresenter(OverViewContracts.View view) {
         mView = view;
@@ -54,8 +54,20 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
     public void start() {
         Log.d(TAG, "start...");
         setUpAgera();
+        refreshEvents();
+    }
+
+    @Override
+    public void refreshEvents() {
         OverViewParams params = new OverViewParams("events", "9");
-        EventsCenter.getInstance().load(mView,params);
+        EventsCenter.getInstance()
+                    .load(mView, params);
+    }
+
+    @Override
+    public void refreshPopularRepoes() {
+        mView.hitMainView()
+             .updateOverView(5);
     }
 
     private void setUpAgera() {
@@ -64,7 +76,7 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
         mMutableRepository = Repositories.mutableRepository(new OverViewParams("", ""));
         mOverViewSupplier = new OverViewSupplier(this, mMutableRepository);
         mLoadDataRepository =
-            Repositories.repositoryWithInitialValue(Result.<Integer>absent())
+            Repositories.repositoryWithInitialValue(Result.<OverViewParams>absent())
                         .observe(mMutableRepository)
                         .onUpdatesPerLoop()
                         .goTo(networkExecutor)
@@ -110,17 +122,18 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
     }
 
     @Override
-    public void accept(@NonNull Integer value) {
+    public void accept(@NonNull OverViewParams value) {
         Log.d(TAG, "accept...");
         //数据流继续向下
     }
 
+
     @Override
     public void update() {
-        final Result<Integer> result = mLoadDataRepository.get();
+        final Result<OverViewParams> result = mLoadDataRepository.get();
         Log.d(TAG, "update..." + result.get());
         if (result.succeeded()) {
-            switch (result.get()) {
+            switch (Integer.valueOf(result.get().index)) {
                 case 1:
                     mView.onFollowersUpdate(mOverViewSupplier.getFollowers());
                     break;
@@ -146,25 +159,25 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
         }
     }
 
-
     @NonNull
-    private Function<Integer, Result<Integer>> getTransferFunction() {
-        return new Function<Integer,
-            Result<Integer>>() {
+    private Function<OverViewParams, Result<OverViewParams>> getTransferFunction() {
+        return new Function<OverViewParams,
+            Result<OverViewParams>>() {
             @NonNull
             @Override
-            public Result<Integer> apply(@NonNull Integer input) {
+            public Result<OverViewParams> apply(@NonNull OverViewParams input) {
                 return absentIfNull(input);
             }
         };
     }
 
+
     @NonNull
-    private Function<Throwable, Result<Integer>> getThrowableFunction() {//处理throwable的异常
-        return new Function<Throwable, Result<Integer>>() {
+    private Function<Throwable, Result<OverViewParams>> getThrowableFunction() {//处理throwable的异常
+        return new Function<Throwable, Result<OverViewParams>>() {
             @NonNull
             @Override
-            public Result<Integer> apply(@NonNull final Throwable error) {
+            public Result<OverViewParams> apply(@NonNull final Throwable error) {
                 // check the throwable and do possible explicit error handling here, or recover
                 Log.d(TAG, "throwable　exception catching");
                 uiExecutor.execute(new Runnable() {
@@ -177,7 +190,6 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
             }
         };
     }
-
 
     public MutableRepository<OverViewParams> getMutableRepository() {
         return mMutableRepository;

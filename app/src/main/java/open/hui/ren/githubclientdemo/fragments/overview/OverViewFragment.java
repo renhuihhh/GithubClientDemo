@@ -4,6 +4,7 @@ package open.hui.ren.githubclientdemo.fragments.overview;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -55,12 +56,13 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
 
     // ButterKnife
     @BindView(R.id.over_view_popular_repo_recycler_view)
-    RecyclerView mPopularRepoRecyclerView;
+    RecyclerView       mPopularRepoRecyclerView;
     @BindView(R.id.over_view_events_recycler_view)
-    RecyclerView mOverViewEventsRecyclerView;
-
+    RecyclerView       mOverViewEventsRecyclerView;
+    @BindView(R.id.swipe_container)
+    SwipeRefreshLayout mSwipeContainer;
     @BindView(R.id.overview_contribution_web_view)
-    WebView mContributionsWebView;
+    WebView            mContributionsWebView;
 
     // Custom
     private OverViewContracts.Presenter mPresenter;
@@ -137,6 +139,16 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
         mOverViewEventsRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
         mOverViewEventsAdapter = new OverViewEventsAdapter(new ArrayList<Event>());
         mOverViewEventsRecyclerView.setAdapter(mOverViewEventsAdapter);
+
+        mSwipeContainer.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeContainer.setRefreshing(true);
+                mPresenter.refreshPopularRepoes();
+                mPresenter.refreshEvents();
+            }
+        });
     }
 
     private int getScale() {
@@ -207,12 +219,18 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
     public void onRepoUpdate(ArrayList<Repo> repos) {
         Log.d(TAG, "onRepoUpdate: " + repos);
         mPopularRepoAdapter.updateAll(repos);
+        if(mSwipeContainer.isRefreshing()){
+            mSwipeContainer.setRefreshing(false);
+        }
     }
 
     @Override
     public void onEventsUpdate(ArrayList<Event> events) {
         Log.d(TAG, "onEventsUpdate: " + events);
         mOverViewEventsAdapter.updateAll(events);
+        if(mSwipeContainer.isRefreshing()){
+            mSwipeContainer.setRefreshing(false);
+        }
     }
 
     @Override

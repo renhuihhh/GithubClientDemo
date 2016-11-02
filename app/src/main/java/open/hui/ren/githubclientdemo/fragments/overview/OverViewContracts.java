@@ -33,7 +33,8 @@ public interface OverViewContracts {
     }
 
     interface Presenter extends BasePresenter {
-
+        void refreshEvents();
+        void refreshPopularRepoes();
     }
 
     interface Persistence extends BasePersistence<UserInfo> {

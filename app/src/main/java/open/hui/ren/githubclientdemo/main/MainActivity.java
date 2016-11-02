@@ -33,6 +33,7 @@ import open.hui.ren.githubclientdemo.fragments.following.FollowingFragment;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewContracts;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewFragment;
 import open.hui.ren.githubclientdemo.fragments.overview.OverViewPresenter;
+import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesContracts;
 import open.hui.ren.githubclientdemo.fragments.repositories.RepositoriesFragment;
 import open.hui.ren.githubclientdemo.fragments.stars.StarsFragment;
 import open.hui.ren.githubclientdemo.params.OverViewParams;
@@ -275,6 +276,14 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
                 //params.tabName = "overView";
                 appendFragments();
                 return;
+            case 5: {
+                //refresh repoes
+                Fragment repositoriesFragment = getSupportFragmentManager().findFragmentByTag(RepositoriesFragment
+                    .class.getSimpleName());
+                RepositoriesContracts.View v = (RepositoriesContracts.View) repositoriesFragment;
+                v.refreshRepoes();
+                return;
+            }
             case 1:
                 params.tabName = "followers";
                 break;

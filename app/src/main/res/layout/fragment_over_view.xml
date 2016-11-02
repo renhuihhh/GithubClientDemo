@@ -1,58 +1,68 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".fragments.overview.OverViewFragment">
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.overview.OverViewFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.overview.OverViewFragment">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/margin_small"
-                android:text="@string/over_view_popular_repo"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/over_view_popular_repo_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:text="@string/over_view_popular_repo"/>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:layout_marginLeft="@dimen/margin_small"
-                      android:text="@string/over_view_contributions"/>
-            <WebView
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginLeft="@dimen/padding_mid"
-                android:layout_marginRight="@dimen/padding_mid"
-                android:id="@+id/overview_contribution_web_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </WebView>
-        </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/over_view_popular_repo_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_marginLeft="@dimen/margin_small"
+                          android:text="@string/over_view_contributions"/>
+                <WebView
+                    android:id="@+id/overview_contribution_web_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_mid"
+                    android:layout_marginRight="@dimen/padding_mid"
+                    android:layout_marginTop="@dimen/margin_small">
+                </WebView>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/margin_small"
-                android:text="@string/over_view_events"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/over_view_events_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:text="@string/over_view_events"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/over_view_events_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

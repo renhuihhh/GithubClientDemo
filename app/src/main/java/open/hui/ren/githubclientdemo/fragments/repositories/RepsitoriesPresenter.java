@@ -41,9 +41,10 @@ public class RepsitoriesPresenter implements RepositoriesContracts.Presenter, Up
     private RepositoriesSupplier       mRepositoriesSupplier;
 
     // for agera
-    private ExecutorService                     networkExecutor;
-    private Executor                            uiExecutor;
-    private MutableRepository<RepoQueryParams>  mMutableRepository;//上层事件驱动入口
+    private ExecutorService                    networkExecutor;
+    private Executor                           uiExecutor;
+    private MutableRepository<RepoQueryParams> mMutableRepository;//上层事件驱动入口
+
     public RepsitoriesPresenter(RepositoriesContracts.View view) {
         mView = view;
         mContext = mView.getCtx();
@@ -164,4 +165,9 @@ public class RepsitoriesPresenter implements RepositoriesContracts.Presenter, Up
     }
 
 
+    @Override
+    public void refreshRepoes() {
+        mMutableRepository.accept(new RepoQueryParams(mView.hitUserName(), "all",
+            "full_name", "asc"));
+    }
 }

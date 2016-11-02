@@ -30,7 +30,10 @@ import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
  */
 
 public class RepositoriesFragment extends Fragment implements RepositoriesContracts.View {
-    private static final String TAG                = "RepositoriesFragment";
+    private static final String TAG = "RepositoriesFragment";
+    public static final  int    ID  = 102;
+
+
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
 
@@ -144,8 +147,13 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
     }
 
     @Override
+    public void refreshRepoes() {
+        mPresenter.refreshRepoes();
+    }
+
+    @Override
     public int getViewId() {
-        return 0;
+        return ID;
     }
 
     @Override

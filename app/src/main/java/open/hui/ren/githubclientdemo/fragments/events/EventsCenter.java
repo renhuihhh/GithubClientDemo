@@ -35,7 +35,7 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-31
- * @desc
+ * @desc github 当前登陆用户的events消息中心
  */
 
 public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
@@ -113,9 +113,9 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
     public void update() {
         Result<ArrayList<Event>> result = mLoadDataRepository.get();
         if (result.succeeded()) {
-            if(mBaseView.getViewId() == 0){
+            if (mBaseView.getViewId() == 0) {
                 return;
-            }else if(mBaseView.getViewId() == OverViewFragment.ID){
+            } else if (mBaseView.getViewId() == OverViewFragment.ID) {
                 ((OverViewContracts.View) mBaseView).onEventsUpdate(result.get());
             }
         }
