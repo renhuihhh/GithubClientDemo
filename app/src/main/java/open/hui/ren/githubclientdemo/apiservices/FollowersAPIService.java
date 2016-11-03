@@ -10,7 +10,7 @@ import retrofit2.http.Path;
 /**
  * @author renhui
  * @date 16-10-25
- * @desc open.hui.ren.githubclientdemo.apiservices
+ * @desc 获取followers列表的apiservice类
  */
 
 public interface FollowersAPIService {

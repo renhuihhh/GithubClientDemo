@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 /**
  * @author renhui
  * @date 16-10-20
- * @desc open.hui.ren.githubclientdemo.apiservices
+ * @desc 获取repositories列表的apiservice类
  */
 
 public interface RepositoriesAPIService {

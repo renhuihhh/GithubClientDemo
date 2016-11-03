@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 /**
  * @author renhui
  * @date 16-10-31
- * @desc open.hui.ren.githubclientdemo.apiservices
+ * @desc 获取events消息列表的apiservice类
  */
 
 public interface EventsAPIService {
