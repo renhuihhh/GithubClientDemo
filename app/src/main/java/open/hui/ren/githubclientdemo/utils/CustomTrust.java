@@ -40,6 +40,7 @@ import okio.Buffer;
  * @date 2016/08/09
  * @desc 自定义的http　TLS　key　store证书列表
  */
+
 public class CustomTrust {
 
     X509TrustManager trustManager;

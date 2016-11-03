@@ -21,9 +21,9 @@ public interface LoginContracts {
 
         void doLogin();
 
-        void onUserInfoUpdate(UserInfo userInfo);
+        void onLoginSuccess(UserInfo userInfo);
 
-        void onUserInfoFailed(Throwable error);
+        void onLoginFailed(Throwable error);
 
         void jumpToMain();
     }

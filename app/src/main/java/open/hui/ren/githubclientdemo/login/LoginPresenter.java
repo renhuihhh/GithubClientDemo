@@ -116,7 +116,6 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
         return mLoginSupplier;
     }
 
-
     @Override
     public void accept(@NonNull UserInfo value) {
         Log.d(TAG, "accept...");
@@ -128,13 +127,13 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
         Log.d(TAG, "update...");
         final Result<UserInfo> result = mLoadDataRepository.get();
         if (result.succeeded()) {
-            mView.onUserInfoUpdate(result.get());
+            mView.onLoginSuccess(result.get());
             mLoginSupplier.saveData(result.get());
         } else {
             uiExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    mView.onUserInfoFailed(result.getFailure());
+                    mView.onLoginFailed(result.getFailure());
                 }
             });
         }
@@ -163,7 +162,7 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
                 uiExecutor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        mView.onUserInfoFailed(error);
+                        mView.onLoginFailed(error);
                     }
                 });
                 return Result.absent();

@@ -3,7 +3,7 @@ package open.hui.ren.githubclientdemo;
 /**
  * @author renhui
  * @date 16-10-9
- * @desc open.hui.ren.githubclientdemo
+ * @desc 抽象的持久化操作接口
  */
 
 public interface BasePersistence<T> {

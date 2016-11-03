@@ -19,7 +19,7 @@ import open.hui.ren.githubclientdemo.main.tabs.overview.viewholder.WatchEventVie
 /**
  * @author renhui
  * @date 16-10-31
- * @desc open.hui.ren.githubclientdemo.fragments.overview.adapter
+ * @desc overView的Events部分的adapter
  */
 
 public class OverViewEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

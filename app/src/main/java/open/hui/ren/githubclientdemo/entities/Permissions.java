@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @author renhui
  * @date 16-10-9
- * @desc open.hui.ren.githubclientdemo.entities
+ * @desc Permissions实体类
  */
 
 public class Permissions implements Serializable {

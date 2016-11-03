@@ -64,5 +64,4 @@ public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesViewHo
     public int getItemViewType(int position) {
         return ITEM_VIEW_TYPE_NORMAL;
     }
-
 }

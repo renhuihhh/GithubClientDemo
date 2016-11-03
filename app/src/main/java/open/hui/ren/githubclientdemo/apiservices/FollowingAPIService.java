@@ -21,11 +21,9 @@ public interface FollowingAPIService {
     @GET("/user/following")
     Call<ArrayList<UserInfo>> getFollowings();
 
-
     /**
      * 获取 following 列表
      */
     @GET("/users/{username}/following")
     Call<ArrayList<UserInfo>> getUserFollowings(@Path("username") String userName);
-
 }

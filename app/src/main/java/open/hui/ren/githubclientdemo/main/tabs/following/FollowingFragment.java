@@ -32,8 +32,8 @@ public class FollowingFragment extends Fragment implements FollowingContracts.Vi
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
-    private String username;
 
+    private String                       username;
     private String                       mParam2;
     // Custom
     private FollowingContracts.Presenter mPresenter;

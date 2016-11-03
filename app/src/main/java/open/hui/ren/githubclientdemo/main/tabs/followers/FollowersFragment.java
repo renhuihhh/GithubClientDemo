@@ -1,6 +1,5 @@
 package open.hui.ren.githubclientdemo.main.tabs.followers;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,7 +40,6 @@ public class FollowersFragment extends Fragment implements FollowersContracts.Vi
 
     @BindView(R.id.followers_recycler_view)
     RecyclerView mFollowersRecyclerView;
-
 
     public FollowersFragment() {
         super();
@@ -88,7 +86,6 @@ public class FollowersFragment extends Fragment implements FollowersContracts.Vi
         super.onPause();
         mPresenter.pause();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,7 +139,6 @@ public class FollowersFragment extends Fragment implements FollowersContracts.Vi
     public String hitUserName() {
         return mUserName;
     }
-
 
     @Override
     public int getViewId() {

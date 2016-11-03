@@ -8,7 +8,7 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
 /**
  * @author renhui
  * @date 16-11-1
- * @desc open.hui.ren.githubclientdemo.personal.settings
+ * @desc Settings的契约接口
  */
 
 public interface SettingsContracts {

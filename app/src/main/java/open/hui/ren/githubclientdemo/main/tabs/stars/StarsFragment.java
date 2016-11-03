@@ -1,6 +1,5 @@
 package open.hui.ren.githubclientdemo.main.tabs.stars;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,7 +44,6 @@ public class StarsFragment extends Fragment implements StarsContracts.View {
     RecyclerView       mStarredRecyclerView;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout mSwipeContainer;
-
 
     public StarsFragment() {
         super();
@@ -140,15 +138,14 @@ public class StarsFragment extends Fragment implements StarsContracts.View {
     @Override
     public void onStarsFetchFailed(Throwable error) {
         Log.d(TAG, "onStarsFetchFailed :" + error.getMessage());
+        mSwipeContainer.setRefreshing(false);
     }
 
     @Override
     public void onStarsFetchSuccess(ArrayList<Repo> repos) {
         Log.d(TAG, "onStarsFetchSuccess :" + repos);
         mStarredRepoAdapter.updateAll(repos);
-        if (mSwipeContainer.isRefreshing()) {
-            mSwipeContainer.setRefreshing(false);
-        }
+        mSwipeContainer.setRefreshing(false);
     }
 
     @Override

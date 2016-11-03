@@ -110,7 +110,6 @@ public class MainPresenter implements MainContracts.Presenter, Updatable, Receiv
 
     }
 
-
     @NonNull
     private Function<UserInfo, Result<UserInfo>> getTransferFunction() {
         return new Function<UserInfo,

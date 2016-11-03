@@ -25,9 +25,8 @@ import retrofit2.Retrofit;
 /**
  * @author renhui
  * @date 16-10-8
- * @desc open.hui.ren.githubclientdemo.login
+ * @desc LoginSupplier
  */
-
 public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContracts.Persistence {
     @Inject
     ACache            mACache;

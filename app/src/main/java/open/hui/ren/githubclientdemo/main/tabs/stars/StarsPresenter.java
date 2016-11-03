@@ -110,7 +110,6 @@ public class StarsPresenter implements StarsContracts.Presenter, FollowingContra
     public void resume() {
         Log.d(TAG, "resume...");
         mLoadDataRepository.addUpdatable(this);
-
     }
 
     @Override
@@ -133,7 +132,6 @@ public class StarsPresenter implements StarsContracts.Presenter, FollowingContra
     public BasePersistence getPersistence() {
         return mStarsSupplier;
     }
-
 
     @Override
     public void end() {

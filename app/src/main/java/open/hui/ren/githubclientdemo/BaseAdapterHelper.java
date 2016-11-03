@@ -6,11 +6,10 @@ import com.google.android.agera.Result;
 import com.google.android.agera.Supplier;
 import com.google.android.agera.Updatable;
 
-
 /**
  * @author renhui
  * @date 16-10-28
- * @desc open.hui.ren.githubclientdemo
+ * @desc 抽象的recycle item与adapter之间的helper
  */
 
 public abstract class BaseAdapterHelper<T> implements Supplier<Result<T>>, Updatable {

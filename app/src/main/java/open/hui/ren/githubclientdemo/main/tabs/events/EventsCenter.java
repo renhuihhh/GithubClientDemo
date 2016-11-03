@@ -118,6 +118,12 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
             } else if (mBaseView.getViewId() == OverViewFragment.ID) {
                 ((OverViewContracts.View) mBaseView).onEventsUpdate(result.get());
             }
+        } else {
+            if (mBaseView.getViewId() == 0) {
+                return;
+            } else if (mBaseView.getViewId() == OverViewFragment.ID) {
+                ((OverViewContracts.View) mBaseView).onEventsNotUpdate(result.getFailure());
+            }
         }
     }
 

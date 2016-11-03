@@ -1,6 +1,5 @@
 package open.hui.ren.githubclientdemo.main.tabs.repositories;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,7 +33,6 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
     private static final String TAG = "RepositoriesFragment";
     public static final  int    ID  = 102;
 
-
     private static final String ARG_PARAM_USERNAME = "param1";
     private static final String ARG_PARAM2         = "param2";
 
@@ -49,7 +47,6 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
     // Custom
     private RepositoriesContracts.Presenter mPresenter;
     private RepositoriesAdapter             mRepositoriesAdapter;
-
 
     public RepositoriesFragment() {
         super();
@@ -83,7 +80,6 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
         mPresenter.start();
     }
 
-
     @Override
     public void onResume() {
         Log.d(TAG, "onResume");
@@ -97,7 +93,6 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
         super.onPause();
         mPresenter.pause();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -128,7 +123,6 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
         });
     }
 
-
     @Override
     public void onAttach(Context context) {
         Log.d(TAG, "onAttach");
@@ -141,7 +135,6 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
         super.onHiddenChanged(hidden);
     }
 
-
     @Override
     public String hitUserName() {
         return username;
@@ -150,15 +143,14 @@ public class RepositoriesFragment extends Fragment implements RepositoriesContra
     @Override
     public void onReposFetchFailed(Throwable error) {
         Log.d(TAG, "onReposFetchFailed :" + error.getMessage());
+        mSwipeContainer.setRefreshing(false);
     }
 
     @Override
     public void onReposFetchSuccess(ArrayList<Repo> repos) {
         Log.d(TAG, "onReposFetchSuccess :" + repos);
         mRepositoriesAdapter.updateAll(repos);
-        if (mSwipeContainer.isRefreshing()) {
-            mSwipeContainer.setRefreshing(false);
-        }
+        mSwipeContainer.setRefreshing(false);
     }
 
     @Override

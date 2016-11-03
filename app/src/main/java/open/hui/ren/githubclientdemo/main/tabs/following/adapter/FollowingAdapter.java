@@ -54,7 +54,6 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingViewHolder> 
         }
     }
 
-
     public void updateAll(ArrayList<UserInfo> data) {
         mUserInfoArrayList.clear();
         mUserInfoArrayList.addAll(data);

@@ -3,7 +3,7 @@ package open.hui.ren.githubclientdemo;
 /**
  * @author renhui
  * @date 16-9-26
- * @desc open.hui.ren.githubclientdemo
+ * @desc 公共配置类
  */
 
 public class ConstConfig {

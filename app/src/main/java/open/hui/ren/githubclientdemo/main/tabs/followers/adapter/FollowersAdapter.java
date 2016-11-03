@@ -25,7 +25,6 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersViewHolder> 
     private ArrayList<UserInfo>     mUserInfoArrayList;
     private FollowersContracts.View mView;
 
-
     public FollowersAdapter(ArrayList<UserInfo> userInfoArrayList, BaseView view) {
         mUserInfoArrayList = userInfoArrayList;
         mView = (FollowersContracts.View) view;

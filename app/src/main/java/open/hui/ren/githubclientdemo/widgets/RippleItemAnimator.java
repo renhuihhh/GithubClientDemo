@@ -11,6 +11,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author renhui
+ * @date 16-10-26
+ * @desc recycleView的item动画
+ */
 
 public class RippleItemAnimator extends SimpleItemAnimator {
 
@@ -29,8 +34,8 @@ public class RippleItemAnimator extends SimpleItemAnimator {
                 AnimatorSet animator = new AnimatorSet();
 
                 animator.playTogether(
-                        ObjectAnimator.ofFloat(target, "translationX", -target.getMeasuredWidth(), 0.0f),
-                        ObjectAnimator.ofFloat(target, "alpha", target.getAlpha(), 1.0f)
+                    ObjectAnimator.ofFloat(target, "translationX", -target.getMeasuredWidth(), 0.0f),
+                    ObjectAnimator.ofFloat(target, "alpha", target.getAlpha(), 1.0f)
                 );
 
                 animator.setTarget(target);
@@ -70,8 +75,8 @@ public class RippleItemAnimator extends SimpleItemAnimator {
                 AnimatorSet animator = new AnimatorSet();
 
                 animator.playTogether(
-                        ObjectAnimator.ofFloat(target, "translationX", 0.0f, target.getMeasuredWidth()),
-                        ObjectAnimator.ofFloat(target, "alpha", target.getAlpha(), 0.0f)
+                    ObjectAnimator.ofFloat(target, "translationX", 0.0f, target.getMeasuredWidth()),
+                    ObjectAnimator.ofFloat(target, "alpha", target.getAlpha(), 0.0f)
                 );
 
                 animator.setTarget(target);
@@ -117,5 +122,4 @@ public class RippleItemAnimator extends SimpleItemAnimator {
     public boolean isRunning() {
         return !mPendingAdd.isEmpty() || !mPendingRemove.isEmpty();
     }
-
 }

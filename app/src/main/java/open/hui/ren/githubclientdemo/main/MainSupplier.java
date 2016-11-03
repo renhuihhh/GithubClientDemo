@@ -15,7 +15,7 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
  * @desc 主界面模块的业务模型，数据的获取、事件的推送、以及有关于数据存储的业务都由这里进行封装
  */
 
-public class MainSupplier extends BaseSupplier<UserInfo> implements MainContracts.Persistence{
+public class MainSupplier extends BaseSupplier<UserInfo> implements MainContracts.Persistence {
 
     public MainSupplier(BasePresenter presenter, MutableRepository supplier) {
         super(presenter, supplier);

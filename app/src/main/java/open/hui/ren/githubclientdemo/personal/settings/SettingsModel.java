@@ -18,7 +18,7 @@ import retrofit2.Retrofit;
 /**
  * @author renhui
  * @date 16-11-1
- * @desc open.hui.ren.githubclientdemo.personal.settings
+ * @desc Settings的业务模型
  */
 
 public class SettingsModel extends BaseSupplier<UserInfo> implements SettingsContracts.Persistence {

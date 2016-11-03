@@ -25,5 +25,4 @@ public interface StarsAPIService {
      */
     @GET("/users/{username}/starred")
     Call<ArrayList<Repo>> getUserStarred(@Path("username") String userName);
-
 }

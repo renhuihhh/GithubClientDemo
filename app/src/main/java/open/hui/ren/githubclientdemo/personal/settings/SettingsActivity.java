@@ -19,6 +19,12 @@ import open.hui.ren.githubclientdemo.login.LoginActivity;
 
 import static open.hui.ren.githubclientdemo.R.id.toolbar;
 
+/**
+ * @author renhui
+ * @date 16-10-31
+ * @desc Settings activity
+ */
+
 public class SettingsActivity extends AppCompatActivity implements SettingsContracts.View {
     @BindView(toolbar)
     Toolbar  mToolbar;
@@ -56,7 +62,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsContr
         super.onPause();
         mPresenter.pause();
     }
-
 
     @OnClick({R.id.user_logout_card_view})
     void whenClick(View view) {

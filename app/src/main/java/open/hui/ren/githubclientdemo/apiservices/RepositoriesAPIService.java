@@ -32,5 +32,4 @@ public interface RepositoriesAPIService {
     @GET("/users/{username}/repos")
     Call<ArrayList<Repo>> getUserRepos(@Path("username") String userName, @Query("type") String type, @Query("sort")
         String sort, @Query("direction") String direction);
-
 }

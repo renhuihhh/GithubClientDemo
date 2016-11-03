@@ -32,7 +32,7 @@ import static com.google.android.agera.Result.absentIfNull;
 /**
  * @author renhui
  * @date 16-10-31
- * @desc open.hui.ren.githubclientdemo.fragments.overview.helper
+ * @desc overview的events部分item与adapter的helper类
  */
 
 public class OverViewEventHelper extends BaseAdapterHelper<Event> {

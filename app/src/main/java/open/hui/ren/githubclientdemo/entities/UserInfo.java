@@ -10,8 +10,7 @@ import java.io.Serializable;
  * @desc github 用户信息对象
  */
 
-public class UserInfo implements Serializable{
-
+public class UserInfo implements Serializable {
     /**
      * login : renhuihhh
      * id : 17830234
@@ -45,7 +44,7 @@ public class UserInfo implements Serializable{
      * updated_at : 2016-09-14T06:57:30Z
      */
     @SerializedName("login")
-    public String login;
+    public String  login;
     @SerializedName("id")
     public int     id;
     @SerializedName("avatar_url")

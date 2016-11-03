@@ -16,7 +16,6 @@
 
 package open.hui.ren.githubclientdemo.utils;
 
-
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -37,6 +36,7 @@ import android.view.WindowManager.LayoutParams;
  * @date 2016/08/09
  * @desc 屏幕UI相关的工具方法
  */
+
 public class ScreenUtil {
 
     private ScreenUtil() {
@@ -153,7 +153,6 @@ public class ScreenUtil {
         return 0;
     }
 
-
     /**
      * 设置屏幕为横屏
      * <p>还有一种就是在Activity中加属性android:screenOrientation="landscape"</p>
@@ -219,7 +218,6 @@ public class ScreenUtil {
             .getSystemService(Context.KEYGUARD_SERVICE);
         return km.inKeyguardRestrictedInputMode();
     }
-
 
     /**
      * @param context     上下文

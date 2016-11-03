@@ -8,10 +8,9 @@ import java.util.List;
 /**
  * @author renhui
  * @date 16-10-11
- * @desc open.hui.ren.githubclientdemo.entities
+ * @desc payload实体类，可能不同的object会有不同的Payload字段内容
  */
 public class Payload implements Serializable {
-
 
     /**
      * push_id : 1376731478

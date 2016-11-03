@@ -7,17 +7,19 @@ import java.util.concurrent.Executor;
 
 /**
  * @author renhui
- * @date   16/9/8
- * @desc   uiThread线程
+ * @date 16/9/8
+ * @desc uiThread线程
  */
+
 public class UiThreadExecutor implements Executor {
     private final Handler mHandler = new Handler(Looper.getMainLooper());
+
     @Override
     public void execute(Runnable command) {
         mHandler.post(command);
     }
 
-    public void shutdown(){
+    public void shutdown() {
     }
 
     public static Executor newUiThreadExecutor() {

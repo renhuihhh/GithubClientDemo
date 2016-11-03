@@ -344,7 +344,6 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onDrawerSlide(View drawerView, float slideOffset) {
         //TODO: when side menu slide out

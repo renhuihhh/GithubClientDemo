@@ -22,7 +22,6 @@ public class StarredRepoAdapter extends RecyclerView.Adapter<StarredRepoViewHold
     private static final int ITEM_VIEW_TYPE_NORMAL = 0;
     private ArrayList<Repo> mRepoArrayList;
 
-
     public StarredRepoAdapter(ArrayList<Repo> repoArrayList) {
         mRepoArrayList = repoArrayList;
     }

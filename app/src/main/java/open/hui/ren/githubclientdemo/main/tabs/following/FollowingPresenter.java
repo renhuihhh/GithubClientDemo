@@ -78,7 +78,6 @@ public class FollowingPresenter implements FollowingContracts.Presenter, Updatab
     public void resume() {
         Log.d(TAG, "resume...");
         mLoadDataRepository.addUpdatable(this);
-
     }
 
     @Override

@@ -36,21 +36,19 @@ public class AppModule {
 
     @Singleton
     @Provides
-    PreferenceService provideSimplePreferences(){
+    PreferenceService provideSimplePreferences() {
         return Treasure.get(mApplication, PreferenceService.class);
     }
 
     @Singleton
     @Provides
-    ACache provideACache(){
+    ACache provideACache() {
         return ACache.get(mApplication);
     }
-
 
     @Provides
     @Singleton
     ExecutorService provideExecutorService() {//非UI线程上的线程池
         return Executors.newCachedThreadPool();
     }
-
 }

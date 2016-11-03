@@ -127,7 +127,6 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
         //数据流继续向下
     }
 
-
     @Override
     public void update() {
         final Result<OverViewParams> result = mLoadDataRepository.get();
@@ -170,7 +169,6 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
             }
         };
     }
-
 
     @NonNull
     private Function<Throwable, Result<OverViewParams>> getThrowableFunction() {//处理throwable的异常

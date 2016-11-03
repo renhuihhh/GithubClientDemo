@@ -8,12 +8,10 @@ import java.util.List;
 /**
  * @author renhui
  * @date 16-9-25
- * @desc open.hui.ren.githubclientdemo.entities
+ * @desc OAuthResult实体类，这个类对应的是hithub个人授权许可列表的item，一般很少用
  */
 
 public class OAuthResult implements Serializable {
-
-
     /**
      * scopes : ["repo","user"]
      * token : 5199831f4dd3b79e7c5b7e0ebe75d67aa66e79d4
@@ -27,18 +25,18 @@ public class OAuthResult implements Serializable {
      */
 
     @SerializedName("token")
-    public String token;
+    public String       token;
     @SerializedName("updated_at")
-    public String updatedAt;
+    public String       updatedAt;
     @SerializedName("url")
-    public String url;
+    public String       url;
     /**
      * url : https://developer.github.com/v3/oauth/#oauth-authorizations-api
      * name : GitHub API
      */
 
     @SerializedName("app")
-    public AppBean app;
+    public AppBean      app;
     @SerializedName("created_at")
     public String       createdAt;
     @SerializedName("note_url")

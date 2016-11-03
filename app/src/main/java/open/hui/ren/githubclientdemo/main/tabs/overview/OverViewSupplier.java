@@ -36,7 +36,6 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
     @Inject
     PreferenceService mPreferenceService;
 
-
     private MutableRepository<OverViewParams> mSupplier;//上游数据supplier,主要负责参数输入
 
     private Context mContext;
@@ -68,15 +67,15 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
         }
         String tab = params.tabName;
         if (tab.equals("followers")) {
-            return Result.success(new OverViewParams("followers","1"));
+            return Result.success(new OverViewParams("followers", "1"));
         } else if (tab.equals("followings")) {
-            return Result.success(new OverViewParams("followings","2"));
+            return Result.success(new OverViewParams("followings", "2"));
         } else if (tab.equals("starred")) {
-            return Result.success(new OverViewParams("starred","3"));
+            return Result.success(new OverViewParams("starred", "3"));
         } else if (tab.equals("repos")) {
-            return Result.success(new OverViewParams("repos","4"));
-        } else if (tab.equals("events")){
-            return Result.success(new OverViewParams("events","9"));
+            return Result.success(new OverViewParams("repos", "4"));
+        } else if (tab.equals("events")) {
+            return Result.success(new OverViewParams("events", "9"));
         }
         return Result.failure();
     }

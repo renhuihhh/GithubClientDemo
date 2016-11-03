@@ -1,6 +1,5 @@
 package open.hui.ren.githubclientdemo.main.tabs.overview;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -49,7 +48,6 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
 
     private static final String ARG_USERNAME = "param1";
     private static final String ARG_PARAM2   = "param2";
-
 
     private String mUserName;
     private String mParam2;
@@ -183,7 +181,6 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
         mPresenter.pause();
     }
 
-
     @Override
     public void onAttach(Context context) {
         Log.d(TAG, "onAttach");
@@ -195,7 +192,6 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
         Log.d(TAG, "onHiddenChanged: is hidden " + hidden);
         super.onHiddenChanged(hidden);
     }
-
 
     @Override
     public void onRefreshFailed(Throwable error) {
@@ -221,18 +217,19 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
     public void onRepoUpdate(ArrayList<Repo> repos) {
         Log.d(TAG, "onRepoUpdate: " + repos);
         mPopularRepoAdapter.updateAll(repos);
-        if(mSwipeContainer.isRefreshing()){
-            mSwipeContainer.setRefreshing(false);
-        }
     }
 
     @Override
     public void onEventsUpdate(ArrayList<Event> events) {
         Log.d(TAG, "onEventsUpdate: " + events);
         mOverViewEventsAdapter.updateAll(events);
-        if(mSwipeContainer.isRefreshing()){
-            mSwipeContainer.setRefreshing(false);
-        }
+        mSwipeContainer.setRefreshing(false);
+    }
+
+    @Override
+    public void onEventsNotUpdate(Throwable failure) {
+        Log.d(TAG, "onEventsNotUpdate: " + failure);
+        mSwipeContainer.setRefreshing(false);
     }
 
     @Override

@@ -72,7 +72,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     @Override
     public void showLoginDialog() {
-        mDialog.getProgressHelper().setBarColor(Color.parseColor("#3F51B5"));
+        mDialog.getProgressHelper()
+               .setBarColor(Color.parseColor("#3F51B5"));
         mDialog.setTitleText("Login...");
         mDialog.setCancelable(false);
         mDialog.show();
@@ -89,14 +90,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     @Override
     public void doLogin() {
-        String userNameOnUI = mUsername.getText().toString().trim();
-        String passwordOnUI = mPassword.getText().toString().trim();
-        checkUserNamePasswordVaildate(userNameOnUI, passwordOnUI);
+        String userNameOnUI = mUsername.getText()
+                                       .toString()
+                                       .trim();
+        String passwordOnUI = mPassword.getText()
+                                       .toString()
+                                       .trim();
+        if (checkUserNamePasswordVaildate(userNameOnUI, passwordOnUI)) {
+            showLoginDialog();
+            mPresenter.fetchUserInfoByUserName(userNameOnUI, passwordOnUI);
+        }
     }
 
-
     @Override
-    public void onUserInfoUpdate(UserInfo userInfo) {
+    public void onLoginSuccess(UserInfo userInfo) {
         dismissLoginDialog();
         mUserInfo = userInfo;
         jumpToMain();
@@ -105,8 +112,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     @Override
     public void jumpToMain() {
         if (mUserInfo == null) {
-            mUserInfo = getPresenter().getPersistence().retrieveData();
-        }else if(mUserInfo == null){
+            mUserInfo = getPresenter().getPersistence()
+                                      .retrieveData();
+        } else if (mUserInfo == null) {
             return;
         }
         Intent intent = new Intent();
@@ -117,25 +125,23 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     }
 
     @Override
-    public void onUserInfoFailed(Throwable error) {
+    public void onLoginFailed(Throwable error) {
         dismissLoginDialog();
         String msg = error.getMessage();
         if (msg.equals(ConstConfig.S_INIT_PARAMS)) {
             return;
         }
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, msg, Toast.LENGTH_LONG)
+             .show();
     }
 
-
-    private void checkUserNamePasswordVaildate(String userNameOnUI, String passwordOnUI) {
+    private boolean checkUserNamePasswordVaildate(String userNameOnUI, String passwordOnUI) {
         if (TextUtils.isEmpty(userNameOnUI) || TextUtils.isEmpty(passwordOnUI)) {
             Log.w(TAG, "username or password wrong...");
-            return;
+            return false;
         }
-        showLoginDialog();
-        mPresenter.fetchUserInfoByUserName(userNameOnUI, passwordOnUI);
+        return true;
     }
-
 
     @OnClick(R.id.sign_in_button)
     public void onClick(View view) {

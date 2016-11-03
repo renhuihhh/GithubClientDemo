@@ -10,7 +10,7 @@ import open.hui.ren.githubclientdemo.BaseView;
 /**
  * @author renhui
  * @date 16-11-1
- * @desc open.hui.ren.githubclientdemo.personal.settings
+ * @desc Settings的presenter
  */
 
 public class SettingsPresenter implements SettingsContracts.Presenter {

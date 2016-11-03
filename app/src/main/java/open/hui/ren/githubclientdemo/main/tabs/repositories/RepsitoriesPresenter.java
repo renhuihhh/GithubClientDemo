@@ -164,7 +164,6 @@ public class RepsitoriesPresenter implements RepositoriesContracts.Presenter, Up
         };
     }
 
-
     @Override
     public void refreshRepoes() {
         mMutableRepository.accept(new RepoQueryParams(mView.hitUserName(), "all",

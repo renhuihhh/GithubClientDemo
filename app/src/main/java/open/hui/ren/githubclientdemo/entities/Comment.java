@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @author renhui
  * @date 16-10-11
- * @desc open.hui.ren.githubclientdemo.entities
+ * @desc comment实体类
  */
 public class Comment implements Serializable {
 
@@ -22,13 +22,13 @@ public class Comment implements Serializable {
      * body :  [https://www.npmjs.com/package/electron-prebuilt](url) look here
      */
     @SerializedName("url")
-    public String       url;
+    public String   url;
     @SerializedName("html_url")
-    public String       htmlUrl;
+    public String   htmlUrl;
     @SerializedName("issue_url")
-    public String       issueUrl;
+    public String   issueUrl;
     @SerializedName("id")
-    public int          id;
+    public int      id;
     /**
      * login : renhuihhh
      * id : 17830234
@@ -52,11 +52,11 @@ public class Comment implements Serializable {
     @SerializedName("user")
     public UserBean user;
     @SerializedName("created_at")
-    public String               createdAt;
+    public String   createdAt;
     @SerializedName("updated_at")
-    public String               updatedAt;
+    public String   updatedAt;
     @SerializedName("body")
-    public String               body;
+    public String   body;
 
     public static class UserBean {
         @SerializedName("login")

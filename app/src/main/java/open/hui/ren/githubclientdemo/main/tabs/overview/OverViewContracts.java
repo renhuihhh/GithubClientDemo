@@ -30,10 +30,13 @@ public interface OverViewContracts {
         void onRepoUpdate(ArrayList<Repo> repos);
 
         void onEventsUpdate(ArrayList<Event> events);
+
+        void onEventsNotUpdate(Throwable failure);
     }
 
     interface Presenter extends BasePresenter {
         void refreshEvents();
+
         void refreshPopularRepoes();
     }
 

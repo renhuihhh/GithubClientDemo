@@ -7,10 +7,10 @@ import java.io.Serializable;
 /**
  * @author renhui
  * @date 16-10-11
- * @desc open.hui.ren.githubclientdemo.entities
+ * @desc event实体类
  */
 
-public class Event implements Serializable{
+public class Event implements Serializable {
     /**
      * id : 4294853443
      * type : IssueCommentEvent
@@ -22,17 +22,17 @@ public class Event implements Serializable{
      */
 
     @SerializedName("id")
-    public String      id;
+    public String   id;
     @SerializedName("type")
-    public String      type;
+    public String   type;
     @SerializedName("actor")
-    public UserInfo    actor;
+    public UserInfo actor;
     @SerializedName("repo")
-    public Repo        repo;
+    public Repo     repo;
     @SerializedName("payload")
-    public Payload payload;
+    public Payload  payload;
     @SerializedName("public")
-    public boolean publicX;
+    public boolean  publicX;
     @SerializedName("created_at")
-    public String  createdAt;
+    public String   createdAt;
 }

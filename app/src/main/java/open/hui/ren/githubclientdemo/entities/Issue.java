@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author renhui
  * @date 16-10-11
- * @desc open.hui.ren.githubclientdemo.entities
+ * @desc issue实体类
  */
 public class Issue implements Serializable {
     /**

@@ -47,7 +47,6 @@ class MyDrawerListener extends ActionBarDrawerToggle {
         }
     }
 
-
     @Override
     public void onDrawerStateChanged(@BottomSheetBehavior.State int newState) {
         super.onDrawerStateChanged(newState);
@@ -55,7 +54,6 @@ class MyDrawerListener extends ActionBarDrawerToggle {
             mDrawerListener.onDrawerStateChanged(newState);
         }
     }
-
 
     @Override
     public void onDrawerSlide(View drawerView, float slideOffset) {

@@ -81,7 +81,6 @@ public class NetModule {
         }
         //final String credential = "token 664a70a85fc8801a9fee63ca74a44687f08871bd";
 
-
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (authenticator != null) {
             builder.authenticator(authenticator);

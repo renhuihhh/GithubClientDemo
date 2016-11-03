@@ -41,20 +41,17 @@ public interface UserInfoAPIService {
 
     /**
      * 获取当前登陆用户 events 列表
-     * */
+     */
     @GET("/user/events")
     Call<ArrayList<Event>> getEvents();
 
     /**
      * 获取当前登陆用户的 subscriptions 列表
-     * */
+     */
     @GET("/user/subscriptions")
     Call<ArrayList<Repo>> getSubscriptions();
 
-
     ///***************************************************************************/
-
-
 
     /**
      * 获取 subscriptions 列表
@@ -62,20 +59,18 @@ public interface UserInfoAPIService {
     @GET("/users/{username}/subscriptions")
     Call<ArrayList<Repo>> getUserSubscriptions(@Path("username") String userName);
 
-
     /**
      * 获取 events 列表
      */
     @GET("/users/{username}/events")
     Call<ArrayList<Event>> getUserEvents(@Path("username") String userName);
 
-
-
-
     ///##############################################################################/
+
     /**
      * 无任何校验即可查看user名字对应的github用户的信息, 仅限每月60次, 校验后无限制
      * 所以, 建议使用username password的header
+     *
      * @param user
      */
     @GET("/users/{username}")

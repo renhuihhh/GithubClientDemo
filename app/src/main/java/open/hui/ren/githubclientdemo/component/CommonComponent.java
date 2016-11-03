@@ -25,13 +25,22 @@ import open.hui.ren.githubclientdemo.personal.settings.SettingsModel;
 @Component(modules = {NetModule.class, AppModule.class})
 public interface CommonComponent {
     void inject(LoginSupplier loginSupplier);
+
     void inject(RepositoriesSupplier repositoriesSupplier);
+
     void inject(StarsSupplier starsSupplier);
+
     void inject(FollowersSupplier followersSupplier);
+
     void inject(FollowingsSupplier followingsSupplier);
+
     void inject(OverViewSupplier overViewSupplier);
+
     void inject(FollowersAdapterHelper followersAdapterHelper);
+
     void inject(FollowingAdapterHelper followingAdapterHelper);
+
     void inject(EventsCenter eventsCenter);
+
     void inject(SettingsModel settingsModel);
 }
