@@ -96,13 +96,6 @@ public class StarsPresenter implements StarsContracts.Presenter, FollowingContra
             mStarsSupplier.saveData(result.get());
 //            ((StarsContacts.View) getView()).hitMainView()
 //                                            .updateOverView(3);
-        } else {
-            uiExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    mView.onStarsFetchFailed(result.getFailure());
-                }
-            });
         }
     }
 

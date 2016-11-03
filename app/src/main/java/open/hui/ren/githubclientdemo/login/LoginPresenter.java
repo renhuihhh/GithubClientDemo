@@ -129,13 +129,6 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
         if (result.succeeded()) {
             mView.onLoginSuccess(result.get());
             mLoginSupplier.saveData(result.get());
-        } else {
-            uiExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    mView.onLoginFailed(result.getFailure());
-                }
-            });
         }
     }
 

@@ -89,13 +89,6 @@ public class FollowersPresenter implements FollowersContracts.Presenter, Updatab
             mFollowersSupplier.saveData(result.get());
 //            ((FollowersContacts.View) getView()).hitMainView()
 //                                                .updateOverView(1);
-        } else {
-            uiExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    mView.onFollowersFetchFailed(result.getFailure());
-                }
-            });
         }
     }
 

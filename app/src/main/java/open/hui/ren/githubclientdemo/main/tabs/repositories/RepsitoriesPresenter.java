@@ -123,13 +123,6 @@ public class RepsitoriesPresenter implements RepositoriesContracts.Presenter, Up
             mRepositoriesSupplier.saveData(result.get());
             ((RepositoriesContracts.View) getView()).hitMainView()
                                                     .updateOverView(4);
-        } else {
-            uiExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    mView.onReposFetchFailed(result.getFailure());
-                }
-            });
         }
     }
 

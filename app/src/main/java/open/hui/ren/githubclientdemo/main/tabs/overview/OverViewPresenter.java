@@ -148,13 +148,6 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
                 default:
                     break;
             }
-        } else {
-            uiExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    mView.onRefreshFailed(result.getFailure());
-                }
-            });
         }
     }
 

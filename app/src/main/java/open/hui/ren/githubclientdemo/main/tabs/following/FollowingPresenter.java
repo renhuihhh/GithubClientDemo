@@ -121,13 +121,6 @@ public class FollowingPresenter implements FollowingContracts.Presenter, Updatab
             mFollowingsSupplier.saveData(result.get());
 //            ((FollowingContracts.View) getView()).hitMainView()
 //                                                 .updateOverView(2);
-        } else {
-            uiExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    mView.onFollowingsFetchFailed(result.getFailure());
-                }
-            });
         }
     }
 
