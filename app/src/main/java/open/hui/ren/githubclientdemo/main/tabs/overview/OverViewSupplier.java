@@ -11,15 +11,16 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import open.hui.ren.githubclientdemo.BasePresenter;
-import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.ConstConfig;
+import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.PreferenceService;
-import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Retrofit;
+import tom.hui.ren.core.BasePresenter;
+import tom.hui.ren.core.BaseSupplier;
 
 /**
  * @author renhui
@@ -51,10 +52,10 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
         mSupplier = supplier;
         mContext = mPresenter.getView()
                              .getCtx();
-        mPresenter.getView()
-                  .getAppContext()
-                  .getNetComponent()
-                  .inject(this);
+        ((MyApplication) mPresenter.getView()
+                                   .getAppContext())
+            .getComponent()
+            .inject(this);
     }
 
     @Override

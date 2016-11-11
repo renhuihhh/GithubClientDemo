@@ -1,10 +1,10 @@
 package open.hui.ren.githubclientdemo.main;
 
-import open.hui.ren.githubclientdemo.BasePersistence;
-import open.hui.ren.githubclientdemo.BasePresenter;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.main.tabs.Communicator;
+import tom.hui.ren.core.BasePersistence;
+import tom.hui.ren.core.BasePresenter;
+import tom.hui.ren.core.BaseView;
 
 /**
  * @author renhui
@@ -13,7 +13,7 @@ import open.hui.ren.githubclientdemo.main.tabs.Communicator;
  */
 
 public interface MainContracts {
-    interface View extends BaseView<MainContracts.Presenter>, Communicator.MainViewBehaviour {
+    interface View extends BaseView<Presenter>, Communicator.MainViewBehaviour {
         void initViews();
 
         void onViewUpdate(Throwable throwable);

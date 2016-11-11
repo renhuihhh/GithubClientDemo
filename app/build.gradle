@@ -24,16 +24,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-/*  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })*/
-    compile 'com.android.support:cardview-v7:+'
+    compile project(':library')
 
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:cardview-v7:+'
     // Custom
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    compile("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion") {
+    compile("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion")
+    {
         exclude module: 'okhttp'
     }
     compile "com.squareup.retrofit2:converter-gson:$rootProject.gsonConvertVersion"
@@ -41,13 +38,10 @@ dependencies {
     // apt based preference
     compile "com.baoyz.treasure:treasure:$rootProject.treasureVersion"
     apt "com.baoyz.treasure:treasure-compiler:$rootProject.treasureVersion"
-
     // Dagger dependencies
     apt "com.squareup:javapoet:$rootProject.javapoetVersion"
     apt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     compile "com.google.dagger:dagger:$rootProject.daggerVersion"
-    // agera
-    compile "com.google.android.agera:agera:$rootProject.ageraLibrariesVersion"
     // auto
     compile "com.android.support:design:$rootProject.supportLibraryVersion"
     // butter knife
@@ -57,11 +51,10 @@ dependencies {
     compile "cn.pedant.sweetalert:library:$rootProject.sweetAlertVersion"
     // picasso
     compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
-
-    // JUnit
-    testCompile "junit:junit:$rootProject.junitVersion"
     // Robolectric
     testCompile "org.robolectric:robolectric:$rootProject.robolectricVersion"
     // Mockito
     testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    // JUnit
+    testCompile "junit:junit:$rootProject.junitVersion"
 }

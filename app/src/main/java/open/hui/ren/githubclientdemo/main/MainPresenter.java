@@ -17,10 +17,10 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import open.hui.ren.githubclientdemo.BaseSupplier;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
+import tom.hui.ren.core.BaseSupplier;
+import tom.hui.ren.core.BaseView;
 
 import static com.google.android.agera.Result.absentIfNull;
 

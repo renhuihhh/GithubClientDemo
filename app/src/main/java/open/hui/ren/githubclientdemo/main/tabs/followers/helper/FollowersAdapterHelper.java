@@ -17,8 +17,7 @@ import java.util.concurrent.ExecutorService;
 
 import javax.inject.Inject;
 
-import open.hui.ren.githubclientdemo.BaseAdapterHelper;
-import open.hui.ren.githubclientdemo.BaseView;
+import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.apiservices.UserInfoAPIService;
@@ -27,6 +26,8 @@ import open.hui.ren.githubclientdemo.main.tabs.followers.viewholder.FollowersVie
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import tom.hui.ren.core.BaseAdapterHelper;
+import tom.hui.ren.core.BaseView;
 
 import static com.google.android.agera.Result.absent;
 import static com.google.android.agera.Result.absentIfNull;
@@ -83,9 +84,9 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
 
     @Override
     public void load(UserInfo userInfo) {
-        mBaseView.getAppContext()
-                 .getNetComponent()
-                 .inject(this);
+        ((MyApplication) mBaseView.getAppContext())
+            .getComponent()
+            .inject(this);
         mSupplier = Repositories.mutableRepository(userInfo);
         mLoadDataRepository =
             Repositories.repositoryWithInitialValue(Result.<UserInfo>absent())

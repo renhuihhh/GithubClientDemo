@@ -15,8 +15,6 @@ import com.squareup.picasso.Picasso;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import open.hui.ren.githubclientdemo.BaseAdapterHelper;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.main.tabs.overview.adapter.OverViewEventsAdapter;
@@ -25,6 +23,8 @@ import open.hui.ren.githubclientdemo.main.tabs.overview.viewholder.ForkEventView
 import open.hui.ren.githubclientdemo.main.tabs.overview.viewholder.PullRequestEventViewHolder;
 import open.hui.ren.githubclientdemo.main.tabs.overview.viewholder.PushEventViewHolder;
 import open.hui.ren.githubclientdemo.main.tabs.overview.viewholder.WatchEventViewHolder;
+import tom.hui.ren.core.BaseAdapterHelper;
+import tom.hui.ren.core.BaseView;
 
 import static com.google.android.agera.Result.absent;
 import static com.google.android.agera.Result.absentIfNull;

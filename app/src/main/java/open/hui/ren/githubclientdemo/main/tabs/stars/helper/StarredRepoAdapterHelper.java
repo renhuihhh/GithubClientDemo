@@ -14,10 +14,10 @@ import com.google.android.agera.Result;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import open.hui.ren.githubclientdemo.BaseAdapterHelper;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.main.tabs.stars.viewholder.StarredRepoViewHolder;
+import tom.hui.ren.core.BaseAdapterHelper;
+import tom.hui.ren.core.BaseView;
 
 import static com.google.android.agera.Result.absent;
 import static com.google.android.agera.Result.absentIfNull;

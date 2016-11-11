@@ -3,9 +3,9 @@ package open.hui.ren.githubclientdemo.personal.settings;
 import android.content.Context;
 import android.util.Log;
 
-import open.hui.ren.githubclientdemo.BasePersistence;
-import open.hui.ren.githubclientdemo.BaseSupplier;
-import open.hui.ren.githubclientdemo.BaseView;
+import tom.hui.ren.core.BasePersistence;
+import tom.hui.ren.core.BaseSupplier;
+import tom.hui.ren.core.BaseView;
 
 /**
  * @author renhui

@@ -9,11 +9,12 @@ import com.google.android.agera.Result;
 
 import javax.inject.Inject;
 
-import open.hui.ren.githubclientdemo.BaseSupplier;
+import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Retrofit;
+import tom.hui.ren.core.BaseSupplier;
 
 /**
  * @author renhui
@@ -40,10 +41,10 @@ public class SettingsModel extends BaseSupplier<UserInfo> implements SettingsCon
         mSupplier = supplier;
         mContext = mPresenter.getView()
                              .getCtx();
-        mPresenter.getView()
-                  .getAppContext()
-                  .getNetComponent()
-                  .inject(this);
+        ((MyApplication) mPresenter.getView()
+                                   .getAppContext())
+            .getComponent()
+            .inject(this);
     }
 
     @NonNull

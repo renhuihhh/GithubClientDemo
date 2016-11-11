@@ -12,15 +12,16 @@ import java.io.IOException;
 import javax.inject.Inject;
 
 import okhttp3.Credentials;
-import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.ConstConfig;
+import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.APIServiceNeedToken;
-import open.hui.ren.githubclientdemo.params.UserLoginParams;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.params.UserLoginParams;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import tom.hui.ren.core.BaseSupplier;
 
 /**
  * @author renhui
@@ -44,10 +45,10 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
                             .getCtx();
         mSupplier = supplier;
         mPresenter = presenter;
-        mPresenter.getView()
-                  .getAppContext()
-                  .getNetComponent()
-                  .inject(this);
+        ((MyApplication) mPresenter.getView()
+                                   .getAppContext())
+            .getComponent()
+            .inject(this);
     }
 
     @Override

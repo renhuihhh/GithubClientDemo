@@ -17,12 +17,12 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import open.hui.ren.githubclientdemo.BasePersistence;
-import open.hui.ren.githubclientdemo.BaseSupplier;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.main.tabs.events.EventsCenter;
 import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
+import tom.hui.ren.core.BasePersistence;
+import tom.hui.ren.core.BaseSupplier;
+import tom.hui.ren.core.BaseView;
 
 import static com.google.android.agera.Result.absentIfNull;
 

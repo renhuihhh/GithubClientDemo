@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo;
+package tom.hui.ren.core;
 
 import android.support.v7.widget.RecyclerView;
 

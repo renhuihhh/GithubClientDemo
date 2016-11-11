@@ -2,11 +2,11 @@ package open.hui.ren.githubclientdemo.main.tabs.followers;
 
 import java.util.ArrayList;
 
-import open.hui.ren.githubclientdemo.BasePersistence;
-import open.hui.ren.githubclientdemo.BasePresenter;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.main.tabs.Communicator;
+import tom.hui.ren.core.BasePersistence;
+import tom.hui.ren.core.BasePresenter;
+import tom.hui.ren.core.BaseView;
 
 /**
  * @author renhui
@@ -15,7 +15,7 @@ import open.hui.ren.githubclientdemo.main.tabs.Communicator;
  */
 
 public interface FollowersContracts {
-    interface View extends BaseView<FollowersContracts.Presenter>, Communicator.SubViewBehaviour {
+    interface View extends BaseView<Presenter>, Communicator.SubViewBehaviour {
         void onFollowersFetchFailed(Throwable throwable);
 
         void onFollowersFetchSuccess(ArrayList<UserInfo> followers);

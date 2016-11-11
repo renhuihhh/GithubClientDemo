@@ -1,9 +1,9 @@
 package open.hui.ren.githubclientdemo.login;
 
-import open.hui.ren.githubclientdemo.BasePersistence;
-import open.hui.ren.githubclientdemo.BasePresenter;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import tom.hui.ren.core.BasePersistence;
+import tom.hui.ren.core.BasePresenter;
+import tom.hui.ren.core.BaseView;
 
 /**
  * @author renhui

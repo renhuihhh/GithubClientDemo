@@ -1,9 +1,9 @@
 package open.hui.ren.githubclientdemo.personal.settings;
 
-import open.hui.ren.githubclientdemo.BasePersistence;
-import open.hui.ren.githubclientdemo.BasePresenter;
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import tom.hui.ren.core.BasePersistence;
+import tom.hui.ren.core.BasePresenter;
+import tom.hui.ren.core.BaseView;
 
 /**
  * @author renhui
@@ -12,7 +12,7 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
  */
 
 public interface SettingsContracts {
-    interface View extends BaseView<SettingsContracts.Presenter> {
+    interface View extends BaseView<Presenter> {
 
         void jump2LoginPage();
 

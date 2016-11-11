@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import open.hui.ren.githubclientdemo.BaseView;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.main.tabs.following.FollowingContracts;
 import open.hui.ren.githubclientdemo.main.tabs.following.helper.FollowingAdapterHelper;
 import open.hui.ren.githubclientdemo.main.tabs.following.viewholder.FollowingViewHolder;
+import tom.hui.ren.core.BaseView;
 
 /**
  * @author renhui

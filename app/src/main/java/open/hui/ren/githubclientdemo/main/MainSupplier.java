@@ -5,9 +5,9 @@ import android.support.annotation.NonNull;
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;
 
-import open.hui.ren.githubclientdemo.BasePresenter;
-import open.hui.ren.githubclientdemo.BaseSupplier;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import tom.hui.ren.core.BasePresenter;
+import tom.hui.ren.core.BaseSupplier;
 
 /**
  * @author renhui

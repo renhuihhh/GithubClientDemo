@@ -17,8 +17,7 @@ import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
-import open.hui.ren.githubclientdemo.BaseCompactSupplier;
-import open.hui.ren.githubclientdemo.BaseView;
+import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.EventsAPIService;
 import open.hui.ren.githubclientdemo.entities.Event;
@@ -28,6 +27,8 @@ import open.hui.ren.githubclientdemo.params.OverViewParams;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import tom.hui.ren.core.BaseCompactSupplier;
+import tom.hui.ren.core.BaseView;
 
 import static com.google.android.agera.Result.absent;
 import static com.google.android.agera.Result.absentIfNull;
@@ -70,9 +71,9 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
 
     public void load(BaseView view, OverViewParams params) {
         inView(view);
-        mBaseView.getAppContext()
-                 .getNetComponent()
-                 .inject(this);
+        ((MyApplication) mBaseView.getAppContext())
+            .getComponent()
+            .inject(this);
         mSupplier = Repositories.mutableRepository(params);
         mLoadDataRepository =
             Repositories.repositoryWithInitialValue(Result.<ArrayList<Event>>absent())

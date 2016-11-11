@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package open.hui.ren.githubclientdemo;
+package tom.hui.ren.core;
 
 /**
  * @author renhui

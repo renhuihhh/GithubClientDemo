@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo;
+package tom.hui.ren.core;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;

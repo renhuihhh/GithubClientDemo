@@ -1,11 +1,10 @@
 package open.hui.ren.githubclientdemo;
 
-import android.app.Application;
-
 import open.hui.ren.githubclientdemo.component.CommonComponent;
 import open.hui.ren.githubclientdemo.component.DaggerCommonComponent;
 import open.hui.ren.githubclientdemo.modules.AppModule;
 import open.hui.ren.githubclientdemo.modules.NetModule;
+import tom.hui.ren.core.BaseApplication;
 
 /**
  * @author renhui
@@ -13,7 +12,7 @@ import open.hui.ren.githubclientdemo.modules.NetModule;
  * @desc 应用的application
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends BaseApplication<CommonComponent> {
 
     private CommonComponent netComponent;
 
@@ -27,20 +26,18 @@ public class MyApplication extends Application {
         buildCommonComponent();
     }
 
-    public void buildCommonComponent(){
+    @Override
+    public void buildCommonComponent() {
         NetModule netModule = new NetModule(this, "https://api.github.com");
         AppModule appModule = new AppModule(this);
         netComponent = DaggerCommonComponent.builder()
-            .netModule(netModule)
-            .appModule(appModule)
-            .build();
+                                            .netModule(netModule)
+                                            .appModule(appModule)
+                                            .build();
     }
 
-    public CommonComponent getNetComponent() {
+    @Override
+    public CommonComponent getComponent() {
         return netComponent;
-    }
-
-    public void setNetComponent(CommonComponent netComponent) {
-        this.netComponent = netComponent;
     }
 }
