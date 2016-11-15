@@ -2,6 +2,7 @@ package open.hui.ren.githubclientdemo.APIServiceTest;
 
 import junit.framework.Assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ import retrofit2.Response;
  * @date 16-9-23
  * @desc 使用renhuihhh的github账号进行接口测试
  */
-
+@Ignore
 public class UserInfoAPIServiceNoTokenTest extends APIServiceTestBase {
     private UserInfo      userInfo;
 

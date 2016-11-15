@@ -2,6 +2,7 @@ package open.hui.ren.githubclientdemo.APIServiceTest;
 
 import junit.framework.Assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ import retrofit2.Response;
  * @date 16-9-25
  * @desc open.hui.ren.githubclientdemo.APIServiceTest
  */
-
+@Ignore
 public class TokenAPIServiceNoTokenTest extends APIServiceTestBase {
     public static final String S_TOKEN_STR = "token 664a70a85fc8801a9fee63ca74a44687f08871bd";
     private UserInfo userInfo;

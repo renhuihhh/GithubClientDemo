@@ -30,9 +30,9 @@ dependencies {
     compile 'com.android.support:cardview-v7:+'
     // Custom
     compile("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion")
-    {
-        exclude module: 'okhttp'
-    }
+            {
+                exclude module: 'okhttp'
+            }
     compile "com.squareup.retrofit2:converter-gson:$rootProject.gsonConvertVersion"
     compile "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
     // apt based preference
@@ -55,6 +55,20 @@ dependencies {
     testCompile "org.robolectric:robolectric:$rootProject.robolectricVersion"
     // Mockito
     testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    // JUnit
+    // unit
     testCompile "junit:junit:$rootProject.junitVersion"
+    // android test
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion") {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile("com.android.support.test:runner:$rootProject.runnerVersion") {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile("com.android.support.test:rules:$rootProject.runnerVersion") {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile "junit:junit:$rootProject.junitVersion"
 }

@@ -31,6 +31,8 @@ public interface LoginContracts {
     interface Presenter extends BasePresenter {
         void fetchUserInfoByUserName(String userName, String password);
 
+        boolean whetherNeedLog();
+
         LoginContracts.Persistence getPersistence();
     }
 

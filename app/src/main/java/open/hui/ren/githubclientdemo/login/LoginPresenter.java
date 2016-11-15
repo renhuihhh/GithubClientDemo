@@ -55,7 +55,7 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
     public void start() {
         Log.d(TAG, "start...");
         setUpAgera();
-        if (!mLoginSupplier.whetherNeedLogin()) {
+        if (!whetherNeedLog()) {
             mView.jumpToMain();
         }
     }
@@ -99,6 +99,11 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
         Log.d(TAG, "fetchUserInfoByUserName...");
         UserLoginParams params = new UserLoginParams(username, password);
         mMutableRepository.accept(params);
+    }
+
+    @Override
+    public boolean whetherNeedLog() {
+        return mLoginSupplier.whetherNeedLogin();
     }
 
     @Override
