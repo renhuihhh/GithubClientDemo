@@ -51,10 +51,8 @@ public class FollowingsSupplier extends BaseSupplier<ArrayList<UserInfo>> implem
         mSupplier = supplier;
         mContext = mPresenter.getView()
                              .getCtx();
-        ((MyApplication) mPresenter.getView()
-                                   .getAppContext())
-            .getComponent()
-            .inject(this);
+        MyApplication.ComponentHolder.getCommonComponent()
+                                     .inject(this);
     }
 
     @NonNull

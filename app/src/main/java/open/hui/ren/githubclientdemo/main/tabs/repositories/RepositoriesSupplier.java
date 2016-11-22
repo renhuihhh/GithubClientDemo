@@ -48,10 +48,8 @@ public class RepositoriesSupplier extends BaseSupplier<ArrayList<Repo>> implemen
         mSupplier = supplier;
         mContext = mPresenter.getView()
                              .getCtx();
-        ((MyApplication) mPresenter.getView()
-                                   .getAppContext())
-            .getComponent()
-            .inject(this);
+        MyApplication.ComponentHolder.getCommonComponent()
+                                     .inject(this);
     }
 
     @NonNull

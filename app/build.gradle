@@ -47,8 +47,6 @@ dependencies {
     // butter knife
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
-    // sweet dialog
-    compile "cn.pedant.sweetalert:library:$rootProject.sweetAlertVersion"
     // picasso
     compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
     // Robolectric

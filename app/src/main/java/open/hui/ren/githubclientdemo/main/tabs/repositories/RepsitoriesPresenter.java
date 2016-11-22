@@ -89,6 +89,11 @@ public class RepsitoriesPresenter implements RepositoriesContracts.Presenter, Up
     }
 
     @Override
+    public void setView(BaseView view) {
+        mView = (RepositoriesContracts.View) view;
+    }
+
+    @Override
     public BaseView getView() {
         return mView;
     }

@@ -29,6 +29,8 @@ public interface BasePresenter {
 
     void pause();
 
+    void setView(BaseView view);
+
     BaseView getView();
 
     BaseSupplier getSupplier();

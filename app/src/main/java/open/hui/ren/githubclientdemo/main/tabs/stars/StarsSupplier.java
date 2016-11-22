@@ -49,10 +49,8 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
         mSupplier = supplier;
         mContext = mPresenter.getView()
                              .getCtx();
-        ((MyApplication) mPresenter.getView()
-                                   .getAppContext())
-            .getComponent()
-            .inject(this);
+        MyApplication.ComponentHolder.getCommonComponent()
+                                     .inject(this);
     }
 
     @NonNull

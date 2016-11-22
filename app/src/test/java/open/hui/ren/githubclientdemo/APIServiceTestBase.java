@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 import java.io.File;
 
-import open.hui.ren.githubclientdemo.modules.NetModuleTest;
+import open.hui.ren.githubclientdemo.units.modules.NetModuleTest;
 
 import static org.mockito.Mockito.when;
 

@@ -3,6 +3,7 @@ package open.hui.ren.githubclientdemo.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import open.hui.ren.githubclientdemo.login.LoginSupplier;
 import open.hui.ren.githubclientdemo.main.tabs.events.EventsCenter;
 import open.hui.ren.githubclientdemo.main.tabs.followers.FollowersSupplier;
 import open.hui.ren.githubclientdemo.main.tabs.followers.helper.FollowersAdapterHelper;
@@ -11,7 +12,6 @@ import open.hui.ren.githubclientdemo.main.tabs.following.helper.FollowingAdapter
 import open.hui.ren.githubclientdemo.main.tabs.overview.OverViewSupplier;
 import open.hui.ren.githubclientdemo.main.tabs.repositories.RepositoriesSupplier;
 import open.hui.ren.githubclientdemo.main.tabs.stars.StarsSupplier;
-import open.hui.ren.githubclientdemo.login.LoginSupplier;
 import open.hui.ren.githubclientdemo.modules.AppModule;
 import open.hui.ren.githubclientdemo.modules.NetModule;
 import open.hui.ren.githubclientdemo.personal.settings.SettingsModel;

@@ -46,7 +46,7 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
     private Repository<Result<OverViewParams>> mLoadDataRepository;//数据拉取入口
 
     public OverViewPresenter(OverViewContracts.View view) {
-        mView = view;
+        setView(view);
         mContext = mView.getCtx();
     }
 
@@ -99,6 +99,11 @@ public class OverViewPresenter implements OverViewContracts.Presenter, Updatable
     public void pause() {
         Log.d(TAG, "pause...");
         mLoadDataRepository.removeUpdatable(this);
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        mView = (OverViewContracts.View) view;
     }
 
     @Override

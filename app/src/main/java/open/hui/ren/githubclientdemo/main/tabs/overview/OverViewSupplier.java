@@ -52,10 +52,8 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
         mSupplier = supplier;
         mContext = mPresenter.getView()
                              .getCtx();
-        ((MyApplication) mPresenter.getView()
-                                   .getAppContext())
-            .getComponent()
-            .inject(this);
+        MyApplication.ComponentHolder.getCommonComponent()
+                                     .inject(this);
     }
 
     @Override

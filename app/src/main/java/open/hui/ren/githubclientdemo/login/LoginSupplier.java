@@ -45,10 +45,8 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
                             .getCtx();
         mSupplier = supplier;
         mPresenter = presenter;
-        ((MyApplication) mPresenter.getView()
-                                   .getAppContext())
-            .getComponent()
-            .inject(this);
+        MyApplication.ComponentHolder.getCommonComponent()
+                                     .inject(this);
     }
 
     @Override

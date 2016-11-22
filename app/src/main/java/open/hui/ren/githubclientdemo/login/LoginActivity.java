@@ -2,8 +2,8 @@ package open.hui.ren.githubclientdemo.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,19 +12,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import open.hui.ren.githubclientdemo.ConstConfig;
-import open.hui.ren.githubclientdemo.main.MainActivity;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
+import open.hui.ren.githubclientdemo.main.MainActivity;
+import tom.hui.ren.utils.DialogUtil;
 
 /**
  * @author renhui
@@ -34,8 +32,6 @@ import open.hui.ren.githubclientdemo.entities.UserInfo;
 public class LoginActivity extends AppCompatActivity implements LoginContracts.View {
     private static final String TAG = "LoginActivity";
 
-    @BindView(R.id.login_progress)
-    ProgressBar          mLoginProgress;
     @BindView(R.id.username)
     AutoCompleteTextView mUsername;
     @BindView(R.id.password)
@@ -44,16 +40,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     Button               mSignInButton;
     @BindView(R.id.login_form_pane)
     LinearLayout         mLoginFormPane;
-    @BindView(R.id.login_form)
     //custom
-    ScrollView           mLoginForm;
+    public  AlertDialog              mLoadDialog;
     private LoginContracts.Presenter mPresenter;
-
-    //ui behaviour
-    private SweetAlertDialog mDialog;
-
     //view data
-    private UserInfo mUserInfo;
+    private UserInfo                 mUserInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,24 +58,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     @Override
     public void initViews() {
-        mDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
     }
 
     @Override
     public void showLoginDialog() {
-        mDialog.getProgressHelper()
-               .setBarColor(Color.parseColor("#3F51B5"));
-        mDialog.setTitleText("Login...");
-        mDialog.setCancelable(false);
-        mDialog.show();
+        if(mLoadDialog == null){
+            mLoadDialog = DialogUtil.getAndShowLoadingDialog(this, getString(R.string.app_loading));
+            return;
+        }
+        mLoadDialog.show();
     }
 
     @Override
     public void dismissLoginDialog() {
-        if (mDialog != null) {
-            if (mDialog.isShowing()) {
-                mDialog.dismiss();
-            }
+        if (mLoadDialog != null) {
+            mLoadDialog.dismiss();
         }
     }
 

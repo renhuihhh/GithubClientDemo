@@ -47,7 +47,7 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
     private Repository<Result<UserInfo>> mLoadDataRepository;//数据拉取入口
 
     public LoginPresenter(LoginContracts.View view) {
-        mView = view;
+        setView(view);
         mContext = view.getCtx();
     }
 
@@ -70,6 +70,11 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
     public void pause() {
         Log.d(TAG, "pause...");
         mLoadDataRepository.removeUpdatable(this);
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        mView = (LoginContracts.View) view;
     }
 
     @Override

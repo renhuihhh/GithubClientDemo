@@ -34,10 +34,23 @@ public class MyApplication extends BaseApplication<CommonComponent> {
                                             .netModule(netModule)
                                             .appModule(appModule)
                                             .build();
+        ComponentHolder.setComponent(getComponent());
     }
 
     @Override
     public CommonComponent getComponent() {
         return netComponent;
+    }
+
+    public static class ComponentHolder {
+        private static CommonComponent sCommonComponent;
+
+        public static void setComponent(CommonComponent component) {
+            sCommonComponent = component;
+        }
+
+        public static CommonComponent getCommonComponent() {
+            return sCommonComponent;
+        }
     }
 }

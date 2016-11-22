@@ -47,7 +47,7 @@ public class FollowingPresenter implements FollowingContracts.Presenter, Updatab
     private Repository<Result<ArrayList<UserInfo>>> mLoadDataRepository;//数据拉取入口
 
     public FollowingPresenter(FollowingContracts.View view) {
-        mView = view;
+        setView(view);
         mContext = mView.getCtx();
     }
 
@@ -153,5 +153,10 @@ public class FollowingPresenter implements FollowingContracts.Presenter, Updatab
                 return Result.absent();
             }
         };
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        mView = (FollowingContracts.View) view;
     }
 }

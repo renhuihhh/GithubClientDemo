@@ -12,7 +12,6 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.login.LoginActivity;
@@ -116,17 +115,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsContr
 
     @Override
     public void logout() {
-        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-            .setTitleText(getString(R.string.event_text_exit_warning))
-            .setContentText(getString(R.string.event_text_exit_content))
-            .setConfirmText(getString(R.string.event_text_exit_yes))
-            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                @Override
-                public void onClick(SweetAlertDialog sDialog) {
-                    sDialog.dismissWithAnimation();
-                    mPresenter.logOut();
-                }
-            })
-            .show();
+        mPresenter.logOut();
     }
 }

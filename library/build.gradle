@@ -30,5 +30,6 @@ dependencies {
     testCompile "junit:junit:$rootProject.junitVersion"
     // agera
     compile "com.google.android.agera:agera:$rootProject.ageraLibrariesVersion"
-
+    // gif
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 }

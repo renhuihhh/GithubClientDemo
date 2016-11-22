@@ -22,7 +22,7 @@ public class SettingsPresenter implements SettingsContracts.Presenter {
     private SettingsModel mSettingsModel;
 
     public SettingsPresenter(SettingsContracts.View view) {
-        mView = view;
+        setView(view);
         mContext = mView.getCtx();
     }
 
@@ -39,6 +39,11 @@ public class SettingsPresenter implements SettingsContracts.Presenter {
     @Override
     public void pause() {
         Log.d(TAG, "pause");
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        mView = (SettingsContracts.View) view;
     }
 
     @Override

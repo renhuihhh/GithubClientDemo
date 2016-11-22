@@ -50,10 +50,8 @@ public class FollowersSupplier extends BaseSupplier<ArrayList<UserInfo>> impleme
         mPresenter = presenter;
         mContext = mPresenter.getView()
                              .getCtx();
-        ((MyApplication) mPresenter.getView()
-                                   .getAppContext())
-            .getComponent()
-            .inject(this);
+        MyApplication.ComponentHolder.getCommonComponent()
+                                     .inject(this);
     }
 
     @NonNull

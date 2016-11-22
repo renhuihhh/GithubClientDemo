@@ -47,7 +47,7 @@ public class FollowersPresenter implements FollowersContracts.Presenter, Updatab
     private Repository<Result<ArrayList<UserInfo>>> mLoadDataRepository;//数据拉取入口
 
     public FollowersPresenter(FollowersContracts.View view) {
-        mView = view;
+        setView(view);
         mContext = mView.getCtx();
     }
 
@@ -102,6 +102,11 @@ public class FollowersPresenter implements FollowersContracts.Presenter, Updatab
     public void pause() {
         Log.d(TAG, "pause...");
         mLoadDataRepository.removeUpdatable(this);
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        mView = (FollowersContracts.View) view;
     }
 
     @Override

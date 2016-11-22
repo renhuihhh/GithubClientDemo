@@ -52,7 +52,7 @@ public class MainPresenter implements MainContracts.Presenter, Updatable, Receiv
     private MainSupplier mMainSupplier;
 
     public MainPresenter(MainContracts.View view) {
-        mView = view;
+        setView(view);
         mContext = mView.getCtx();
     }
 
@@ -72,6 +72,11 @@ public class MainPresenter implements MainContracts.Presenter, Updatable, Receiv
     public void pause() {
         Log.d(TAG, "pause...");
         mLoadDataRepository.removeUpdatable(this);
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        mView = (MainContracts.View) view;
     }
 
     @Override

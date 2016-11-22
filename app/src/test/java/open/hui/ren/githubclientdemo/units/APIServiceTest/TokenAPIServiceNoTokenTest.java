@@ -1,4 +1,4 @@
-package open.hui.ren.githubclientdemo.APIServiceTest;
+package open.hui.ren.githubclientdemo.units.APIServiceTest;
 
 import junit.framework.Assert;
 
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import open.hui.ren.githubclientdemo.APIServiceTestBase;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.modules.NetModuleTest;
+import open.hui.ren.githubclientdemo.units.modules.NetModuleTest;
 import retrofit2.Call;
 import retrofit2.Response;
 

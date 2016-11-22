@@ -112,6 +112,11 @@ public class StarsPresenter implements StarsContracts.Presenter, FollowingContra
     }
 
     @Override
+    public void setView(BaseView view) {
+        mView = (StarsContracts.View) view;
+    }
+
+    @Override
     public BaseView getView() {
         return mView;
     }
