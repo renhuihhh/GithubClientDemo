@@ -118,6 +118,7 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
         mPopularRepoRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 2));
         mPopularRepoAdapter = new PopularRepoAdapter(new ArrayList<Repo>());
         mPopularRepoRecyclerView.setAdapter(mPopularRepoAdapter);
+        mPopularRepoRecyclerView.setNestedScrollingEnabled(false);
         mContributionsWebView.setVisibility(View.INVISIBLE);
         mContributionsWebView.setWebViewClient(new WebViewClient() {
 
@@ -138,6 +139,7 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
         mOverViewEventsRecyclerView.setLayoutManager(new GridLayoutManager(getCtx(), 1));
         mOverViewEventsAdapter = new OverViewEventsAdapter(new ArrayList<Event>());
         mOverViewEventsRecyclerView.setAdapter(mOverViewEventsAdapter);
+        mOverViewEventsRecyclerView.setNestedScrollingEnabled(false);
 
         mSwipeContainer.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
