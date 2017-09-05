@@ -20,16 +20,10 @@ android {
 }
 
 dependencies {
-    // base import
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    // support
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    // JUnit
-    testCompile "junit:junit:$rootProject.junitVersion"
     // agera
     compile "com.google.android.agera:agera:$rootProject.ageraLibrariesVersion"
     // gif
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 }
+
+apply from: "${project.rootDir}/common_dependencies.gradle"
