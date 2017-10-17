@@ -12,7 +12,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     @Override
     public void showLoginDialog() {
-        if(mLoadDialog == null){
+        if (mLoadDialog == null) {
             mLoadDialog = DialogUtil.getAndShowLoadingDialog(this, getString(R.string.app_loading));
             return;
         }
@@ -102,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         if (mUserInfo == null) {
             mUserInfo = getPresenter().getPersistence()
                                       .retrieveData();
-        } else if (mUserInfo == null) {
             return;
         }
         Intent intent = new Intent();
@@ -119,8 +117,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         if (msg.equals(ConstConfig.S_INIT_PARAMS)) {
             return;
         }
-        Toast.makeText(this, msg, Toast.LENGTH_LONG)
-             .show();
     }
 
     private boolean checkUserNamePasswordVaildate(String userNameOnUI, String passwordOnUI) {

@@ -39,10 +39,6 @@ import android.view.WindowManager.LayoutParams;
 
 public class ScreenUtil {
 
-    private ScreenUtil() {
-        throw new UnsupportedOperationException("u can't fuck me...");
-    }
-
     /**
      * 获取屏幕的宽度px
      *
@@ -51,9 +47,9 @@ public class ScreenUtil {
      */
     public static int getScreenWidth(Context context) {
         WindowManager  windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics    = new DisplayMetrics();// 创建了一张白纸
+        DisplayMetrics outMetrics    = new DisplayMetrics();
         windowManager.getDefaultDisplay()
-                     .getMetrics(outMetrics);// 给白纸设置宽高
+                     .getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
 
@@ -65,9 +61,9 @@ public class ScreenUtil {
      */
     public static int getScreenHeight(Context context) {
         WindowManager  windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics outMetrics    = new DisplayMetrics();// 创建了一张白纸
+        DisplayMetrics outMetrics    = new DisplayMetrics();
         windowManager.getDefaultDisplay()
-                     .getMetrics(outMetrics);// 给白纸设置宽高
+                     .getMetrics(outMetrics);
         return outMetrics.heightPixels;
     }
 

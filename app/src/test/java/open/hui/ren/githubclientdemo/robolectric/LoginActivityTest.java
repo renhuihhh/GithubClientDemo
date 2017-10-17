@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.robolectric.Robolectric;
-import org.robolectric.util.ActivityController;
+import org.robolectric.android.controller.ActivityController;
 
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.RoboTestBase;
@@ -25,7 +25,7 @@ import static org.robolectric.Shadows.shadowOf;
  * @desc open.hui.ren.githubclientdemo.robolectric
  */
 public class LoginActivityTest extends RoboTestBase {
-    private ActivityController  mController;
+    private ActivityController mController;
     private LoginActivity       mLoginActivity;
 
     EditText mUsername;
