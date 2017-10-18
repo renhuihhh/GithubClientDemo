@@ -107,6 +107,9 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
             e.printStackTrace();
             return Result.failure();
         }
+        if (data == null) {
+            return Result.failure();
+        }
         return Result.success(data);
     }
 

@@ -94,6 +94,9 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
             e.printStackTrace();
             return Result.failure(e);
         }
+        if (data == null) {
+            return Result.failure();
+        }
         return Result.success(data);
     }
 }

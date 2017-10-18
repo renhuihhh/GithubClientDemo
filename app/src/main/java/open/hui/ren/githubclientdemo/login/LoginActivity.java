@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         if (mUserInfo == null) {
             mUserInfo = getPresenter().getPersistence()
                                       .retrieveData();
-            return;
         }
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);

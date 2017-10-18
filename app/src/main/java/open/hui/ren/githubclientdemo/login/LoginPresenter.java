@@ -57,6 +57,7 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
         setUpAgera();
         if (!whetherNeedLog()) {
             mView.jumpToMain();
+            return;
         }
     }
 

@@ -76,6 +76,9 @@ public class RepositoriesSupplier extends BaseSupplier<ArrayList<Repo>> implemen
             e.printStackTrace();
             return Result.failure(e);
         }
+        if (data == null) {
+            return Result.failure();
+        }
         return Result.success(data);
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
     // view data
     private UserInfo mUserInfo;
 
+    private List<Fragment> mFragmentList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,12 +162,24 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
                 .getSimpleName());
 
         transaction.commit();
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
+            @Override
+            public void onFragmentAttached(FragmentManager fm, Fragment f, Context context) {
+                super.onFragmentAttached(fm, f, context);
+                mFragmentList.add(f);
+            }
+
+            @Override
+            public void onFragmentDetached(FragmentManager fm, Fragment f) {
+                super.onFragmentDetached(fm, f);
+                mFragmentList.remove(f);
+            }
+        }, false);
     }
 
     @Override
     public void appendFragments() {
-        if (getSupportFragmentManager().getFragments()
-                                       .size() >= 4) {//如果已加载的fragment数目大于等于4，则说明无需再append
+        if (mFragmentList.size() >= 4) {
             return;
         }
         FragmentTransaction transaction =
@@ -244,20 +259,16 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
 
     @Override
     public void navigateToFragment(String tag) {
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Fragment            toShow      = getSupportFragmentManager().findFragmentByTag(tag);
-        List<Fragment>      toHideList  = new ArrayList<>(getSupportFragmentManager().getFragments());
+        Fragment toShow = getSupportFragmentManager().findFragmentByTag(tag);
         if (toShow == null) {
             return;
-        } else if (toHideList.contains(toShow)) {
-            toHideList.remove(toShow);
-            transaction.show(toShow);
         }
-        if (!toHideList.isEmpty()) {
-            for (Fragment fragment : toHideList) {
-                transaction.hide(fragment);
-            }
+        for (Fragment f: mFragmentList){
+            transaction.hide(f);
         }
+        transaction.show(toShow);
         transaction.commit();
         mDrawerLayout.closeDrawers();
     }
@@ -267,9 +278,9 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
         Log.d(TAG, "updateOverView tabIndex : " + tabIndex);
         Fragment overViewFragment = getSupportFragmentManager().findFragmentByTag(OverViewFragment.class
             .getSimpleName());
-        OverViewContracts.View overView          = (OverViewContracts.View) overViewFragment;
-        OverViewPresenter      overViewPresenter = (OverViewPresenter) overView.getPresenter();
-        OverViewParams         params            = new OverViewParams("", "");
+        OverViewContracts.View overView = (OverViewContracts.View) overViewFragment;
+        OverViewPresenter overViewPresenter = (OverViewPresenter) overView.getPresenter();
+        OverViewParams params = new OverViewParams("", "");
         params.index = String.valueOf(tabIndex);
         switch (tabIndex) {
             case 0:

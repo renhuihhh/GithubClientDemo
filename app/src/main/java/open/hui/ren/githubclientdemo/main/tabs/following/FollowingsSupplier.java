@@ -82,6 +82,9 @@ public class FollowingsSupplier extends BaseSupplier<ArrayList<UserInfo>> implem
             e.printStackTrace();
             return Result.failure(e);
         }
+        if (data == null) {
+            return Result.failure();
+        }
         return Result.success(data);
     }
 

@@ -148,7 +148,7 @@ public class MainPresenter implements MainContracts.Presenter, Updatable, Receiv
 
     @Override
     public BaseSupplier getSupplier() {
-        return null;
+        return mMainSupplier;
     }
 
     @Override
