@@ -4,6 +4,7 @@ apply from: "${project.rootDir}/common_config.gradle"
 buildscript {
     repositories {
         jcenter()
+        google()
         maven { url 'https://jitpack.io' }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
