@@ -20,6 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
+                   android:value="true"/>
 
         <!-- 登录页面 -->
         <activity
