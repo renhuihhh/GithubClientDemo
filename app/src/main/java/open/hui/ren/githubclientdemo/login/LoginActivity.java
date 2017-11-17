@@ -68,8 +68,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         mLoadDialog.show();
     }
 
-    @Override
-    public void dismissLoginDialog() {
+    @Override    public void dismissLoginDialog() {
         if (mLoadDialog != null) {
             mLoadDialog.dismiss();
         }

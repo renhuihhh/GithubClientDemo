@@ -37,7 +37,7 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
     @Inject
     PreferenceService mPreferenceService;
 
-    private MutableRepository<OverViewParams> mSupplier;//上游数据supplier,主要负责参数输入
+    private MutableRepository<OverViewParams> mRepository;//上游数据Repository,主要负责参数输入
 
     private Context mContext;
 
@@ -46,10 +46,10 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
     public ArrayList<Repo>     mStarred;
     public ArrayList<Repo>     mRepos;
 
-    public OverViewSupplier(BasePresenter presenter, MutableRepository supplier) {
-        super(presenter, supplier);
+    public OverViewSupplier(BasePresenter presenter, MutableRepository repository) {
+        super(presenter, repository);
         mPresenter = presenter;
-        mSupplier = supplier;
+        mRepository = repository;
         mContext = mPresenter.getView()
                              .getCtx();
         MyApplication.ComponentHolder.getCommonComponent()
@@ -58,7 +58,7 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
 
     @Override
     public Result<OverViewParams> loadData() {
-        OverViewParams params = mSupplier.get();
+        OverViewParams params = mRepository.get();
         if (params == null) {
             return Result.failure();
         } else if (TextUtils.isEmpty(params.tabName) || TextUtils.isEmpty(params.index)) {
