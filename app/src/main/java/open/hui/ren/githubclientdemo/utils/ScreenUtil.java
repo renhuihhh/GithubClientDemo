@@ -194,6 +194,7 @@ public class ScreenUtil {
                             .getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
+        
         Bitmap bmp             = view.getDrawingCache();
         int    statusBarHeight = getStatusBarHeight(activity);
         int    width           = getScreenWidth(activity);
