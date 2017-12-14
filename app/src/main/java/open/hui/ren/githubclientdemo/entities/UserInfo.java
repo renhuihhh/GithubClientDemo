@@ -46,7 +46,7 @@ public class UserInfo implements Serializable {
     @SerializedName("login")
     public String  login;
     @SerializedName("id")
-    public int     id;
+    public long     id;
     @SerializedName("avatar_url")
     public String  avatarUrl;
     @SerializedName("gravatar_id")

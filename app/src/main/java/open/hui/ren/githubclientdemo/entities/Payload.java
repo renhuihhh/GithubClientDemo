@@ -23,7 +23,7 @@ public class Payload implements Serializable {
      */
 
     @SerializedName("push_id")
-    public int          pushId;
+    public long          pushId;
     @SerializedName("size")
     public int          size;
     @SerializedName("distinct_size")
