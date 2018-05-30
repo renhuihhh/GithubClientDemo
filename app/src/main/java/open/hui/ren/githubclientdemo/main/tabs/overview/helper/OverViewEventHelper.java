@@ -129,7 +129,7 @@ public class OverViewEventHelper extends BaseAdapterHelper<Event> {
         holder.refType.setText(event.payload.refType);
         holder.repoDesc.setText(event.repo.description);
         holder.userName.setText(event.actor.login);
-        Picasso.with(holder.userAvatar.getContext())
+        Picasso.get()
                .load(event.actor.avatarUrl)
                .placeholder(R.drawable.ic_perm_identity_white_24dp)
                .error(R.drawable.ic_perm_identity_white_24dp)
@@ -142,7 +142,7 @@ public class OverViewEventHelper extends BaseAdapterHelper<Event> {
         holder.eventRepoName.setText(event.repo.name);
         holder.repoDesc.setText(event.repo.description);
         holder.repoUrl.setText(event.repo.fullName);
-        Picasso.with(holder.userAvatar.getContext())
+        Picasso.get()
                .load(event.actor.avatarUrl)
                .placeholder(R.drawable.ic_perm_identity_white_24dp)
                .error(R.drawable.ic_perm_identity_white_24dp)
@@ -156,7 +156,7 @@ public class OverViewEventHelper extends BaseAdapterHelper<Event> {
         holder.eventAction.setText(event.payload.action);
         holder.eventRepoName.setText(event.repo.name);
         holder.userName.setText(event.actor.login);
-        Picasso.with(holder.userAvatar.getContext())
+        Picasso.get()
                .load(event.actor.avatarUrl)
                .placeholder(R.drawable.ic_perm_identity_white_24dp)
                .error(R.drawable.ic_perm_identity_white_24dp)
@@ -167,7 +167,7 @@ public class OverViewEventHelper extends BaseAdapterHelper<Event> {
         WatchEventViewHolder holder = (WatchEventViewHolder) mHolder;
         holder.eventType.setText(event.type);
         holder.eventRepoName.setText(event.repo.name);
-        Picasso.with(holder.userAvatar.getContext())
+        Picasso.get()
                .load(event.actor.avatarUrl)
                .placeholder(R.drawable.ic_perm_identity_white_24dp)
                .error(R.drawable.ic_perm_identity_white_24dp)
@@ -178,7 +178,7 @@ public class OverViewEventHelper extends BaseAdapterHelper<Event> {
     private void updatePushEventViewHolder(Event event) {
         PushEventViewHolder holder = (PushEventViewHolder) mHolder;
         holder.userName.setText(event.actor.login);
-        Picasso.with(holder.userAvatar.getContext())
+        Picasso.get()
                .load(event.actor.avatarUrl)
                .placeholder(R.drawable.ic_perm_identity_white_24dp)
                .error(R.drawable.ic_perm_identity_white_24dp)

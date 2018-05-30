@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
     }
 
     private void setUpUserInfo() {
-        Picasso.with(this)
+        Picasso.get()
                .load(mUserInfo.avatarUrl)
                .placeholder(R.drawable.ic_account_box_white_48dp)
                .error(R.drawable.ic_account_box_white_48dp)

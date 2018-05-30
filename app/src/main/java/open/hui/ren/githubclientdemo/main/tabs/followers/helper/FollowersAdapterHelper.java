@@ -127,7 +127,7 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
         Result<UserInfo> result = mLoadDataRepository.get();
         if (result.succeeded()) {
             UserInfo userInfo = result.get();
-            Picasso.with(mFollowersViewHolder.userAvatar.getContext())
+            Picasso.get()
                    .load(userInfo.avatarUrl)
                    .placeholder(R.drawable.ic_perm_identity_white_24dp)
                    .error(R.drawable.ic_perm_identity_white_24dp)
