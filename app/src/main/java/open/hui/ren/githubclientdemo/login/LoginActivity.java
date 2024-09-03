@@ -1,10 +1,9 @@
 package open.hui.ren.githubclientdemo.login;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +11,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     @BindView(R.id.login_form_pane)
     LinearLayout         mLoginFormPane;
     //custom
-    public  AlertDialog              mLoadDialog;
+    public AlertDialog mLoadDialog;
     private LoginContracts.Presenter mPresenter;
     //view data
     private UserInfo                 mUserInfo;
@@ -115,6 +117,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         if (msg.equals(ConstConfig.S_INIT_PARAMS)) {
             return;
         }
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     private boolean checkUserNamePasswordVaildate(String userNameOnUI, String passwordOnUI) {

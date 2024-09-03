@@ -27,15 +27,14 @@ android {
 }
 
 dependencies {
-    implementation "com.google.android.agera:agera:$rootProject.ageraLibrariesVersion"
     implementation project(':library')
+    // agera
+    implementation files('libs/agera-1.4.0.aar')
     // butter knife
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
     // picasso
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
-    // apt based preference
-    implementation "com.baoyz.treasure:treasure:$rootProject.treasureVersion"
     // Custom
     implementation("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion")
             {
@@ -43,13 +42,12 @@ dependencies {
             }
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.gsonConvertVersion"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
-    annotationProcessor "com.baoyz.treasure:treasure-compiler:$rootProject.treasureVersion"
-    // Dagger dependencies
-    annotationProcessor "com.squareup:javapoet:$rootProject.javapoetVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    // Dagger2 dependencies
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
-    // auto
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
 }
 
 apply from: "${project.rootDir}/common_dependencies.gradle"

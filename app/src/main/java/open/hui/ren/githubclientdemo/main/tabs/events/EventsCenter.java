@@ -1,6 +1,9 @@
 package open.hui.ren.githubclientdemo.main.tabs.events;
 
-import android.support.annotation.NonNull;
+import static com.google.android.agera.Result.absent;
+import static com.google.android.agera.Result.absentIfNull;
+
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.agera.Function;
@@ -18,7 +21,6 @@ import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.EventsAPIService;
 import open.hui.ren.githubclientdemo.entities.Event;
 import open.hui.ren.githubclientdemo.main.tabs.overview.OverViewContracts;
@@ -29,9 +31,6 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import tom.hui.ren.core.BaseCompactSupplier;
 import tom.hui.ren.core.BaseView;
-
-import static com.google.android.agera.Result.absent;
-import static com.google.android.agera.Result.absentIfNull;
 
 /**
  * @author renhui
@@ -51,8 +50,6 @@ public class EventsCenter extends BaseCompactSupplier<ArrayList<Event>> {
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
     @Inject
     ExecutorService   mNetExecutorService;
 

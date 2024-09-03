@@ -1,8 +1,12 @@
 package open.hui.ren.githubclientdemo.main.tabs.followers.helper;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import static com.google.android.agera.Result.absent;
+import static com.google.android.agera.Result.absentIfNull;
+
+import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.agera.Function;
 import com.google.android.agera.MutableRepository;
@@ -18,7 +22,6 @@ import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
 
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.apiservices.UserInfoAPIService;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
@@ -28,9 +31,6 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import tom.hui.ren.core.BaseAdapterHelper;
 import tom.hui.ren.core.BaseView;
-
-import static com.google.android.agera.Result.absent;
-import static com.google.android.agera.Result.absentIfNull;
 
 /**
  * @author renhui
@@ -49,8 +49,6 @@ public class FollowersAdapterHelper extends BaseAdapterHelper<UserInfo> {
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
     @Inject
     ExecutorService   mNetExecutorService;
 

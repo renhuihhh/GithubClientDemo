@@ -2,14 +2,15 @@ package open.hui.ren.githubclientdemo.main.tabs.stars;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class StarsFragment extends Fragment implements StarsContracts.View {
     private StarredRepoAdapter mStarredRepoAdapter;
 
     @BindView(R.id.starred_recycler_view)
-    RecyclerView       mStarredRecyclerView;
+    RecyclerView mStarredRecyclerView;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout mSwipeContainer;
 

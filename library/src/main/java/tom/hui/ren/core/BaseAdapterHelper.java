@@ -1,6 +1,7 @@
 package tom.hui.ren.core;
 
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.agera.Result;
 import com.google.android.agera.Supplier;

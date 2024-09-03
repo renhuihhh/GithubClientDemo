@@ -1,8 +1,9 @@
 package open.hui.ren.githubclientdemo.personal.settings;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;
@@ -10,7 +11,6 @@ import com.google.android.agera.Result;
 import javax.inject.Inject;
 
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Retrofit;
@@ -28,8 +28,6 @@ public class SettingsModel extends BaseSupplier<UserInfo> implements SettingsCon
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
 
     private MutableRepository<String> mSupplier;//上游数据supplier,主要负责参数输入
 
@@ -76,7 +74,6 @@ public class SettingsModel extends BaseSupplier<UserInfo> implements SettingsCon
     @Override
     public void doLogoOut() {
         Log.d(TAG, "doLogoOut");
-        mPreferenceService.setBasicCredential("");
         ((SettingsContracts.Presenter) mPresenter).afterLogout();
     }
 }

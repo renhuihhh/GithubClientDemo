@@ -1,8 +1,11 @@
 package open.hui.ren.githubclientdemo.login;
 
+import static com.google.android.agera.Result.absentIfNull;
+
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.agera.Function;
 import com.google.android.agera.MutableRepository;
@@ -22,8 +25,6 @@ import open.hui.ren.githubclientdemo.params.UserLoginParams;
 import open.hui.ren.githubclientdemo.utils.UiThreadExecutor;
 import tom.hui.ren.core.BaseSupplier;
 import tom.hui.ren.core.BaseView;
-
-import static com.google.android.agera.Result.absentIfNull;
 
 /**
  * @author renhui
@@ -140,6 +141,8 @@ public class LoginPresenter implements LoginContracts.Presenter, Updatable, Rece
         if (result.succeeded()) {
             mView.onLoginSuccess(result.get());
             mLoginSupplier.saveData(result.get());
+        } else if (result.failed()){
+            mView.onLoginFailed(result.getFailure());
         }
     }
 

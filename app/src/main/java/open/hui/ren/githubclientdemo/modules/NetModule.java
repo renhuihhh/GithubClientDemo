@@ -2,6 +2,7 @@ package open.hui.ren.githubclientdemo.modules;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.google.gson.FieldNamingPolicy;
@@ -21,7 +22,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
-import open.hui.ren.githubclientdemo.PreferenceService;
+import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.apiservices.UserInfoAPIService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -62,10 +63,12 @@ public class NetModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Cache cache, PreferenceService sharedPreferences) {
+    OkHttpClient provideOkHttpClient(Cache cache) {
         Authenticator authenticator = null;
-        final String  credential    = sharedPreferences.getBasicCredential();
-//        final String credential = ConstConfig.S_APP_TOKEN;
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("default", Context.MODE_PRIVATE);
+        //final String credential = ConstConfig.S_APP_TOKEN;
+        final String credential = sharedPreferences.getString("basicCredential", ConstConfig.S_APP_TOKEN);
+        
         if (!TextUtils.isEmpty(credential)) {
             authenticator = new Authenticator() {
                 @Override

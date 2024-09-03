@@ -1,6 +1,6 @@
 package open.hui.ren.githubclientdemo.main;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;

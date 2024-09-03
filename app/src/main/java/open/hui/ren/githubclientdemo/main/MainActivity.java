@@ -3,13 +3,6 @@ package open.hui.ren.githubclientdemo.main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +10,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.squareup.picasso.Picasso;
 
@@ -50,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements MainContracts.Vie
     private static final String TAG = "MainActivity";
 
     @BindView(R.id.toolbar)
-    Toolbar        mToolbar;
+    Toolbar mToolbar;
     @BindView(R.id.drawer_layout)
-    DrawerLayout   mDrawerLayout;
+    DrawerLayout mDrawerLayout;
     @BindView(R.id.avatar)
     ImageView      mAvatar;
     @BindView(R.id.user_account)

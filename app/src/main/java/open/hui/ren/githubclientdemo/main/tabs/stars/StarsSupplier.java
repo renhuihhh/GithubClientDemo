@@ -1,7 +1,8 @@
 package open.hui.ren.githubclientdemo.main.tabs.stars;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;
@@ -13,7 +14,6 @@ import javax.inject.Inject;
 
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.StarsAPIService;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.params.StarsParams;
@@ -36,8 +36,6 @@ public class StarsSupplier extends BaseSupplier<ArrayList<Repo>> implements Base
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
 
     private MutableRepository<StarsParams> mSupplier;//上游数据supplier,主要负责参数输入
 

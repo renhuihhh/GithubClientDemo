@@ -1,7 +1,7 @@
 package tom.hui.ren.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,7 +43,7 @@ public class DialogUtil {
         rightButton.setOnClickListener(onClickListener);
     }
 
-    public static AlertDialog getAndShowLoadingDialog(Context context,String content){
+    public static AlertDialog getAndShowLoadingDialog(Context context, String content){
         AlertDialog loadingDialog = new AlertDialog.Builder(context).create();
         loadingDialog.show();
         loadingDialog.getWindow()

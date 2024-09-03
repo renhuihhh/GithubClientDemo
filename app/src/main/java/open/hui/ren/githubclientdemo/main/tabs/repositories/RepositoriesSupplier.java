@@ -1,7 +1,10 @@
 package open.hui.ren.githubclientdemo.main.tabs.repositories;
 
+import static com.google.android.agera.Result.failure;
+
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;
@@ -13,7 +16,6 @@ import javax.inject.Inject;
 
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.RepositoriesAPIService;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.params.RepoQueryParams;
@@ -23,8 +25,6 @@ import retrofit2.Retrofit;
 import tom.hui.ren.core.BasePersistence;
 import tom.hui.ren.core.BasePresenter;
 import tom.hui.ren.core.BaseSupplier;
-
-import static com.google.android.agera.Result.failure;
 
 /**
  * @author renhui
@@ -37,8 +37,6 @@ public class RepositoriesSupplier extends BaseSupplier<ArrayList<Repo>> implemen
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
 
     private MutableRepository<RepoQueryParams> mSupplier;//上游数据supplier,主要负责参数输入
     private Context                            mContext;

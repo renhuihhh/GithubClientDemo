@@ -1,13 +1,16 @@
 package open.hui.ren.githubclientdemo.personal.settings;
 
+import static open.hui.ren.githubclientdemo.R.id.toolbar;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,8 +18,6 @@ import butterknife.OnClick;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.login.LoginActivity;
-
-import static open.hui.ren.githubclientdemo.R.id.toolbar;
 
 /**
  * @author renhui
@@ -26,7 +27,7 @@ import static open.hui.ren.githubclientdemo.R.id.toolbar;
 
 public class SettingsActivity extends AppCompatActivity implements SettingsContracts.View {
     @BindView(toolbar)
-    Toolbar  mToolbar;
+    Toolbar mToolbar;
     @BindView(R.id.user_logout_card_view)
     CardView mUserLogoutCardView;
     private SettingsContracts.Presenter mPresenter;

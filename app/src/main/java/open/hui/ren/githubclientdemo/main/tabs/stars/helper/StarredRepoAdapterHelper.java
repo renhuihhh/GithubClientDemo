@@ -1,8 +1,12 @@
 package open.hui.ren.githubclientdemo.main.tabs.stars.helper;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import static com.google.android.agera.Result.absent;
+import static com.google.android.agera.Result.absentIfNull;
+
+import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.agera.Function;
 import com.google.android.agera.MutableRepository;
@@ -18,9 +22,6 @@ import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.main.tabs.stars.viewholder.StarredRepoViewHolder;
 import tom.hui.ren.core.BaseAdapterHelper;
 import tom.hui.ren.core.BaseView;
-
-import static com.google.android.agera.Result.absent;
-import static com.google.android.agera.Result.absentIfNull;
 
 /**
  * @author renhui

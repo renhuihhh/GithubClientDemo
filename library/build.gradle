@@ -24,10 +24,10 @@ android {
 }
 
 dependencies {
-    // agera
-    implementation "com.google.android.agera:agera:$rootProject.ageraLibrariesVersion"
     // gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+    // agera
+    implementation files('libs/agera-1.4.0.aar')
 }
 
 apply from: "${project.rootDir}/common_dependencies.gradle"

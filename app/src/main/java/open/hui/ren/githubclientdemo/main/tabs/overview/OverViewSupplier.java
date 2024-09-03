@@ -1,7 +1,7 @@
 package open.hui.ren.githubclientdemo.main.tabs.overview;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.android.agera.MutableRepository;
@@ -13,7 +13,6 @@ import javax.inject.Inject;
 
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.entities.Repo;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.params.OverViewParams;
@@ -34,8 +33,6 @@ public class OverViewSupplier extends BaseSupplier<OverViewParams> {
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
 
     private MutableRepository<OverViewParams> mRepository;//上游数据Repository,主要负责参数输入
 

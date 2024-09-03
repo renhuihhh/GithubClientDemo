@@ -1,8 +1,9 @@
 package open.hui.ren.githubclientdemo.main.tabs.followers;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;
@@ -14,7 +15,6 @@ import javax.inject.Inject;
 
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.FollowersAPIService;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.params.FollowersParams;
@@ -38,8 +38,6 @@ public class FollowersSupplier extends BaseSupplier<ArrayList<UserInfo>> impleme
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
 
     private MutableRepository<FollowersParams> mSupplier;//上游数据supplier,主要负责参数输入
     private Context                            mContext;

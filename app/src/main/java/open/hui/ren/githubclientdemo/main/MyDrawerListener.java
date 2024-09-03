@@ -1,12 +1,14 @@
 package open.hui.ren.githubclientdemo.main;
 
 import android.app.Activity;
-import android.support.annotation.StringRes;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 /**
  * @author renhui
@@ -18,7 +20,7 @@ class MyDrawerListener extends ActionBarDrawerToggle {
     private DrawerLayout.DrawerListener mDrawerListener;
 
     public MyDrawerListener(Activity activity, DrawerLayout drawerLayout,
-        @StringRes int openDrawerContentDescRes, @StringRes int closeDrawerContentDescRes) {
+                            @StringRes int openDrawerContentDescRes, @StringRes int closeDrawerContentDescRes) {
         super(activity, drawerLayout, openDrawerContentDescRes, closeDrawerContentDescRes);
     }
 

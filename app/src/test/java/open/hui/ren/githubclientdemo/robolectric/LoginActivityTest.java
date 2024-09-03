@@ -1,7 +1,6 @@
 package open.hui.ren.githubclientdemo.robolectric;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
 import org.junit.After;

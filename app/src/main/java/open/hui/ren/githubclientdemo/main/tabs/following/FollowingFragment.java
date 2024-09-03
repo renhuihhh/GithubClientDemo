@@ -2,13 +2,14 @@ package open.hui.ren.githubclientdemo.main.tabs.following;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -17,8 +18,8 @@ import butterknife.ButterKnife;
 import open.hui.ren.githubclientdemo.MyApplication;
 import open.hui.ren.githubclientdemo.R;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
-import open.hui.ren.githubclientdemo.main.tabs.following.adapter.FollowingAdapter;
 import open.hui.ren.githubclientdemo.main.MainContracts;
+import open.hui.ren.githubclientdemo.main.tabs.following.adapter.FollowingAdapter;
 import open.hui.ren.githubclientdemo.widgets.MarginDecoration;
 import open.hui.ren.githubclientdemo.widgets.RippleItemAnimator;
 

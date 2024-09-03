@@ -1,8 +1,10 @@
 package open.hui.ren.githubclientdemo.login;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.agera.MutableRepository;
 import com.google.android.agera.Result;
@@ -14,12 +16,12 @@ import javax.inject.Inject;
 import okhttp3.Credentials;
 import open.hui.ren.githubclientdemo.ConstConfig;
 import open.hui.ren.githubclientdemo.MyApplication;
-import open.hui.ren.githubclientdemo.PreferenceService;
 import open.hui.ren.githubclientdemo.apiservices.APIServiceNeedToken;
 import open.hui.ren.githubclientdemo.entities.UserInfo;
 import open.hui.ren.githubclientdemo.params.UserLoginParams;
 import open.hui.ren.githubclientdemo.utils.ACache;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import tom.hui.ren.core.BaseSupplier;
 
@@ -33,8 +35,7 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
     ACache            mACache;
     @Inject
     Retrofit          mRetrofit;
-    @Inject
-    PreferenceService mPreferenceService;
+    SharedPreferences sharedPreferences;
 
     private MutableRepository<UserLoginParams> mSupplier;//上游数据supplier,主要负责参数输入
     private Context                            mContext;
@@ -47,6 +48,7 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
         mPresenter = presenter;
         MyApplication.ComponentHolder.getCommonComponent()
                                      .inject(this);
+        sharedPreferences = mContext.getSharedPreferences("default", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -63,8 +65,11 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
             .getUserInfoByAuthorization(credential);
         UserInfo userInfo;
         try {
-            userInfo = call.execute()
-                           .body();
+            Response<UserInfo>  response = call.execute();
+            userInfo = response.body();
+            if (userInfo == null) {
+                return Result.failure(new Exception(response.message()));
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return Result.failure(e);
@@ -85,9 +90,9 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
 
     @Override
     public void saveBasicLoginInfo(String loginAccount, String basicCredential) {
-        mPreferenceService.setLoginAccount(loginAccount);
+        sharedPreferences.edit().putString("loginAccount", loginAccount).commit();
         if (whetherNeedLogin()) {//认证需要重置
-            mPreferenceService.setBasicCredential(basicCredential);
+            sharedPreferences.edit().putString("basicCredential", basicCredential).commit();
             mPresenter.getView()
                       .getAppContext()
                       .buildCommonComponent();
@@ -96,7 +101,7 @@ public class LoginSupplier extends BaseSupplier<UserInfo> implements LoginContra
 
     @Override
     public boolean whetherNeedLogin() {
-        return TextUtils.isEmpty(mPreferenceService.getBasicCredential());
+        return TextUtils.isEmpty(sharedPreferences.getString("basicCredential", ""));
     }
 
     @Override

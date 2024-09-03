@@ -2,10 +2,6 @@ package open.hui.ren.githubclientdemo.main.tabs.overview;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,7 +55,7 @@ public class OverViewFragment extends Fragment implements OverViewContracts.View
 
     // ButterKnife
     @BindView(R.id.over_view_popular_repo_recycler_view)
-    RecyclerView       mPopularRepoRecyclerView;
+    RecyclerView mPopularRepoRecyclerView;
     @BindView(R.id.over_view_events_recycler_view)
     RecyclerView       mOverViewEventsRecyclerView;
     @BindView(R.id.swipe_container)
